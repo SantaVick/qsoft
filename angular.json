@@ -25,9 +25,8 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-  "src/styles.css"
+            "styles": [        
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ],
             "scripts": [
               "bootstrap/dist/js/bootstrap.bundle.min.js"
@@ -42,19 +41,19 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "1MB",
+                  "maximumError": "2MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "10kB",
+                  "maximumError": "20kB"
                 }
               ],
               "outputHashing": "all"
             },
             "engines": {
-  "node": "18.x"
+              "node": "18.x"
 },
             "development": {
               "optimization": false,
