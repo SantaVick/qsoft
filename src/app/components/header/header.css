@@ -1,0 +1,217 @@
+/* ── Root ── */
+:root {
+  --bs-danger: #dc2626;
+  --bs-danger-rgb: 220, 38, 38;
+}
+
+/* ── Cursor pointer for clickable elements ONLY ── */
+a,
+button,
+.nav-link,
+.fullmenu-link,
+.menu-toggle-btn,
+.fullmenu-close,
+.btn {
+  cursor: pointer !important;
+}
+
+/* ── Header shadow ── */
+.fixed-top.shadow-sm {
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* ── Desktop nav links ── */
+.nav-link {
+  color: #2d3a4b !important;
+  font-size: 0.84rem;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 4px !important;
+  transition: color 0.2s;
+  text-decoration: none;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: #dc2626;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #dc2626 !important;
+}
+
+/* ── CTA button ── */
+.btn-danger {
+  background-color: #dc2626 !important;
+  border-color: #dc2626 !important;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn-danger:hover {
+  background-color: #b91c1c !important;
+  border-color: #b91c1c !important;
+  transform: translateY(-1px);
+}
+
+/* ── Hamburger ── */
+.menu-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 10px;
+  background: none;
+  border: none;
+  transition: background 0.2s;
+  color: #2d3a4b;
+}
+
+.menu-toggle-btn:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+/* ════════════════════════════
+   FULL-SCREEN MENU
+════════════════════════════ */
+.fullmenu {
+  position: fixed;
+  inset: 0;
+  z-index: 1060;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+  overflow-y: auto;
+}
+
+.fullmenu.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+/* Hide on desktop */
+@media (min-width: 992px) {
+  .fullmenu {
+    display: none !important;
+  }
+}
+
+/* ── Close button ── */
+.fullmenu-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+  color: #4b5563;
+  z-index: 10;
+}
+
+.fullmenu-close:hover {
+  background: #fef2f2;
+  border-color: #dc2626;
+  color: #dc2626;
+}
+
+/* ── Inner wrapper ── */
+.fullmenu-inner {
+  text-align: center;
+  padding: 5rem 2rem 3rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* ── Logo in menu ── */
+.fullmenu-logo {
+  height: 48px;
+  width: auto;
+  margin-bottom: 3rem;
+}
+
+/* ── Nav links ── */
+.fullmenu-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+  align-items: center;
+}
+
+.fullmenu-link {
+  font-size: clamp(2rem, 7vw, 3.2rem);
+  font-weight: 800;
+  color: #111;
+  text-decoration: none;
+  padding: 0.4rem 1.5rem;
+  letter-spacing: -0.03em;
+  display: inline-block;
+  transition: color 0.2s;
+
+  /* Slide-in animation */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: none;
+}
+
+.fullmenu.open .fullmenu-link {
+  animation: menuSlide 0.45s ease forwards;
+  animation-delay: calc(var(--i, 0) * 0.08s);
+}
+
+@keyframes menuSlide {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fullmenu-link:hover,
+.fullmenu-link:active,
+.fullmenu-link.active {
+  color: #dc2626;
+}
+
+/* ── Body lock ── */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* ── Touch feedback ── */
+@media (hover: none) and (pointer: coarse) {
+  .fullmenu-link:active {
+    color: #dc2626 !important;
+  }
+
+  .fullmenu-link,
+  .menu-toggle-btn {
+    -webkit-tap-highlight-color: rgba(220, 38, 38, 0.1);
+  }
+}

@@ -1,0 +1,54 @@
+<section id="services">
+  <div class="max-w">
+    <div class="sec-hdr">
+      <span class="badge">What We Do</span>
+      <h2 class="sec-h2">Software built for every challenge.</h2>
+      <p class="sec-p">Hover over any service to explore what we build — crafted for East Africa, built to global standards.</p>
+      <p class="sec-p mobile-hint" *ngIf="isTouchDevice()">Tap on any card to expand and see all services.</p>
+    </div>
+
+    <div class="srv-grid">
+      <div *ngFor="let service of services" 
+           class="srv-card" 
+           [class.expanded]="service.expanded"
+           (click)="toggleExpand(service, $event)">
+
+        <div class="srv-card-img">
+          <img [src]="service.imageUrl" [alt]="service.title" loading="lazy">
+          <div class="srv-card-img-ov"></div>
+          <span class="srv-card-cat">{{ service.category }}</span>
+        </div>
+
+        <div class="srv-card-body">
+          <div class="srv-card-title">{{ service.title }}</div>
+          <div class="srv-card-desc">{{ service.description }}</div>
+
+          <div class="srv-subs">
+            <div class="srv-subs-inner">
+              <div class="srv-sub-list">
+                <div *ngFor="let sub of service.subServices" class="srv-sub-item">
+                  <span class="srv-sub-dot"></span>{{ sub }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        
+        </div>
+      </div>
+    </div>
+`
+    <div class="services-footer">
+      <div class="footer-content">
+        <h3>End-to-end technology solutions, tailored for your industry</h3>
+        <p>Whether you're a fast-growing startup, a government institution, or an established enterprise, our approach remains the same: understand your unique challenges, architect the right solution, and deliver with precision.</p>
+        <p>From initial consultation through deployment and ongoing support, we partner with you at every stage of your digital journey. Our team of engineers, architects, and project managers bring decades of combined experience across every major industry vertical.</p>
+        
+        <div class="footer-cta">
+          <p>Ready to discuss your next project?</p>
+          <a routerLink="/contact" class="footer-link">Let's talk →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

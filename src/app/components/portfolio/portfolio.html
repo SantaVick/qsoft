@@ -1,0 +1,92 @@
+<section class="portfolio-section">
+  <div class="ticker-outer">
+    <div class="ticker-track">
+      <span *ngFor="let item of [
+        'Revenue Collection','USSD Platforms','Traffic Engineering',
+        'Standards Automation','Web Development','Mobile Apps',
+        'Fintech','Industrial Automation','Security Solutions','Analytics'
+      ]" class="ticker-item">{{ item }}<span class="ticker-sep">—</span></span>
+    </div>
+  </div>
+
+  <div class="port-container">
+    <div class="port-header">
+      <div class="port-label">
+        <span class="label-dot"></span>
+        Our Work
+      </div>
+      <h2 class="port-title">
+        Projects that
+        <span class="title-italic">made an impact</span>
+      </h2>
+      <p class="port-sub">
+        From county governments to national standards bodies — real systems,
+        real scale, real outcomes Globally
+      </p>
+    </div>
+
+    <div class="projects-hand"
+         [class.loaded]="isLoaded"
+         [style.--count]="projects.length">
+      <div
+        *ngFor="let p of projects; let i = index"
+        class="proj-card"
+        [class.featured]="p.featured"
+        [style.--i]="i"
+        [style.--dist]="getDist(i)"
+        (click)="openModal(p)">
+        <div class="card-image" *ngIf="p.image">
+          <img [src]="p.image" [alt]="p.title" />
+        </div>
+        <span class="card-num">{{ pad(p.id) }}</span>
+        <div class="card-top">
+          <span class="card-category">{{ p.category }}</span>
+          <span class="card-year">{{ p.year }}</span>
+        </div>
+        <div class="card-body">
+          <div class="card-client">{{ p.client }}</div>
+          <h3 class="card-title">{{ p.title }}</h3>
+          <p class="card-desc">{{ p.description }}</p>
+        </div>
+        <a class="card-explore-link" (click)="openModal(p); $event.preventDefault()">
+          Explore more <span class="arrow">→</span>
+        </a>
+        <div class="card-arrow">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+            <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-strip">
+      <div class="stat-item"><span class="stat-n">50+</span><span class="stat-l">Enterprise Experts</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat-item"><span class="stat-n">24/7</span><span class="stat-l">Peace of Mind</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat-item"><span class="stat-n">60+</span><span class="stat-l">Years Combined Exp.</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat-item"><span class="stat-n">200+</span><span class="stat-l">Projects Delivered</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="modal-overlay" [class.open]="isModalOpen" (click)="closeModal()">
+  <div class="modal-panel" (click)="$event.stopPropagation()">
+    <button class="modal-close" (click)="closeModal()">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <ng-container *ngIf="selectedProject">
+      <div class="modal-eyebrow">
+        <span class="modal-cat">{{ selectedProject.category }}</span>
+        <span class="modal-year">{{ selectedProject.year }}</span>
+      </div>
+      <div class="modal-client">{{ selectedProject.client }}</div>
+      <h2 class="modal-title">{{ selectedProject.title }}</h2>
+      <div class="modal-divider"></div>
+      <p class="modal-desc">{{ selectedProject.description }}</p>
+    </ng-container>
+  </div>
+</div>

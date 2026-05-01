@@ -1,0 +1,107 @@
+<header class="fixed-top bg-white bg-opacity-75 border-bottom"
+        [class.shadow-sm]="scrolled"
+        style="backdrop-filter: blur(14px);">
+  <div class="container-fluid px-3 px-lg-4" style="max-width: 1400px; margin: 0 auto;">
+    <div class="d-flex align-items-center justify-content-between" style="height: 78px;">
+
+      <!-- Logo -->
+      <a routerLink="/" class="p-0 m-0 text-decoration-none">
+        <img src="images/qsoft-logo.png" alt="Qsoft Group" style="height: 50px;">
+      </a>
+
+      <ul class="nav d-none d-lg-flex flex-row gap-4 position-absolute start-50 translate-middle-x mb-0 ps-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact:true}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about" routerLinkActive="active">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/portfolio" routerLinkActive="active">Portfolio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/services" routerLinkActive="active">Services</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a>
+        </li>
+      </ul>
+
+      <!-- Right: CTA + Hamburger -->
+      <div class="d-flex align-items-center gap-3">
+        <a routerLink="/contact"
+           class="btn btn-danger rounded-pill px-4 py-2 fw-semibold d-none d-lg-inline-flex align-items-center">
+          Get in Touch &rarr;
+        </a>
+
+        <!-- Hamburger (mobile/tablet only) -->
+        <button class="menu-toggle-btn d-lg-none"
+                (click)="openMenu()"
+                aria-label="Open menu">
+          <svg width="26" height="26" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="7"  x2="23" y2="7"></line>
+            <line x1="3" y1="13" x2="23" y2="13"></line>
+            <line x1="3" y1="19" x2="23" y2="19"></line>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="fullmenu" [class.open]="mobileMenuOpen">
+
+  <!-- Close button -->
+  <button class="fullmenu-close" (click)="closeMenu()" aria-label="Close menu">
+    <svg width="28" height="28" fill="none" stroke="currentColor"
+         stroke-width="2.5" stroke-linecap="round">
+      <line x1="5" y1="5" x2="23" y2="23"></line>
+      <line x1="23" y1="5" x2="5" y2="23"></line>
+    </svg>
+  </button>
+
+  <div class="fullmenu-inner">
+
+    <!-- Logo -->
+    <img src="https://qsoft-group.com/images/logo.png"
+         alt="Qsoft Group" class="fullmenu-logo">
+
+    <!-- Nav links -->
+    <nav class="fullmenu-nav">
+      <a class="fullmenu-link" style="--i:0"
+         routerLink="/" routerLinkActive="active"
+         [routerLinkActiveOptions]="{exact:true}"
+         (click)="closeMenu()">Home</a>
+
+      <a class="fullmenu-link" style="--i:1"
+         routerLink="/about" routerLinkActive="active"
+         (click)="closeMenu()">About Us</a>
+
+      <a class="fullmenu-link" style="--i:2"
+         routerLink="/services" routerLinkActive="active"
+         (click)="closeMenu()">Services</a>
+
+      <a class="fullmenu-link" style="--i:3"
+         routerLink="/portfolio" routerLinkActive="active"
+         (click)="closeMenu()">Portfolio</a>
+
+      <a class="fullmenu-link" style="--i:4"
+         routerLink="/contact" routerLinkActive="active"
+         (click)="closeMenu()">Contact</a>
+    </nav>
+
+    <!-- CTA -->
+    <a routerLink="/contact"
+       class="btn btn-danger rounded-pill px-5 py-3 fw-semibold mt-4"
+       style="font-size: 0.95rem;"
+       (click)="closeMenu()">
+      Get in Touch &rarr;
+    </a>
+
+  </div>
+</div>

@@ -1,1 +1,98 @@
-/* You can add global styles to this file, and also import other style files */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #fff;
+  color: #111318;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity .7s ease, transform .7s ease;
+  transition-delay: var(--delay, 0s);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom cursor styles */
+body.cur-on {
+  cursor: none;
+}
+
+body.cur-on a, body.cur-on button, body.cur-on input, body.cur-on textarea, body.cur-on select {
+  cursor: none;
+}
+
+#cur {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  display: none;
+}
+
+body.cur-on #cur {
+  display: block;
+}
+
+.c-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: #111;
+  will-change: left, top;
+}
+
+.c-ring {
+  position: fixed;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(17, 19, 24, .3);
+  will-change: left, top;
+  transition: border-color .2s, width .2s, height .2s, margin .2s;
+}
+
+#cur.hov .c-ring {
+  width: 46px;
+  height: 46px;
+  margin: -23px 0 0 -23px;
+  border-color: #dc2626;
+}
+
+#cur.hov .c-dot {
+  background: #dc2626;
+}

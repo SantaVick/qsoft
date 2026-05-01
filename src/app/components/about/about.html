@@ -1,0 +1,160 @@
+<section class="about-section">
+  <div class="container">
+    <div class="carousel-wrapper">
+      <div class="carousel-container">
+        <div class="carousel-slides">
+          <div class="slide"
+               *ngFor="let img of images; let i = index"
+               [class.active]="i === currentIndex">
+            <img [src]="img.url" [alt]="img.alt">
+          </div>
+          <button class="carousel-btn prev" (click)="prevSlide()">&#10094;</button>
+          <button class="carousel-btn next" (click)="nextSlide()">&#10095;</button>
+        </div>
+        <div class="carousel-overlay-text">
+          <span>Touching Lives Through Technology</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-text animate-on-scroll" #animateElement>
+      <div class="eyebrow">Est. 2013 · Nairobi, Kenya</div>
+      <h1>About Us</h1>
+      <p class="lead-text">
+        Qsoft Limited was incorporated in 2013 and is headquartered in Nairobi, Kenya.
+        The founder members of Qsoft have over 60+ years of combined experience in the
+        IT industry, telecommunications, and industrial solutions in the public and private sector.
+        Qsoft delivers IT solutions, industrial automation systems, security solutions,
+        and analytics to its corporate and individual clients.
+      </p>
+      <p>
+        We provide solutions in analytics, fintech solutions, mobile and web-based applications,
+        security hardware, and software solutions.
+      </p>
+    </div>
+
+    <!-- MISSION / VISION -->
+    <div class="about-text animate-on-scroll" #animateElement>
+      <div class="about-highlights">
+        <div class="highlight-item">
+          <span class="highlight-icon">🎯</span>
+          <div>
+            <h3>Our Mission</h3>
+            <p>To develop solutions that touch lives by delivering easier, secure, cleaner, transparent and simpler solutions.</p>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-icon">👁️</span>
+          <div>
+            <h3>Our Vision</h3>
+            <p>To be the best technology solutions provider.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CORE VALUES -->
+    <div class="values-section animate-on-scroll" #animateElement>
+      <div class="section-header">
+        <span class="section-tag">What drives us</span>
+        <h3>Our Core Values</h3>
+      </div>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon-wrapper"><span class="value-icon">⭐</span></div>
+          <h4>Quality</h4>
+          <p>We deliver solutions built to the highest standards, every time.</p>
+          <div class="value-accent"></div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon-wrapper"><span class="value-icon">🤝</span></div>
+          <h4>Trust & Honesty</h4>
+          <p>We build lasting relationships through transparency and unwavering integrity.</p>
+          <div class="value-accent"></div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon-wrapper"><span class="value-icon">👥</span></div>
+          <h4>Teamwork</h4>
+          <p>Collaboration across disciplines drives better outcomes for our clients.</p>
+          <div class="value-accent"></div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon-wrapper"><span class="value-icon">💡</span></div>
+          <h4>Innovation & Agility</h4>
+          <p>We move fast, adapt quickly, and embrace new technologies.</p>
+          <div class="value-accent"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEADERSHIP HEADING -->
+    <div class="section-header section-header--left animate-on-scroll" style="margin: 4rem 0 2.5rem;" #animateElement>
+      <span class="section-tag">The people behind the work</span>
+      <h2 class="leadership-title">Our Leadership</h2>
+      <p class="section-sub">
+        A management team and board of directors driving product development and strategic
+        planning — with decades of combined experience across Africa and beyond.
+      </p>
+    </div>
+
+    <!-- TEAM STRIPS -->
+    <div class="team-strips animate-on-scroll" #animateElement>
+      <div class="team-strip" *ngFor="let member of team; let i = index">
+        <div class="strip-index">{{ (i + 1).toString().padStart(2, '0') }}</div>
+
+        <div class="strip-avatar-wrap">
+          <div class="strip-avatar" *ngIf="member.image">
+            <img [src]="member.image" [alt]="member.name" (error)="onImageError($event, member)" />
+          </div>
+          <div class="strip-initials" *ngIf="!member.image">{{ member.initials }}</div>
+        </div>
+
+        <div class="strip-identity">
+          <div class="strip-name">{{ member.name }}</div>
+          <div class="strip-role">{{ member.role }}</div>
+        </div>
+
+        <div class="strip-bio">{{ member.bio }}</div>
+
+        <!-- 👇 Extra images row (appears for ALL team members if they have images) -->
+        <div *ngIf="member.extraImages && member.extraImages.length" class="extra-images">
+          <img *ngFor="let imgUrl of member.extraImages" [src]="imgUrl" alt="Partner logo" />
+        </div>
+
+        <div class="strip-line"></div>
+      </div>
+    </div>
+
+    <!-- LEADERSHIP QUALITIES -->
+    <div class="about-text animate-on-scroll" #animateElement>
+      <div class="leadership-qualities">
+        <div class="quality">
+          <span class="quality-check">✓</span>
+          <span>Strategic vision with hands-on technical expertise</span>
+        </div>
+        <div class="quality">
+          <span class="quality-check">✓</span>
+          <span>Decades of combined experience in enterprise technology</span>
+        </div>
+        <div class="quality">
+          <span class="quality-check">✓</span>
+          <span>Commitment to developing the next generation of tech leaders</span>
+        </div>
+        <div class="quality">
+          <span class="quality-check">✓</span>
+          <span>Proven track record of successful digital transformations</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="about-cta animate-on-scroll" #animateElement>
+      <div class="cta-inner">
+        <div class="cta-geo cta-geo--1"></div>
+        <div class="cta-geo cta-geo--2"></div>
+        <h3>Ready to work with a team that puts your success first?</h3>
+        <a routerLink="/contact" class="cta-button">Let's Build Together →</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,183 @@
+<section id="contact">
+  <div class="max-w">
+    <div class="c-hero">
+      <span class="badge">Let's work together</span>
+      <h2>Let's work together.</h2>
+      <p>Leave your details and we'll get back to you within 24 hours with a clear, honest response.</p>
+    </div>
+    <div class="c-layout">
+      <div class="c-cards">
+        <div class="c-card">
+          <div class="c-card-ico">📞</div>
+          <div>
+            <div class="c-card-lbl">Phone</div>
+            <div class="c-card-val"><a href="tel:+254733330606">+(254) 733 330 606</a></div>
+          </div>
+        </div>
+        <div class="c-card">
+          <div class="c-card-ico">✉️</div>
+          <div>
+            <div class="c-card-lbl">Email</div>
+            <div class="c-card-val"><a href="mailto:info@qsoft-group.com">info@qsoft-group.com</a></div>
+          </div>
+        </div>
+        <div class="c-card">
+          <div class="c-card-ico">📍</div>
+          <div>
+            <div class="c-card-lbl">Office</div>
+            <div class="c-card-val">Watermark Business Park, Ndege Road, Karen, Nairobi</div>
+          </div>
+        </div>
+        <div class="c-card">
+          <div class="c-card-ico">🕐</div>
+          <div>
+            <div class="c-card-lbl">Hours</div>
+            <div class="c-card-val">Mon–Fri, 9am–5pm EAT</div>
+          </div>
+        </div>
+        <a
+          class="map-wrap"
+          href="https://www.google.com/maps/dir/?api=1&destination=Watermark+Business+Park,+Ndege+Road,+Karen,+Nairobi"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Open in Google Maps">
+          <iframe
+            width="100%"
+            height="350"
+            style="border:0; border-radius: 12px;"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7237257321683!2d36.711586775836484!3d-1.34212723568779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1b30d16487fb%3A0xb15991d1ea9d5f95!2sWatermark%20Business%20Park!5e0!3m2!1sen!2ske!4v1712999000000!5m2!1sen!2ske">
+          </iframe>
+          <div class="ping-watermark">
+            <div class="ping-ring"></div>
+            <div class="ping-marker"></div>
+            <div class="ping-shadow"></div>
+          </div>
+          <div class="map-hint">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Open in Maps
+          </div>
+        </a>
+      </div>
+
+      <div class="c-form-wrap">
+        <div class="c-form-ttl">Send us a message</div>
+        <div class="c-form-sub">We'll respond within 24–48 hours.</div>
+        <form (ngSubmit)="onSubmit()" #contactForm="ngForm" novalidate>
+
+          <div class="f-row">
+            <div class="fg">
+              <label>First Name <span class="r">*</span></label>
+              <input type="text" name="firstName" ngModel
+                     placeholder="John" required
+                     [class.input-error]="!contactForm.value.firstName?.trim() && formSubmitAttempted">
+              <span class="field-error"
+                    *ngIf="!contactForm.value.firstName?.trim() && formSubmitAttempted">
+                First name is required
+              </span>
+            </div>
+            <div class="fg">
+              <label>Last Name <span class="r">*</span></label>
+              <input type="text" name="lastName" ngModel
+                     placeholder="Doe" required
+                     [class.input-error]="!contactForm.value.lastName?.trim() && formSubmitAttempted">
+              <span class="field-error"
+                    *ngIf="!contactForm.value.lastName?.trim() && formSubmitAttempted">
+                Last name is required
+              </span>
+            </div>
+          </div>
+
+          <div class="f-row">
+            <div class="fg">
+              <label>Email <span class="r">*</span></label>
+              <input type="email" name="email" ngModel
+                     placeholder="john@gmail.com" required
+                     [class.input-error]="emailInvalid && formSubmitAttempted">
+              <span class="field-error" *ngIf="emailInvalid && formSubmitAttempted">
+                {{ !contactForm.value.email?.trim() ? 'Email is required' : 'Please enter a valid email' }}
+              </span>
+            </div>
+            <div class="fg">
+              <label>Phone</label>
+              <input type="tel" name="phone" ngModel placeholder="07xx xxx xxx">
+            </div>
+          </div>
+
+          <div class="fg">
+            <label>Company</label>
+            <input type="text" name="company" ngModel placeholder="Your organisation">
+          </div>
+
+          <div class="fg">
+            <label>Service <span class="r">*</span></label>
+            <select name="service" ngModel required
+                    [class.input-error]="!contactForm.value.service && formSubmitAttempted">
+              <option value="" disabled selected>Select a service...</option>
+              <option>Web Development</option>
+              <option>Mobile App Development</option>
+              <option>ERP / CRM Systems</option>
+              <option>Network & Infrastructure</option>
+              <option>Cloud & DevOps</option>
+              <option>Government Solutions</option>
+              <option>Other</option>
+            </select>
+            <span class="field-error" *ngIf="!contactForm.value.service && formSubmitAttempted">
+              Please select a service
+            </span>
+          </div>
+
+          <div class="fg">
+            <label>Message <span class="r">*</span></label>
+            <textarea rows="4" name="message" ngModel
+                      placeholder="Tell us about your project or enquiry... (min. 10 characters)"
+                      [class.input-error]="messageError && formSubmitAttempted">
+            </textarea>
+            <!-- Empty -->
+            <span class="field-error"
+                  *ngIf="!contactForm.value.message?.trim() && formSubmitAttempted">
+              Message is required
+            </span>
+            <!-- Too short -->
+            <span class="field-error"
+                  *ngIf="messageTooShort && formSubmitAttempted">
+              Message must be at least 10 characters
+              ({{ contactForm.value.message?.trim()?.length || 0 }}/10)
+            </span>
+          </div>
+
+          <!-- Missing fields banner -->
+          <div class="missing-banner"
+               *ngIf="formSubmitAttempted && (
+                 !contactForm.value.firstName?.trim() ||
+                 !contactForm.value.lastName?.trim()  ||
+                 emailInvalid ||
+                 !contactForm.value.service ||
+                 messageError
+               )">
+            ⚠️ Please fill in all required fields before sending.
+          </div>
+
+          <!-- Progress bar — shows while loading -->
+          <div class="progress-wrap" *ngIf="loading">
+            <div class="progress-bar"></div>
+          </div>
+
+          <button type="submit" class="f-submit" [disabled]="loading || submitted" [class.sent]="submitted">
+            <span class="spinner" *ngIf="loading"></span>
+            <span *ngIf="!loading && !submitted">Send Message →</span>
+            <span *ngIf="loading">{{ loadingMessage }}</span>
+            <span *ngIf="submitted && !loading">✓ Sent! We'll be in touch.</span>
+          </button>
+
+          <div class="error-message" *ngIf="error">
+            {{ errorMessage }}
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,298 @@
+<section id="home">
+
+  <div class="hero">
+
+    <div class="hero-text" data-reveal="fade-up">
+      <div class="hero-eyebrow">
+        <span ></span>
+      </div>
+
+      <h1>
+        Touching lives<br>
+        through<br>
+        <span class="it">Technology</span>
+      </h1>
+
+      <p class="hero-sub">
+        Enterprise software, mobile platforms, network infrastructure and
+        government digital solutions — built to last, built to scale Globally.
+      </p>
+
+      <div class="hero-btns">
+        <a class="btn-dark" routerLink="/services">Explore Our Services →</a>
+        <a class="btn-out" routerLink="/contact">Start a Project</a>
+      </div>
+    </div>
+
+    <!-- SLIDER -->
+    <div class="hero-imgs" data-reveal="fade-left">
+      <div class="hero-frame">
+        <div class="hi-main">
+          <button class="slide-nav slide-nav--p" (click)="prev()">‹</button>
+          <button class="slide-nav slide-nav--n" (click)="next()">›</button>
+
+          <div class="slideshow" (mouseenter)="stopAuto()" (mouseleave)="startAuto()">
+            <div *ngFor="let slide of slides; let i = index"
+                 class="slide" [class.active]="i === currentSlide">
+              <img class="mfill" [src]="slide.imageUrl" [alt]="slide.label">
+              <div class="slide-label">{{ slide.label }}</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MARQUEE STRIP -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span *ngFor="let item of marqueeItems" class="marquee-item">
+        {{ item }}<span class="marquee-sep">—</span>
+      </span>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- INDUSTRY IMPACT -->
+<section class="industry-impact">
+  <div class="max-w">
+
+    <div class="sec-hdr-row" data-reveal="fade-up">
+      <div>
+        <span class="badge">Industries We Serve</span>
+        <h2>Trusted across East Africa's<br>most demanding sectors</h2>
+      </div>
+      <p class="sec-aside">
+        We deliver mission-critical solutions for organizations that cannot afford to fail.
+        Click any sector to explore what we've built.
+      </p>
+    </div>
+
+    <div class="impact-grid">
+      <div *ngFor="let industry of industries; let i = index"
+           class="impact-item"
+           [class.active]="activeIndustry === industry.id"
+           [attr.data-reveal]="'fade-up'"
+           [attr.data-delay]="i * 100"
+           (click)="toggleIndustry(industry.id)">
+
+        <div class="impact-num">{{ pad(i + 1) }}</div>
+        <div class="impact-icon">{{ industry.icon }}</div>
+        <h3>{{ industry.title }}</h3>
+        <p>{{ industry.summary }}</p>
+
+        <div class="impact-expand-btn">
+          <span>{{ activeIndustry === industry.id ? 'Show less' : 'Learn more' }}</span>
+          <span class="expand-arrow" [class.open]="activeIndustry === industry.id">›</span>
+        </div>
+
+        <div class="impact-detail" [class.open]="activeIndustry === industry.id">
+          <div class="impact-detail-inner">
+            <p class="detail-body">{{ industry.detail }}</p>
+            <ul class="detail-list">
+              <li *ngFor="let item of industry.highlights">
+                <span class="dl-dot"></span>{{ item }}
+              </li>
+            </ul>
+            <div class="detail-tags">
+              <span *ngFor="let tag of industry.tags" class="c-tag">{{ tag }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="impact-line"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- WHAT WE BUILD -->
+<section class="services-section">
+  <div class="max-w">
+
+    <div class="services-header" data-reveal="fade-up">
+      <div>
+        <span class="badge">What We Build</span>
+        <h2>End-to-end solutions,<br>engineered for scale</h2>
+      </div>
+      <p class="sec-aside">
+        From a single mobile app to a national government platform — we scope, build, and support it all.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <div *ngFor="let svc of services; let i = index"
+           class="svc-card"
+           [attr.data-reveal]="'fade-up'"
+           [attr.data-delay]="i * 80">
+        <div class="svc-icon">{{ svc.icon }}</div>
+        <h3>{{ svc.title }}</h3>
+        <p>{{ svc.description }}</p>
+        <div class="svc-tags">
+          <span *ngFor="let t of svc.tags" class="c-tag">{{ t }}</span>
+        </div>
+        <a class="svc-link" routerLink="/services">Explore →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ADVANTAGE -->
+<section class="advantage">
+  <div class="max-w">
+    <div class="advantage-wrapper">
+
+      <div class="advantage-left" data-reveal="fade-right">
+        <span class="badge">The Qsoft Advantage</span>
+        <h2>Enterprise technology,<br>delivered with precision</h2>
+        <p class="advantage-desc">
+          We bring together world-class engineering talent and deep regional expertise
+          to solve complex challenges for leading organizations across East Africa.
+        </p>
+
+        <div class="advantage-features">
+          <div class="feature" *ngFor="let f of features; let i = index"
+               [attr.data-reveal]="'fade-up'"
+               [attr.data-delay]="i * 100">
+            <span class="feature-icon">✓</span>
+            <div>
+              <h4>{{ f.title }}</h4>
+              <p>{{ f.body }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="advantage-right" data-reveal="fade-left">
+        <div class="metrics-card">
+          <div class="metric">
+            <span class="metric-value">99.99%</span>
+            <span class="metric-label">Uptime SLA</span>
+          </div>
+          <div class="metric">
+            <span class="metric-value">50+</span>
+            <span class="metric-label">Enterprise Deployments</span>
+          </div>
+          <div class="metric">
+            <span class="metric-value">15+</span>
+            <span class="metric-label">Years of Excellence</span>
+          </div>
+          <div class="metric">
+            <span class="metric-value">24/7</span>
+            <span class="metric-label">Peace of Mind</span>
+          </div>
+        </div>
+
+        <div class="cert-row" data-reveal="fade-up">
+          <div class="cert-item" *ngFor="let c of certifications">
+            <span class="cert-icon">{{ c.icon }}</span>
+            <span class="cert-label">{{ c.label }}</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="how-we-work">
+  <div class="max-w">
+    <div class="sec-hdr text-center" data-reveal="fade-up">
+      <span class="badge">Our Process</span>
+      <h2>How we deliver results</h2>
+      <p>A battle-tested process refined across 50+ enterprise engagements.</p>
+    </div>
+    <div class="process-steps">
+      <div *ngFor="let step of processSteps; let i = index"
+           class="process-step"
+           [attr.data-reveal]="'fade-up'"
+           [attr.data-delay]="i * 120">
+        <div class="step-num">{{ pad(i + 1) }}</div>
+        <div class="step-icon">{{ step.icon }}</div>
+        <h4>{{ step.title }}</h4>
+        <p>{{ step.body }}</p>
+        <div class="step-connector" *ngIf="i < processSteps.length - 1"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="work-with-us">
+  <div class="max-w">
+    <div class="sec-hdr text-center" data-reveal="fade-up">
+      <span class="badge">Work With Us</span>
+      <h2>We build more than software</h2>
+      <p>We create opportunities for businesses, developers, and partners across the region.</p>
+    </div>
+    <div class="work-grid">
+      <div class="work-card" data-reveal="fade-up" data-delay="100">
+        <div class="wc-num">01</div>
+        <h3>🚀 Businesses</h3>
+        <p>Scale your operations with reliable, enterprise-grade digital systems tailored to your workflows.</p>
+        <a class="wc-link" routerLink="/contact">Get a quote →</a>
+      </div>
+      <div class="work-card" data-reveal="fade-up" data-delay="200">
+        <div class="wc-num">02</div>
+        <h3>💼 Developers</h3>
+        <p>Work on impactful real-world systems that serve millions of users across East Africa.</p>
+        <a class="wc-link" routerLink="/careers">View openings →</a>
+      </div>
+      <div class="work-card" data-reveal="fade-up" data-delay="300">
+        <div class="wc-num">03</div>
+        <h3>🤝 Partners</h3>
+        <p>Collaborate on large-scale projects and expand your reach across the East African market.</p>
+        <a class="wc-link" routerLink="/contact">Partner with us →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- MODAL -->
+<div class="modal-overlay" [class.open]="isModalOpen" (click)="closeModal()">
+  <div class="modal-panel" (click)="$event.stopPropagation()">
+    <button class="modal-close" (click)="closeModal()">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <ng-container *ngIf="selectedProject">
+      <div class="modal-eyebrow">
+        <span class="modal-cat">{{ selectedProject.category }}</span>
+        <span class="modal-year">{{ selectedProject.year }}</span>
+      </div>
+      <div class="modal-client">{{ selectedProject.client }}</div>
+      <h2 class="modal-title">{{ selectedProject.title }}</h2>
+      <div class="modal-divider"></div>
+      <p class="modal-desc">{{ selectedProject.description }}</p>
+      <div class="modal-tags">
+        <span *ngFor="let t of selectedProject.tags" class="c-tag large">{{ t }}</span>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<section class="ready-build">
+  <div class="max-w">
+    <div class="build-banner" data-reveal="fade-up">
+      <div class="build-content">
+        <h2>Ready to build something extraordinary?</h2>
+        <p>Let's discuss how we can help transform your organization with technology that scales.</p>
+      </div>
+      <div class="build-action">
+        <a class="btn-light" routerLink="/contact">Start the Conversation →</a>
+      </div>
+    </div>
+  </div>
+</section>
