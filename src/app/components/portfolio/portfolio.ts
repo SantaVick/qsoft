@@ -25,7 +25,7 @@ export class Portfolio implements OnInit, AfterViewInit {
   isLoaded = false;
   projects: Project[] = [
     {
-      id: 3,
+      id: 1,
       client: 'Kajiado County ADCB',
       category: 'Government · Licensing',
       title: 'Liquor Licence Cashless System',
@@ -35,7 +35,7 @@ export class Portfolio implements OnInit, AfterViewInit {
       image: 'images/kajiado.png',
     },
     {
-      id: 4,
+      id: 2,
       client: 'Kakamega County',
       category: 'Government · Revenue',
       title: 'USSD Revenue Collection System',
@@ -46,7 +46,7 @@ export class Portfolio implements OnInit, AfterViewInit {
       image: 'images/kakamega-logo.png',
     },
     {
-      id: 2,
+      id: 3,
       client: 'Mecoy Consulting Engineers',
       category: 'Infrastructure · Traffic',
       title: 'Traffic Engineering — Eldoret',
@@ -56,7 +56,7 @@ export class Portfolio implements OnInit, AfterViewInit {
       image: 'images/mecoy.png',
     },
     {
-      id: 5,
+      id: 4,
       client: 'Nyandarua County',
       category: 'Government · Fintech',
       title: 'Multi-Channel Revenue Platform',
@@ -67,7 +67,7 @@ export class Portfolio implements OnInit, AfterViewInit {
       image: 'images/nyandarua-logo.png',
     },
     {
-      id: 1,
+      id: 5,
       client: 'The Periodontist',
       category: 'Healthcare · Web',
       title: 'Corporate Website & Maintenance',

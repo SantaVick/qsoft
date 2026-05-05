@@ -115,6 +115,10 @@
   flex-shrink: 0;
 }
 
+.c-card-ico img {
+  width: 1.5rem;
+}
+
 .c-card-lbl {
   display: block !important;
   font-size: 0.75rem;
