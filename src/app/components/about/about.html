@@ -40,7 +40,7 @@
           <span class="highlight-icon">🎯</span>
           <div>
             <h3>Our Mission</h3>
-            <p>To develop solutions that touch lives by delivering easier, secure, cleaner, transparent and simpler solutions.</p>
+            <p>To develop solutions that touch lives by delivering easier, secure, cleaner, transparent and intelligent solutions.</p>
           </div>
         </div>
         <div class="highlight-item">
@@ -116,7 +116,6 @@
 
         <div class="strip-bio">{{ member.bio }}</div>
 
-        <!-- 👇 Extra images row (appears for ALL team members if they have images) -->
         <div *ngIf="member.extraImages && member.extraImages.length" class="extra-images">
           <img *ngFor="let imgUrl of member.extraImages" [src]="imgUrl" alt="Partner logo" />
         </div>
@@ -146,8 +145,6 @@
         </div>
       </div>
     </div>
-
-    <!-- CTA -->
     <div class="about-cta animate-on-scroll" #animateElement>
       <div class="cta-inner">
         <div class="cta-geo cta-geo--1"></div>

@@ -3,19 +3,14 @@
   <div class="hero">
 
     <div class="hero-text" data-reveal="fade-up">
-      <div class="hero-eyebrow">
-        <span ></span>
-      </div>
-
+    
       <h1>
         Touching lives<br>
-        through<br>
-        <span class="it">Technology</span>
+        through <br>intelligent
+        <span class="it"> Technology</span>
       </h1>
 
-      <p class="hero-sub">
-        Enterprise software, mobile platforms, network infrastructure and
-        government digital solutions — built to last, built to scale Globally.
+      <p class="hero-sub">We design, build, and support enterprise-grade digital solutions that help businesses, governments, and institutions innovate, automate, and grow with confidence.
       </p>
 
       <div class="hero-btns">
@@ -45,107 +40,214 @@
 
   </div>
 
-  <!-- MARQUEE STRIP -->
-  <div class="marquee-strip">
-    <div class="marquee-track">
-      <span *ngFor="let item of marqueeItems" class="marquee-item">
-        {{ item }}<span class="marquee-sep">—</span>
-      </span>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PRODUCT PORTFOLIO HEADER                            -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="pp-hdr">
+  <div class="pp-badge">Product Portfolio</div>
+  <h2>Purpose-built solutions for<br>enterprise impact</h2>
+  <p>Specialized platforms engineered for government revenue, standards compliance, payment processing, and smart infrastructure.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- FLOATING STACK SCENE                                -->
+<!-- Cards animate into position — no separate grid      -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="stack-scene">
+
+  <!-- Card 1: CountyPay -->
+  <div class="float-card fc-1">
+    <div class="fc-top">
+      <span class="fc-badge">Revenue Collection</span>
+      <div class="fc-icon">🏙️</div>
+    </div>
+    <h3>CountyPay</h3>
+    <p class="tagline">A complete revenue collection and management system for regional governments.</p>
+    <ul class="fc-list">
+      <li><span class="fc-dot"></span>Automate revenue collection processes</li>
+      <li><span class="fc-dot"></span>Automate enforcement workflows</li>
+      <li><span class="fc-dot"></span>Collector targets &amp; appraisal automation</li>
+      <li><span class="fc-dot"></span>End-to-end reconciliation with mobile money &amp; banks</li>
+    </ul>
+    <div class="fc-tags">
+      <span class="fc-tag">Revenue Automation</span>
+      <span class="fc-tag">Enforcement</span>
+      <span class="fc-tag">Reconciliation</span>
     </div>
   </div>
 
-</section>
+  <!-- Card 2: Standards Body ERP -->
+  <div class="float-card fc-2">
+    <div class="fc-top">
+      <span class="fc-badge">Standards &amp; Compliance</span>
+      <div class="fc-icon">📋</div>
+    </div>
+    <h3>Standards Body ERP</h3>
+    <p class="tagline">A complete end-to-end standards body ERP.</p>
+    <ul class="fc-list">
+      <li><span class="fc-dot"></span>Standards generation, curation &amp; sales</li>
+      <li><span class="fc-dot"></span>Quality assurance for market goods</li>
+      <li><span class="fc-dot"></span>Import inspection with third-party integration</li>
+      <li><span class="fc-dot"></span>Levies collection &amp; penalties automation</li>
+      <li><span class="fc-dot"></span>Market surveillance &amp; complaint handling</li>
+    </ul>
+    <div class="fc-tags">
+      <span class="fc-tag">Standards</span>
+      <span class="fc-tag">QA</span>
+      <span class="fc-tag">Inspection</span>
+      <span class="fc-tag">Surveillance</span>
+    </div>
+  </div>
+
+  <!-- Card 3: Payment Processor -->
+  <div class="float-card fc-3">
+    <div class="fc-top">
+      <span class="fc-badge">Fintech</span>
+      <div class="fc-icon">💳</div>
+    </div>
+    <h3>Payment Processor</h3>
+    <p class="tagline">Enables payment processing via banking channels and mobile money.</p>
+    <ul class="fc-list">
+      <li><span class="fc-dot"></span>Payments to users via mobile money or banks</li>
+      <li><span class="fc-dot"></span>Schedule from wallets or bank accounts</li>
+      <li><span class="fc-dot"></span>Generate full transaction statements</li>
+    </ul>
+    <div class="fc-tags">
+      <span class="fc-tag">Mobile Money</span>
+      <span class="fc-tag">Banking</span>
+      <span class="fc-tag">Scheduling</span>
+    </div>
+  </div>
+
+  <!-- Card 4: SmartH2O -->
+  <div class="float-card fc-4">
+    <div class="fc-top">
+      <span class="fc-badge">IoT</span>
+      <div class="fc-icon">💧</div>
+    </div>
+    <h3>SmartH₂O</h3>
+    <p class="tagline">Smart water billing using internet of things (IoT).</p>
+    <ul class="fc-list">
+      <li><span class="fc-dot"></span>Automated postpaid or prepaid billing</li>
+      <li><span class="fc-dot"></span>Remote valve monitoring &amp; control</li>
+      <li><span class="fc-dot"></span>Automated notifications on consumption events</li>
+    </ul>
+    <div class="fc-tags">
+      <span class="fc-tag">IoT</span>
+      <span class="fc-tag">Smart Billing</span>
+      <span class="fc-tag">Remote Control</span>
+    </div>
+  </div>
+
+  <!-- Card 5: VAS Platform -->
+  <div class="float-card fc-5">
+    <div class="fc-top">
+      <span class="fc-badge">Communication</span>
+      <div class="fc-icon">📡</div>
+    </div>
+    <h3>VAS Platform</h3>
+    <p class="tagline">Enables organizations to communicate via multiple channels.</p>
+    <ul class="fc-list">
+      <li><span class="fc-dot"></span>Apply for SMS short codes or keywords</li>
+      <li><span class="fc-dot"></span>Purchase bulk or premium SMS</li>
+      <li><span class="fc-dot"></span>Schedule &amp; upload recipient lists</li>
+    </ul>
+    <div class="fc-tags">
+      <span class="fc-tag">SMS</span>
+      <span class="fc-tag">Short Codes</span>
+      <span class="fc-tag">Bulk Messaging</span>
+    </div>
+  </div>
+
+</div>
 
 
-<!-- INDUSTRY IMPACT -->
-<section class="industry-impact">
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- HOW WE WORK — PROCESS CIRCLE                        -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="how-we-work">
   <div class="max-w">
-
-    <div class="sec-hdr-row" data-reveal="fade-up">
-      <div>
-        <span class="badge">Industries We Serve</span>
-        <h2>Trusted across East Africa's<br>most demanding sectors</h2>
-      </div>
-      <p class="sec-aside">
-        We deliver mission-critical solutions for organizations that cannot afford to fail.
-        Click any sector to explore what we've built.
-      </p>
+    <div class="sec-hdr text-center" data-reveal="fade-up">
+      <span class="badge">Our Process</span>
+      <h2>How we deliver results</h2>
+      <p>A disciplined approach to building enterprise software that works.</p>
     </div>
 
-    <div class="impact-grid">
-      <div *ngFor="let industry of industries; let i = index"
-           class="impact-item"
-           [class.active]="activeIndustry === industry.id"
+    <div class="process-steps" #processWrap
+         [style.width.px]="isMobile ? null : circleSize"
+         [style.height.px]="isMobile ? null : circleSize">
+
+      <!-- Center hub -->
+      <div class="sdlc-hub"
+           [style.width.px]="isMobile ? null : circleSize * 0.224"
+           [style.height.px]="isMobile ? null : circleSize * 0.224">
+        <span>How we</span>
+        <span>deliver results</span>
+      </div>
+
+      <!-- SVG orbit ring + dashed connectors -->
+      <svg
+           class="connectors"
+           [attr.viewBox]="'0 0 ' + circleSize + ' ' + circleSize"
+           xmlns="http://www.w3.org/2000/svg">
+
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5"
+                  markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="#dc2626"
+                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+
+        <circle
+          [attr.cx]="circleSize / 2"
+          [attr.cy]="circleSize / 2"
+          [attr.r]="orbitR"
+          fill="none"
+          stroke="#dc2626"
+          stroke-width="1.2"
+          stroke-dasharray="6 5"
+          opacity="0.18"/>
+
+        <ng-container *ngFor="let step of processSteps; let i = index">
+          <ng-container *ngIf="arcPath(i) as d">
+            <path [attr.d]="d"
+                  fill="none"
+                  stroke="#dc2626"
+                  stroke-width="1.4"
+                  stroke-dasharray="5 4"
+                  opacity="0.5"
+                  marker-end="url(#arr)"/>
+          </ng-container>
+        </ng-container>
+
+      </svg>
+
+      <!-- Step cards -->
+      <div *ngFor="let step of processSteps; let i = index"
+           class="process-step"
+           [ngStyle]="getStepPos(i)"
            [attr.data-reveal]="'fade-up'"
-           [attr.data-delay]="i * 100"
-           (click)="toggleIndustry(industry.id)">
+           [attr.data-delay]="i * 120">
 
-        <div class="impact-num">{{ pad(i + 1) }}</div>
-        <div class="impact-icon">{{ industry.icon }}</div>
-        <h3>{{ industry.title }}</h3>
-        <p>{{ industry.summary }}</p>
-
-        <div class="impact-expand-btn">
-          <span>{{ activeIndustry === industry.id ? 'Show less' : 'Learn more' }}</span>
-          <span class="expand-arrow" [class.open]="activeIndustry === industry.id">›</span>
+        <div class="step-num">{{ pad(i + 1) }}</div>
+        <div class="step-icon">
+          <img [src]="step.image" [alt]="step.title" class="step-image"/>
         </div>
+        <h4>{{ step.title }}</h4>
+        <p>{{ step.body }}</p>
 
-        <div class="impact-detail" [class.open]="activeIndustry === industry.id">
-          <div class="impact-detail-inner">
-            <p class="detail-body">{{ industry.detail }}</p>
-            <ul class="detail-list">
-              <li *ngFor="let item of industry.highlights">
-                <span class="dl-dot"></span>{{ item }}
-              </li>
-            </ul>
-            <div class="detail-tags">
-              <span *ngFor="let tag of industry.tags" class="c-tag">{{ tag }}</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="impact-line"></div>
       </div>
-    </div>
 
+    </div>
   </div>
 </section>
 
 
-<!-- WHAT WE BUILD -->
-<section class="services-section">
-  <div class="max-w">
-
-    <div class="services-header" data-reveal="fade-up">
-      <div>
-        <span class="badge">What We Build</span>
-        <h2>End-to-end solutions,<br>engineered for scale</h2>
-      </div>
-      <p class="sec-aside">
-        From a single mobile app to a national government platform — we scope, build, and support it all.
-      </p>
-    </div>
-
-    <div class="services-grid">
-      <div *ngFor="let svc of services; let i = index"
-           class="svc-card"
-           [attr.data-reveal]="'fade-up'"
-           [attr.data-delay]="i * 80">
-        <div class="svc-icon">{{ svc.icon }}</div>
-        <h3>{{ svc.title }}</h3>
-        <p>{{ svc.description }}</p>
-        <div class="svc-tags">
-          <span *ngFor="let t of svc.tags" class="c-tag">{{ t }}</span>
-        </div>
-        <a class="svc-link" routerLink="/services">Explore →</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ADVANTAGE -->
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- ADVANTAGE                                           -->
+<!-- ═══════════════════════════════════════════════════ -->
 <section class="advantage">
   <div class="max-w">
     <div class="advantage-wrapper">
@@ -154,8 +256,11 @@
         <span class="badge">The Qsoft Advantage</span>
         <h2>Enterprise technology,<br>delivered with precision</h2>
         <p class="advantage-desc">
-          We bring together world-class engineering talent and deep regional expertise
-          to solve complex challenges for leading organizations across East Africa.
+          We combine deep technical expertise with business insight to deliver scalable solutions across enterprise systems, digital platforms, mobile applications, network infrastructure, and business automation.
+        </p>
+
+        <p class="about-mission">
+          To develop solutions that touch lives by delivering easier, secure, cleaner, transparent and intelligent solutions.
         </p>
 
         <div class="advantage-features">
@@ -190,76 +295,159 @@
             <span class="metric-label">Peace of Mind</span>
           </div>
         </div>
+      </div>
 
-        <div class="cert-row" data-reveal="fade-up">
-          <div class="cert-item" *ngFor="let c of certifications">
-            <span class="cert-icon">{{ c.icon }}</span>
-            <span class="cert-label">{{ c.label }}</span>
+    </div>
+  </div>
+</section>
+
+  <!-- MARQUEE STRIP -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span *ngFor="let item of marqueeItems" class="marquee-item">
+        {{ item }}<span class="marquee-sep">—</span>
+      </span>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- BESPOKE SOFTWARE                                    -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="bespoke-strip">
+  <section class="bespoke-section">
+    <div class="max-w">
+      <div class="sec-hdr text-center">
+        <span class="badge">Bespoke Software</span>
+        <h2>Built around your business.</h2>
+        <p>Tailor-made software engineered from the ground up — no templates, no shortcuts.</p>
+      </div>
+
+      <div class="bespoke-grid">
+
+        <div class="bespoke-card">
+          <div class="bespoke-card-img">
+            <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&q=80&auto=format&fit=crop" alt="Web Development" loading="lazy">
+            <div class="bespoke-card-img-ov"></div>
+            <span class="bespoke-card-cat">Web</span>
+          </div>
+          <div class="bespoke-card-body">
+            <div class="bespoke-card-title">Web Development</div>
+            <div class="bespoke-card-desc">Fast, scalable web apps — from marketing sites and e-commerce to SaaS dashboards and enterprise portals.</div>
+            <div class="bespoke-subs">
+              <div class="bespoke-subs-inner">
+                <div class="bespoke-sub-list">
+                  <div class="bespoke-sub-item"><span class="bespoke-sub-dot"></span>Frontend Engineering (React / Angular)</div>
+                  <div class="bespoke-sub-item"><span class="bespoke-sub-dot"></span>Backend APIs &amp; Databases</div>
+                  <div class="bespoke-sub-item"><span class="bespoke-sub-dot"></span>E-Commerce Stores</div>
+                  <div class="bespoke-sub-item"><span class="bespoke-sub-dot"></span>CMS &amp; Content Platforms</div>
+                  <div class="bespoke-sub-item"><span class="bespoke-sub-dot"></span>Progressive Web Apps (PWA)</div>
+                  <div class="bespoke-sub-item"><span class="bespoke-sub-dot"></span>Web UI/UX Design</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
+        <div class="bespoke-card">
+          <div class="bespoke-card-img">
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80&auto=format&fit=crop" alt="Mobile App Development" loading="lazy">
+            <div class="bespoke-card-img-ov"></div>
+            <span class="bespoke-card-cat">Mobile</span>
+          </div>
+          <div class="bespoke-card-body">
+            <div class="bespoke-card-title">Mobile App Development</div>
+            <div class="bespoke-card-desc">Native and cross-platform apps for iOS and Android — fast, intuitive, and offline-ready for scale globally.</div>
+            <div class="bespoke-subs">
+              <div class="bespoke-subs-inner">
+                <div class="bespoke-sub-list">
+                  <div class="bespoke-sub-item"><span class="bespoke-sub-dot"></span>iOS Development (Swift)</div>
+                  <div class="bespoke-sub-item"><span class="bespoke-sub-dot"></span>Android Development (Kotlin / Java)</div>
+                  <div class="bespoke-sub-item"><span class="bespoke-sub-dot"></span>React Native (Cross-platform)</div>
+                  <div class="bespoke-sub-item"><span class="bespoke-sub-dot"></span>Flutter Apps</div>
+                  <div class="bespoke-sub-item"><span class="bespoke-sub-dot"></span>M-Pesa &amp; Payment Integration</div>
+                  <div class="bespoke-sub-item"><span class="bespoke-sub-dot"></span>App Store &amp; Play Store Deployment</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bespoke-card">
+          <div class="bespoke-card-img">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80&auto=format&fit=crop" alt="ERP & CRM Systems" loading="lazy">
+            <div class="bespoke-card-img-ov"></div>
+            <span class="bespoke-card-cat">Enterprise</span>
+          </div>
+          <div class="bespoke-card-body">
+            <div class="bespoke-card-title">ERP &amp; CRM Systems</div>
+            <div class="bespoke-card-desc">Custom business systems built around how your teams actually work — not generic software forced to fit.</div>
+            <div class="bespoke-subs">
+              <div class="bespoke-subs-inner">
+                <div class="bespoke-sub-list">
+                  <div class="bespoke-sub-item"><span class="bespoke-sub-dot"></span>Custom ERP Platforms</div>
+                  <div class="bespoke-sub-item"><span class="bespoke-sub-dot"></span>CRM &amp; Sales Automation</div>
+                  <div class="bespoke-sub-item"><span class="bespoke-sub-dot"></span>HRMS &amp; Payroll (KRA-compliant)</div>
+                  <div class="bespoke-sub-item"><span class="bespoke-sub-dot"></span>School / SACCO / Healthcare MIS</div>
+                  <div class="bespoke-sub-item"><span class="bespoke-sub-dot"></span>Inventory &amp; Supply Chain</div>
+                  <div class="bespoke-sub-item"><span class="bespoke-sub-dot"></span>Workflow Automation</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bespoke-card">
+          <div class="bespoke-card-img">
+            <img src="https://images.unsplash.com/photo-1568992688065-536aad8a12f6?w=800&q=80&auto=format&fit=crop" alt="Government & NGO Solutions" loading="lazy">
+            <div class="bespoke-card-img-ov"></div>
+            <span class="bespoke-card-cat">Government</span>
+          </div>
+          <div class="bespoke-card-body">
+            <div class="bespoke-card-title">Government &amp; NGO Solutions</div>
+            <div class="bespoke-card-desc">Secure, citizen-centred digital platforms for public institutions — transparent, auditable, built to serve at scale.</div>
+            <div class="bespoke-subs">
+              <div class="bespoke-subs-inner">
+                <div class="bespoke-sub-list">
+                  <div class="bespoke-sub-item"><span class="bespoke-sub-dot"></span>e-Government Citizen Portals</div>
+                  <div class="bespoke-sub-item"><span class="bespoke-sub-dot"></span>Revenue &amp; Permit Systems</div>
+                  <div class="bespoke-sub-item"><span class="bespoke-sub-dot"></span>Land &amp; Digital Registries</div>
+                  <div class="bespoke-sub-item"><span class="bespoke-sub-dot"></span>Procurement Management</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
+</div>
 
 
-<section class="how-we-work">
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- CTA                                                 -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="ready-build">
   <div class="max-w">
-    <div class="sec-hdr text-center" data-reveal="fade-up">
-      <span class="badge">Our Process</span>
-      <h2>How we deliver results</h2>
-      <p>A battle-tested process refined across 50+ enterprise engagements.</p>
-    </div>
-    <div class="process-steps">
-      <div *ngFor="let step of processSteps; let i = index"
-           class="process-step"
-           [attr.data-reveal]="'fade-up'"
-           [attr.data-delay]="i * 120">
-        <div class="step-num">{{ pad(i + 1) }}</div>
-        <div class="step-icon">{{ step.icon }}</div>
-        <h4>{{ step.title }}</h4>
-        <p>{{ step.body }}</p>
-        <div class="step-connector" *ngIf="i < processSteps.length - 1"></div>
+    <div class="build-banner" data-reveal="fade-up">
+      <div class="build-content">
+        <h2>Ready to build something extraordinary?</h2>
+        <p>Let's discuss how we can help transform your organization with technology that scales.</p>
+      </div>
+      <div class="build-action">
+        <a class="btn-light" routerLink="/contact">Start the Conversation →</a>
       </div>
     </div>
   </div>
 </section>
 
 
-
-<section class="work-with-us">
-  <div class="max-w">
-    <div class="sec-hdr text-center" data-reveal="fade-up">
-      <span class="badge">Work With Us</span>
-      <h2>We build more than software</h2>
-      <p>We create opportunities for businesses, developers, and partners across the region.</p>
-    </div>
-    <div class="work-grid">
-      <div class="work-card" data-reveal="fade-up" data-delay="100">
-        <div class="wc-num">01</div>
-        <h3>🚀 Businesses</h3>
-        <p>Scale your operations with reliable, enterprise-grade digital systems tailored to your workflows.</p>
-        <a class="wc-link" routerLink="/contact">Get a quote →</a>
-      </div>
-      <div class="work-card" data-reveal="fade-up" data-delay="200">
-        <div class="wc-num">02</div>
-        <h3>💼 Developers</h3>
-        <p>Work on impactful real-world systems that serve millions of users across East Africa.</p>
-        <a class="wc-link" routerLink="/careers">View openings →</a>
-      </div>
-      <div class="work-card" data-reveal="fade-up" data-delay="300">
-        <div class="wc-num">03</div>
-        <h3>🤝 Partners</h3>
-        <p>Collaborate on large-scale projects and expand your reach across the East African market.</p>
-        <a class="wc-link" routerLink="/contact">Partner with us →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- MODAL -->
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- MODAL                                               -->
+<!-- ═══════════════════════════════════════════════════ -->
 <div class="modal-overlay" [class.open]="isModalOpen" (click)="closeModal()">
   <div class="modal-panel" (click)="$event.stopPropagation()">
     <button class="modal-close" (click)="closeModal()">
@@ -282,17 +470,3 @@
     </ng-container>
   </div>
 </div>
-
-<section class="ready-build">
-  <div class="max-w">
-    <div class="build-banner" data-reveal="fade-up">
-      <div class="build-content">
-        <h2>Ready to build something extraordinary?</h2>
-        <p>Let's discuss how we can help transform your organization with technology that scales.</p>
-      </div>
-      <div class="build-action">
-        <a class="btn-light" routerLink="/contact">Start the Conversation →</a>
-      </div>
-    </div>
-  </div>
-</section>

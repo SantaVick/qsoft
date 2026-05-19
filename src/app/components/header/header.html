@@ -15,13 +15,10 @@
              [routerLinkActiveOptions]="{exact:true}">Home</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" routerLink="/portfolio" routerLinkActive="active">Clientele</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" routerLink="/about" routerLinkActive="active">About Us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/portfolio" routerLinkActive="active">Portfolio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/services" routerLinkActive="active">Services</a>
         </li>
         
         <li class="nav-item">
@@ -78,17 +75,13 @@
          [routerLinkActiveOptions]="{exact:true}"
          (click)="closeMenu()">Home</a>
 
+         <a class="fullmenu-link" style="--i:3"
+         routerLink="/portfolio" routerLinkActive="active"
+         (click)="closeMenu()">Clientele</a>
+
       <a class="fullmenu-link" style="--i:1"
          routerLink="/about" routerLinkActive="active"
          (click)="closeMenu()">About Us</a>
-
-      <a class="fullmenu-link" style="--i:2"
-         routerLink="/services" routerLinkActive="active"
-         (click)="closeMenu()">Services</a>
-
-      <a class="fullmenu-link" style="--i:3"
-         routerLink="/portfolio" routerLinkActive="active"
-         (click)="closeMenu()">Portfolio</a>
 
       <a class="fullmenu-link" style="--i:4"
          routerLink="/contact" routerLinkActive="active"
