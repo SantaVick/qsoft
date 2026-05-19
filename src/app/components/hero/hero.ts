@@ -149,25 +149,22 @@ calcCircle() {
   if (typeof window === 'undefined') return;
   this.isMobile = window.innerWidth <= 900;
 
+  // Mobile uses a completely different template — no circle math needed
   if (this.isMobile) {
-    const size      = window.innerWidth - 40;
-    this.circleSize = size;
-    this.orbitR     = size * 0.32;
-    this.cardW      = Math.floor(size * 0.26);
-    this.cardH      = Math.floor(size * 0.44);
-  } else {
-    const avail     = Math.min(window.innerWidth - 80, 850);
-    this.circleSize = avail;
-    this.orbitR     = avail * 0.335;
-    this.cardW      = Math.min(210, avail * 0.262);
-    this.cardH      = 195;
+    this.cdr.markForCheck();
+    return;
   }
 
+  const avail     = Math.min(window.innerWidth - 80, 850);
+  this.circleSize = avail;
+  this.orbitR     = avail * 0.335;
+  this.cardW      = Math.min(210, avail * 0.262);
+  this.cardH      = 195;
   this.cdr.markForCheck();
 }
-
 // 2. getStepPos — always return position, never return {}
 getStepPos(index: number): { [k: string]: string } {
+  if (this.isMobile) return {}; 
   const total    = this.processSteps.length;
   const angleDeg = -90 + (360 / total) * index;
   const rad      = (angleDeg * Math.PI) / 180;

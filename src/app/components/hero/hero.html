@@ -166,6 +166,11 @@
 <!-- ═══════════════════════════════════════════════════ -->
 <!-- HOW WE WORK — PROCESS CIRCLE                        -->
 <!-- ═══════════════════════════════════════════════════ -->
+ <!-- ═══════════════════════════════════════════════════ -->
+<!-- HOW WE WORK — PROCESS CIRCLE                        -->
+<!-- Desktop: circle with absolute-positioned cards      -->
+<!-- Mobile:  simple horizontal scroll cards             -->
+<!-- ═══════════════════════════════════════════════════ -->
 <section class="how-we-work">
   <div class="max-w">
     <div class="sec-hdr text-center" data-reveal="fade-up">
@@ -174,21 +179,23 @@
       <p>A disciplined approach to building enterprise software that works.</p>
     </div>
 
-    <div class="process-steps" #processWrap
-         [style.width.px]="isMobile ? null : circleSize"
-         [style.height.px]="isMobile ? null : circleSize">
+    <!-- ── DESKTOP: circle layout ── -->
+    <div *ngIf="!isMobile"
+         class="process-steps"
+         #processWrap
+         [style.width.px]="circleSize"
+         [style.height.px]="circleSize">
 
       <!-- Center hub -->
       <div class="sdlc-hub"
-           [style.width.px]="isMobile ? null : circleSize * 0.224"
-           [style.height.px]="isMobile ? null : circleSize * 0.224">
+           [style.width.px]="circleSize * 0.224"
+           [style.height.px]="circleSize * 0.224">
         <span>How we</span>
         <span>deliver results</span>
       </div>
 
       <!-- SVG orbit ring + dashed connectors -->
-      <svg
-           class="connectors"
+      <svg class="connectors"
            [attr.viewBox]="'0 0 ' + circleSize + ' ' + circleSize"
            xmlns="http://www.w3.org/2000/svg">
 
@@ -224,7 +231,7 @@
 
       </svg>
 
-      <!-- Step cards -->
+      <!-- Step cards — absolute positioned via getStepPos() -->
       <div *ngFor="let step of processSteps; let i = index"
            class="process-step"
            [ngStyle]="getStepPos(i)"
@@ -239,11 +246,25 @@
         <p>{{ step.body }}</p>
 
       </div>
-
     </div>
+
+    <!-- ── MOBILE: horizontal scroll cards, zero absolute positioning ── -->
+    <div *ngIf="isMobile" class="steps-mobile">
+      <div *ngFor="let step of processSteps; let i = index"
+           class="step-mobile-card">
+
+        <div class="step-num">{{ pad(i + 1) }}</div>
+        <div class="step-icon">
+          <img [src]="step.image" [alt]="step.title" class="step-image"/>
+        </div>
+        <h4>{{ step.title }}</h4>
+        <p>{{ step.body }}</p>
+
+      </div>
+    </div>
+
   </div>
 </section>
-
 
 <!-- ═══════════════════════════════════════════════════ -->
 <!-- ADVANTAGE                                           -->
