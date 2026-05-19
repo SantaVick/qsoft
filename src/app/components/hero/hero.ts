@@ -144,38 +144,40 @@ export class Hero implements OnInit, OnDestroy, AfterViewInit {
   onResize() {
     this.calcCircle();
   }
-
+// 1. calcCircle — remove isMobile early return, always calculate
 calcCircle() {
   if (typeof window === 'undefined') return;
   this.isMobile = window.innerWidth <= 900;
 
-  const padding = 20;
-  const maxSize = this.isMobile ? 420 : 850;
-  const avail   = Math.min(window.innerWidth - padding, maxSize);
+  if (this.isMobile) {
+    const size      = window.innerWidth - 40;
+    this.circleSize = size;
+    this.orbitR     = size * 0.32;
+    this.cardW      = Math.floor(size * 0.26);
+    this.cardH      = Math.floor(size * 0.44);
+  } else {
+    const avail     = Math.min(window.innerWidth - 80, 850);
+    this.circleSize = avail;
+    this.orbitR     = avail * 0.335;
+    this.cardW      = Math.min(210, avail * 0.262);
+    this.cardH      = 195;
+  }
 
-  this.circleSize = avail;
-  this.orbitR     = avail * 0.32;
-  this.cardW      = this.isMobile ? Math.floor(avail * 0.28) : Math.min(210, avail * 0.262);
-  this.cardH      = this.isMobile ? 160 : 195;
   this.cdr.markForCheck();
 }
+
+// 2. getStepPos — always return position, never return {}
 getStepPos(index: number): { [k: string]: string } {
   const total    = this.processSteps.length;
   const angleDeg = -90 + (360 / total) * index;
   const rad      = (angleDeg * Math.PI) / 180;
-  const cx = this.circleSize / 2;
-  const cy = this.circleSize / 2;
-
-  const x = cx + this.orbitR * Math.cos(rad) - this.cardW / 2;
-  const y = cy + this.orbitR * Math.sin(rad) - this.cardH / 2;
-
-  return {
-    position : 'absolute',
-    top      : `${y}px`,
-    left     : `${x}px`,
-    width    : `${this.cardW}px`,
-  };
+  const cx       = this.circleSize / 2;
+  const cy       = this.circleSize / 2;
+  const x        = cx + this.orbitR * Math.cos(rad) - this.cardW / 2;
+  const y        = cy + this.orbitR * Math.sin(rad) - this.cardH / 2;
+  return { position: 'absolute', top: `${y}px`, left: `${x}px`, width: `${this.cardW}px` };
 }
+
   arcPath(index: number): string {
     const total    = this.processSteps.length;
     const inset    = 18;
