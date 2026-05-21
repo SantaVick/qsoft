@@ -69,6 +69,9 @@ export class Hero implements OnInit, OnDestroy, AfterViewInit {
   cardH      = 195;
   isMobile   = false;
 
+  // ── New: Sector toggle for product cards ──
+  activeSector: 'private' | 'government' = 'private';
+
   // ── Data ──
   slides: Slide[] = [
     { imageUrl: 'images/try.png', label: '', caption: 'Infrastructure that scales with you' },
@@ -128,7 +131,7 @@ export class Hero implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.initCardAnimation();
+      // initCardAnimation() removed – no more floating scene
       this.initScrollReveal();
       this.calcCircle();
     }
@@ -144,36 +147,30 @@ export class Hero implements OnInit, OnDestroy, AfterViewInit {
   onResize() {
     this.calcCircle();
   }
-// 1. calcCircle — remove isMobile early return, always calculate
-calcCircle() {
-  if (typeof window === 'undefined') return;
-  this.isMobile = window.innerWidth <= 900;
 
-  // Mobile uses a completely different template — no circle math needed
-  if (this.isMobile) {
+  calcCircle() {
+    if (typeof window === 'undefined') return;
+    this.isMobile = window.innerWidth <= 900;
+
+    const avail     = Math.min(window.innerWidth - 80, 850);
+    this.circleSize = avail;
+    this.orbitR     = avail * 0.335;
+    this.cardW      = Math.min(210, avail * 0.262);
+    this.cardH      = 195;
     this.cdr.markForCheck();
-    return;
   }
 
-  const avail     = Math.min(window.innerWidth - 80, 850);
-  this.circleSize = avail;
-  this.orbitR     = avail * 0.335;
-  this.cardW      = Math.min(210, avail * 0.262);
-  this.cardH      = 195;
-  this.cdr.markForCheck();
-}
-// 2. getStepPos — always return position, never return {}
-getStepPos(index: number): { [k: string]: string } {
-  if (this.isMobile) return {}; 
-  const total    = this.processSteps.length;
-  const angleDeg = -90 + (360 / total) * index;
-  const rad      = (angleDeg * Math.PI) / 180;
-  const cx       = this.circleSize / 2;
-  const cy       = this.circleSize / 2;
-  const x        = cx + this.orbitR * Math.cos(rad) - this.cardW / 2;
-  const y        = cy + this.orbitR * Math.sin(rad) - this.cardH / 2;
-  return { position: 'absolute', top: `${y}px`, left: `${x}px`, width: `${this.cardW}px` };
-}
+  getStepPos(index: number): { [k: string]: string } {
+    if (this.isMobile) return {};
+    const total    = this.processSteps.length;
+    const angleDeg = -90 + (360 / total) * index;
+    const rad      = (angleDeg * Math.PI) / 180;
+    const cx       = this.circleSize / 2;
+    const cy       = this.circleSize / 2;
+    const x        = cx + this.orbitR * Math.cos(rad) - this.cardW / 2;
+    const y        = cy + this.orbitR * Math.sin(rad) - this.cardH / 2;
+    return { position: 'absolute', top: `${y}px`, left: `${x}px`, width: `${this.cardW}px` };
+  }
 
   arcPath(index: number): string {
     const total    = this.processSteps.length;
@@ -282,241 +279,79 @@ getStepPos(index: number): { [k: string]: string } {
     this.progressTimer = setInterval(() => {
       this.progressWidth = Math.min(100, this.progressWidth + step);
     }, 50);
-  }private initCardAnimation() {
-  const scene      = document.querySelector('.stack-scene') as HTMLElement;
-  const floatCards = Array.from(document.querySelectorAll('.float-card')) as HTMLElement[];
-  if (!scene || !floatCards.length) return;
-
-  let triggered = false;
-  let timeouts: any[] = [];
-
-  const applySettledStyle = (card: HTMLElement, isGov: boolean) => {
-    card.style.backdropFilter         = 'blur(22px) saturate(160%)';
-    (card.style as any)['-webkit-backdrop-filter'] = 'blur(22px) saturate(160%)';
-    card.style.background             = 'rgba(255,255,255,0.18)';
-    card.style.border                 = '1px solid rgba(255,255,255,0.35)';
-    card.style.borderTop              = isGov ? '2px solid rgba(220,38,38,0.6)' : '2px solid rgba(29,78,216,0.6)';
-    card.style.boxShadow              = '0 8px 32px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.7)';
-
-    card.querySelectorAll<HTMLElement>('h3').forEach(el => {
-      el.style.fontSize = '1.05rem'; el.style.fontWeight = '800';
-      el.style.color = '#111'; el.style.letterSpacing = '-0.02em';
-    });
-    card.querySelectorAll<HTMLElement>('.tagline').forEach(el => {
-      el.style.fontSize = '0.82rem'; el.style.color = '#555'; el.style.lineHeight = '1.6';
-    });
-    card.querySelectorAll<HTMLElement>('.fc-list li').forEach(el => {
-      el.style.fontSize = '0.8rem'; el.style.color = '#374151';
-      el.style.borderBottom = '0.5px solid rgba(0,0,0,0.06)'; el.style.padding = '4px 0';
-    });
-    card.querySelectorAll<HTMLElement>('.fc-dot').forEach(el => {
-      el.style.background = isGov ? '#dc2626' : '#1d4ed8';
-      el.style.width = '6px'; el.style.height = '6px'; el.style.minWidth = '6px';
-    });
-    card.querySelectorAll<HTMLElement>('.fc-badge').forEach(el => {
-      el.style.background   = isGov ? 'rgba(220,38,38,0.12)' : 'rgba(29,78,216,0.12)';
-      el.style.color        = isGov ? '#dc2626' : '#1d4ed8';
-      el.style.fontSize     = '0.68rem'; el.style.fontWeight = '800';
-      el.style.padding      = '0.3rem 0.85rem'; el.style.borderRadius = '999px';
-      el.style.border       = isGov ? '0.5px solid rgba(220,38,38,0.25)' : '0.5px solid rgba(29,78,216,0.25)';
-    });
-    card.querySelectorAll<HTMLElement>('.fc-tag').forEach(el => {
-      el.style.background   = 'rgba(0,0,0,0.05)'; el.style.color = '#555';
-      el.style.fontSize     = '0.68rem'; el.style.fontWeight = '600';
-      el.style.border       = '0.5px solid rgba(0,0,0,0.08)';
-      el.style.padding      = '0.25rem 0.7rem'; el.style.borderRadius = '999px';
-    });
-    card.querySelectorAll<HTMLElement>('.fc-tags').forEach(el => {
-      el.style.borderTop = '0.5px solid rgba(0,0,0,0.06)'; el.style.paddingTop = '0.6rem';
-    });
-    card.querySelectorAll<HTMLElement>('.fc-icon').forEach(el => {
-      el.style.background = 'rgba(255,255,255,0.5)';
-      el.style.border     = '0.5px solid rgba(255,255,255,0.8)';
-    });
-  };
-
-  const createSectorLabel = (id: string, text: string, icon: string, x: number, y: number) => {
-    if (document.getElementById(id)) return;
-    const el = document.createElement('div');
-    el.id = id;
-    el.innerHTML = `<span>${icon}</span>${text}`;
-    el.style.cssText = `
-      position: absolute; left: ${x}px; top: ${y}px;
-      font-family: 'Syne', sans-serif; font-size: 1rem;
-      font-weight: 800; color: #111;
-      display: flex; align-items: center; gap: 8px;
-      opacity: 0; transform: translateY(8px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-      z-index: 20; white-space: nowrap;
-    `;
-    scene.appendChild(el);
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      el.style.opacity = '1';
-      el.style.transform = 'translateY(0)';
-    }));
-  };
-
-  const shiftRemainingDown = (fromIndex: number) => {
-    const stackTops = [0, 110, 220, 330, 440];
-    for (let j = fromIndex; j < floatCards.length; j++) {
-      const card = floatCards[j];
-      if (card.dataset['settled'] === 'true') continue;
-      card.style.transition = 'top 0.8s cubic-bezier(0.22, 1, 0.36, 1)';
-      card.style.top        = `${stackTops[j] + fromIndex * 80}px`;
-    }
-  };
-
-  const settle = () => {
-  if (triggered) return;
-  triggered = true;
-
-  const sceneW  = scene.offsetWidth;
-  const isMobileView = window.innerWidth <= 900;
-  const gap     = 16;
-  const padX    = isMobileView ? 16 : 40;
-
-  if (isMobileView) {
-    // ── MOBILE / TABLET: vertical stack, full width cards ──
-    const cardW = sceneW - padX * 2;
-    const cardH = 320; // estimated card height
-    const startY = 44; // space for no sector labels on mobile
-
-    const positions = [
-      { x: padX, y: startY,                        w: cardW, isGov: true  },
-      { x: padX, y: startY + cardH + gap,           w: cardW, isGov: true  },
-      { x: padX, y: startY + (cardH + gap) * 2,     w: cardW, isGov: false },
-      { x: padX, y: startY + (cardH + gap) * 3,     w: cardW, isGov: false },
-      { x: padX, y: startY + (cardH + gap) * 4,     w: cardW, isGov: false },
-    ];
-
-    // set scene tall enough for all 5 cards
-    scene.style.transition = 'height 1.2s cubic-bezier(0.22,1,0.36,1)';
-    scene.style.height     = `${startY + (cardH + gap) * 5 + 40}px`;
-
-    floatCards.forEach((card, i) => {
-      const pos = positions[i];
-      timeouts.push(setTimeout(() => {
-
-        card.style.animation  = 'none';
-        card.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.4, 0.64, 1)';
-        card.style.transform  = 'rotateX(48deg) rotateZ(-20deg) translateY(-50px) scale(1.05)';
-
-        timeouts.push(setTimeout(() => {
-          card.style.transition = `
-            top           1.8s cubic-bezier(0.22, 1, 0.36, 1),
-            left          1.8s cubic-bezier(0.22, 1, 0.36, 1),
-            width         1.8s cubic-bezier(0.22, 1, 0.36, 1),
-            transform     1.8s cubic-bezier(0.22, 1, 0.36, 1),
-            border-radius 1.6s ease,
-            box-shadow    1.6s ease
-          `;
-          card.style.top          = `${pos.y}px`;
-          card.style.left         = `${pos.x}px`;
-          card.style.marginLeft   = '0';
-          card.style.width        = `${pos.w}px`;
-          card.style.transform    = 'rotateX(0deg) rotateZ(0deg) translateY(0) scale(1)';
-          card.style.borderRadius = '20px';
-          card.style.zIndex       = '2';
-          card.style.padding      = '1.25rem';
-          card.dataset['settled'] = 'true';
-
-          timeouts.push(setTimeout(() => {
-            applySettledStyle(card, pos.isGov);
-          }, 1900));
-        }, 550));
-      }, i * 600)); // slightly faster stagger on mobile
-    });
-
-  } else {
-    // ── DESKTOP: original 2-row grid layout ──
-    const govCardW  = Math.floor((sceneW - padX * 2 - gap) / 2);
-    const privCardW = Math.floor((sceneW - padX * 2 - gap * 2) / 3);
-    const govY      = 60;
-    const privY     = 420;
-
-    const positions = [
-      { x: padX,                         y: govY,  w: govCardW,  isGov: true  },
-      { x: padX + govCardW + gap,         y: govY,  w: govCardW,  isGov: true  },
-      { x: padX,                         y: privY, w: privCardW, isGov: false },
-      { x: padX + privCardW + gap,        y: privY, w: privCardW, isGov: false },
-      { x: padX + (privCardW + gap) * 2,  y: privY, w: privCardW, isGov: false },
-    ];
-
-    scene.style.transition = 'height 1.2s cubic-bezier(0.22,1,0.36,1)';
-    scene.style.height     = '820px';
-
-    floatCards.forEach((card, i) => {
-      const pos = positions[i];
-      timeouts.push(setTimeout(() => {
-        shiftRemainingDown(i + 1);
-
-        if (i === 0) createSectorLabel('label-gov', 'Government & Public Sector', '🏛️', padX, govY - 44);
-        if (i === 2) createSectorLabel('label-priv', 'Private Sector', '🏢', padX, privY - 44);
-
-        card.style.animation  = 'none';
-        card.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.4, 0.64, 1)';
-        card.style.transform  = 'rotateX(48deg) rotateZ(-20deg) translateY(-50px) scale(1.05)';
-
-        timeouts.push(setTimeout(() => {
-          card.style.transition = `
-            top           1.8s cubic-bezier(0.22, 1, 0.36, 1),
-            left          1.8s cubic-bezier(0.22, 1, 0.36, 1),
-            width         1.8s cubic-bezier(0.22, 1, 0.36, 1),
-            transform     1.8s cubic-bezier(0.22, 1, 0.36, 1),
-            border-radius 1.6s ease,
-            box-shadow    1.6s ease
-          `;
-          card.style.top          = `${pos.y}px`;
-          card.style.left         = `${pos.x}px`;
-          card.style.marginLeft   = '0';
-          card.style.width        = `${pos.w}px`;
-          card.style.transform    = 'rotateX(0deg) rotateZ(0deg) translateY(0) scale(1)';
-          card.style.borderRadius = '24px';
-          card.style.zIndex       = '2';
-          card.style.padding      = '1.5rem';
-          card.dataset['settled'] = 'true';
-
-          timeouts.push(setTimeout(() => {
-            applySettledStyle(card, pos.isGov);
-          }, 1900));
-        }, 550));
-      }, i * 750));
-    });
   }
-};
 
- const reset = () => {
-  triggered = false;
-  timeouts.forEach(t => clearTimeout(t));
-  timeouts = [];
+// ── 3D Tilt Effect ──
+applyTilt(event: MouseEvent, cardWrapper: HTMLElement) {
+  if (!cardWrapper || window.innerWidth <= 900) return;
 
-  scene.style.transition = 'height 0.6s ease';
-  scene.style.height     = '860px';
+  const card = cardWrapper.querySelector('.tilt-card') as HTMLElement;
+  const glare = cardWrapper.querySelector('.card-glare') as HTMLElement;
+  if (!card || !glare) return;
 
-  ['label-gov', 'label-priv'].forEach(id => document.getElementById(id)?.remove());
+  const rect = cardWrapper.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+  
+  const centerX = rect.width / 2;
+  const centerY = rect.height / 2;
 
-  floatCards.forEach(card => {
-    delete card.dataset['settled'];
-    card.style.cssText = '';
-  });
-};
+  /* Interactive tilt - subtle movement */
+  const rotateX = ((y - centerY) / centerY) * -8;
+  const rotateY = ((x - centerX) / centerX) * 8;
 
-  // Single observer on the scene itself
-  // threshold[0] = 0   → fires when scene fully leaves viewport → reset
-  // threshold[1] = 0.15 → fires when 15% of scene enters viewport → settle
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        settle();
-      } else {
-        reset();
-      }
-    });
-  }, {
-    threshold: [0, 0.15]
-  });
+  // Get base rotation for side cards
+  const isLeft = cardWrapper.classList.contains('left');
+  const isRight = cardWrapper.classList.contains('right');
+  
+  let baseRotateY = 0;
+  if (isLeft) baseRotateY = 5;
+  if (isRight) baseRotateY = -5;
 
-  observer.observe(scene);
+  card.style.transform = `
+    perspective(1200px)
+    rotateX(${25 + rotateX}deg)
+    rotateY(${baseRotateY + rotateY}deg)
+    translateY(-10px)
+  `;
+
+  /* Glare follows mouse */
+  const glareX = (x / rect.width) * 100;
+  const glareY = (y / rect.height) * 100;
+  
+  glare.style.background = `
+    radial-gradient(circle at ${glareX}% ${glareY}%,
+      rgba(255,255,255,0.5),
+      transparent 60%)
+  `;
+}
+
+/* Return to floating state */
+resetTilt(cardWrapper: HTMLElement) {
+  if (!cardWrapper || window.innerWidth <= 900) return;
+
+  const card = cardWrapper.querySelector('.tilt-card') as HTMLElement;
+  const glare = cardWrapper.querySelector('.card-glare') as HTMLElement;
+  if (!card || !glare) return;
+
+  const isLeft = cardWrapper.classList.contains('left');
+  const isRight = cardWrapper.classList.contains('right');
+  
+  let defaultTransform = 'perspective(1200px) rotateX(30deg)';
+  
+  if (isLeft) {
+    defaultTransform = 'perspective(1200px) rotateX(30deg) rotateY(5deg)';
+  } else if (isRight) {
+    defaultTransform = 'perspective(1200px) rotateX(30deg) rotateY(-5deg)';
+  }
+
+  card.style.transform = defaultTransform;
+  
+  glare.style.background = `
+    radial-gradient(circle at 50% 50%,
+      rgba(255,255,255,0.3),
+      transparent 60%)
+  `;
 }
   // ── Modal ──
   openModal(project: Project) {
