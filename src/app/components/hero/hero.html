@@ -44,6 +44,9 @@
 <!-- ═══════════════════════════════════════════════════ -->
 <!-- PRODUCT PORTFOLIO HEADER                            -->
 <!-- ═══════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PRODUCT PORTFOLIO HEADER                            -->
+<!-- ═══════════════════════════════════════════════════ -->
 <section class="product-portfolio-section">
   <div class="max-w">
     <div class="product-portfolio-header">
@@ -52,186 +55,218 @@
       <p>Enterprise-grade platforms designed for private sector innovation and government transformation.</p>
     </div>
 
-
-<!-- ── SECTOR TOGGLE ── -->
-<div class="sector-toggle">
-  <button
-    class="toggle-btn"
-    [class.active]="activeSector === 'private'"
-    (click)="activeSector = 'private'"
-  >
-    Private Sector
-  </button>
-  <button
-    class="toggle-btn"
-    [class.active]="activeSector === 'government'"
-    (click)="activeSector = 'government'"
-  >
-    Government &amp; Public Sector
-  </button>
-</div>
-
-<!-- ── 3D TILT CARDS GRID ── -->
-<div class="tilt-grid" [ngSwitch]="activeSector">
-<!-- ================== PRIVATE SECTOR ================== -->
-<ng-container *ngSwitchCase="'private'">
-    <!-- LEFT CARD - Fintech -->
-    <div
-      class="tilt-card-wrapper left"
-      (mousemove)="applyTilt($event, card1)"
-      (mouseleave)="resetTilt(card1)"
-      #card1
-    >
-      <div class="tilt-card">
-        <div class="card-glare"></div>
-        <div class="card-content">
-          <div class="fc-top">
-            <span class="fc-badge">Fintech</span>
-            <div class="fc-icon">💳</div>
-          </div>
-          <h3>Payment Processor</h3>
-          <p class="tagline">Enables payment processing via banking channels and mobile money.</p>
-          <ul class="fc-list">
-            <li><span class="fc-dot"></span>Payments to users via mobile money or banks</li>
-            <li><span class="fc-dot"></span>Schedule from wallets or bank accounts</li>
-            <li><span class="fc-dot"></span>Generate full transaction statements</li>
-          </ul>
-          <div class="fc-tags">
-            <span class="fc-tag">Mobile Money</span>
-            <span class="fc-tag">Banking</span>
-            <span class="fc-tag">Scheduling</span>
-          </div>
-        </div>
-      </div>
+    <!-- ── SECTOR TOGGLE ── -->
+    <div class="sector-toggle">
+      <button
+        class="toggle-btn"
+        [class.active]="activeSector === 'private'"
+        (click)="activeSector = 'private'"
+      >
+        Private Sector
+      </button>
+      <button
+        class="toggle-btn"
+        [class.active]="activeSector === 'government'"
+        (click)="activeSector = 'government'"
+      >
+        Government &amp; Public Sector
+      </button>
     </div>
 
-    <!-- CENTER CARD - SmartH₂O -->
-    <div
-      class="tilt-card-wrapper center"
-      (mousemove)="applyTilt($event, card2)"
-      (mouseleave)="resetTilt(card2)"
-      #card2
-    >
-      <div class="tilt-card">
-        <div class="card-glare"></div>
-        <div class="card-content">
-          <div class="fc-top">
-            <span class="fc-badge">IoT</span>
-            <div class="fc-icon">💧</div>
-          </div>
-          <h3>SmartH₂O</h3>
-          <p class="tagline">Smart water billing using internet of things (IoT).</p>
-          <ul class="fc-list">
-            <li><span class="fc-dot"></span>Automated postpaid or prepaid billing</li>
-            <li><span class="fc-dot"></span>Remote valve monitoring &amp; control</li>
-            <li><span class="fc-dot"></span>Automated notifications on consumption events</li>
-          </ul>
-          <div class="fc-tags">
-            <span class="fc-tag">IoT</span>
-            <span class="fc-tag">Smart Billing</span>
-            <span class="fc-tag">Remote Control</span>
+    <!-- ── 3D TILT CARDS GRID ── -->
+    <div class="tilt-grid" [ngSwitch]="activeSector">
+      <!-- ================== PRIVATE SECTOR ================== -->
+      <ng-container *ngSwitchCase="'private'">
+        <!-- LEFT CARD - Fintech -->
+        <div
+          class="tilt-card-wrapper left"
+          (mousemove)="applyTilt($event, card1)"
+          (mouseleave)="resetTilt(card1)"
+          #card1
+        >
+          <div class="tilt-card">
+            <div class="card-glare"></div>
+            <div class="card-content">
+              <div class="fc-top">
+                <span class="fc-badge">Fintech</span>
+                <div class="fc-icon">💳</div>
+              </div>
+              <h3>Payment Processor</h3>
+              <p class="tagline">Enables payment processing via banking channels and mobile money.</p>
+              <ul class="fc-list">
+                <li><span class="fc-dot"></span>Payments to users via mobile money or banks</li>
+                <li><span class="fc-dot"></span>Schedule from wallets or bank accounts</li>
+                <li><span class="fc-dot"></span>Generate full transaction statements</li>
+              </ul>
+              <div class="fc-tags">
+                <span class="fc-tag">Mobile Money</span>
+                <span class="fc-tag">Banking</span>
+                <span class="fc-tag">Scheduling</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- RIGHT CARD - VAS Platform -->
-    <div
-      class="tilt-card-wrapper right"
-      (mousemove)="applyTilt($event, card3)"
-      (mouseleave)="resetTilt(card3)"
-      #card3
-    >
-      <div class="tilt-card">
-        <div class="card-glare"></div>
-        <div class="card-content">
-          <div class="fc-top">
-            <span class="fc-badge">Communication</span>
-            <div class="fc-icon">📡</div>
-          </div>
-          <h3>VAS Platform</h3>
-          <p class="tagline">Enables organizations to communicate via multiple channels.</p>
-          <ul class="fc-list">
-            <li><span class="fc-dot"></span>Apply for SMS short codes or keywords</li>
-            <li><span class="fc-dot"></span>Purchase bulk or premium SMS</li>
-            <li><span class="fc-dot"></span>Schedule &amp; upload recipient lists</li>
-          </ul>
-          <div class="fc-tags">
-            <span class="fc-tag">SMS</span>
-            <span class="fc-tag">Short Codes</span>
-            <span class="fc-tag">Bulk Messaging</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </ng-container>
-  <!-- ================== GOVERNMENT SECTOR ================== -->
-  <ng-container *ngSwitchCase="'government'">
-    <div
-      class="tilt-card-wrapper"
-      (mousemove)="applyTilt($event, card4)"
-      (mouseleave)="resetTilt(card4)"
-      #card4
-    >
-      <div class="tilt-card">
-        <div class="card-glare"></div>
-        <div class="card-content">
-          <div class="fc-top">
-            <span class="fc-badge">Revenue Collection</span>
-            <div class="fc-icon">🏙️</div>
-          </div>
-          <h3>CountyPay</h3>
-          <p class="tagline">A complete revenue collection and management system for regional governments.</p>
-          <ul class="fc-list">
-            <li><span class="fc-dot"></span>Automate revenue collection processes</li>
-            <li><span class="fc-dot"></span>Automate enforcement workflows</li>
-            <li><span class="fc-dot"></span>Collector targets &amp; appraisal automation</li>
-            <li><span class="fc-dot"></span>End-to-end reconciliation with mobile money &amp; banks</li>
-          </ul>
-          <div class="fc-tags">
-            <span class="fc-tag">Revenue Automation</span>
-            <span class="fc-tag">Enforcement</span>
-            <span class="fc-tag">Reconciliation</span>
+        <!-- CENTER CARD - SmartH₂O -->
+        <div
+          class="tilt-card-wrapper center"
+          (mousemove)="applyTilt($event, card2)"
+          (mouseleave)="resetTilt(card2)"
+          #card2
+        >
+          <div class="tilt-card">
+            <div class="card-glare"></div>
+            <div class="card-content">
+              <div class="fc-top">
+                <span class="fc-badge">IoT</span>
+                <div class="fc-icon">💧</div>
+              </div>
+              <h3>SmartH₂O</h3>
+              <p class="tagline">Smart water billing using internet of things (IoT).</p>
+              <ul class="fc-list">
+                <li><span class="fc-dot"></span>Automated postpaid or prepaid billing</li>
+                <li><span class="fc-dot"></span>Remote valve monitoring &amp; control</li>
+                <li><span class="fc-dot"></span>Automated notifications on consumption events</li>
+              </ul>
+              <div class="fc-tags">
+                <span class="fc-tag">IoT</span>
+                <span class="fc-tag">Smart Billing</span>
+                <span class="fc-tag">Remote Control</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div
-      class="tilt-card-wrapper"
-      (mousemove)="applyTilt($event, card5)"
-      (mouseleave)="resetTilt(card5)"
-      #card5
-    >
-      <div class="tilt-card">
-        <div class="card-glare"></div>
-        <div class="card-content">
-          <div class="fc-top">
-            <span class="fc-badge">Standards &amp; Compliance</span>
-            <div class="fc-icon">📋</div>
-          </div>
-          <h3>Standards Body ERP</h3>
-          <p class="tagline">A complete end-to-end standards body ERP.</p>
-          <ul class="fc-list">
-            <li><span class="fc-dot"></span>Standards generation, curation &amp; sales</li>
-            <li><span class="fc-dot"></span>Quality assurance for market goods</li>
-            <li><span class="fc-dot"></span>Import inspection with third-party integration</li>
-            <li><span class="fc-dot"></span>Levies collection &amp; penalties automation</li>
-            <li><span class="fc-dot"></span>Market surveillance &amp; complaint handling</li>
-          </ul>
-          <div class="fc-tags">
-            <span class="fc-tag">Standards</span>
-            <span class="fc-tag">QA</span>
-            <span class="fc-tag">Inspection</span>
-            <span class="fc-tag">Surveillance</span>
+        <!-- RIGHT CARD - VAS Platform -->
+        <div
+          class="tilt-card-wrapper right"
+          (mousemove)="applyTilt($event, card3)"
+          (mouseleave)="resetTilt(card3)"
+          #card3
+        >
+          <div class="tilt-card">
+            <div class="card-glare"></div>
+            <div class="card-content">
+              <div class="fc-top">
+                <span class="fc-badge">Communication</span>
+                <div class="fc-icon">📡</div>
+              </div>
+              <h3>VAS Platform</h3>
+              <p class="tagline">Enables organizations to communicate via multiple channels.</p>
+              <ul class="fc-list">
+                <li><span class="fc-dot"></span>Apply for SMS short codes or keywords</li>
+                <li><span class="fc-dot"></span>Purchase bulk or premium SMS</li>
+                <li><span class="fc-dot"></span>Schedule &amp; upload recipient lists</li>
+              </ul>
+              <div class="fc-tags">
+                <span class="fc-tag">SMS</span>
+                <span class="fc-tag">Short Codes</span>
+                <span class="fc-tag">Bulk Messaging</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </ng-container>
-</div>
-</div>
+      </ng-container>
 
+      <!-- ================== GOVERNMENT SECTOR ================== -->
+      <ng-container *ngSwitchCase="'government'">
+        <!-- LEFT CARD - Kajiado -->
+        <div
+          class="tilt-card-wrapper left"
+          (mousemove)="applyTilt($event, card4)"
+          (mouseleave)="resetTilt(card4)"
+          #card4
+        >
+          <div class="tilt-card">
+            <div class="card-glare"></div>
+            <div class="card-content">
+              <div class="fc-top">
+                <span class="fc-badge">County Government</span>
+                <div class="fc-icon">🏛️</div>
+              </div>
+              <h3>Kajiado County</h3>
+              <p class="tagline">Digital transformation for county service delivery and revenue management.</p>
+              <ul class="fc-list">
+                <li><span class="fc-dot"></span>County revenue management system</li>
+                <li><span class="fc-dot"></span>Digital service delivery platform</li>
+                <li><span class="fc-dot"></span>Citizen engagement portal</li>
+              </ul>
+              <div class="fc-tags">
+                <span class="fc-tag">County</span>
+                <span class="fc-tag">Revenue</span>
+                <span class="fc-tag">Citizen Services</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CENTER CARD - CountyPay -->
+        <div
+          class="tilt-card-wrapper center"
+          (mousemove)="applyTilt($event, card5)"
+          (mouseleave)="resetTilt(card5)"
+          #card5
+        >
+          <div class="tilt-card">
+            <div class="card-glare"></div>
+            <div class="card-content">
+              <div class="fc-top">
+                <span class="fc-badge">Revenue Collection</span>
+                <div class="fc-icon">🏙️</div>
+              </div>
+              <h3>CountyPay</h3>
+              <p class="tagline">A complete revenue collection and management system for regional governments.</p>
+              <ul class="fc-list">
+                <li><span class="fc-dot"></span>Automate revenue collection processes</li>
+                <li><span class="fc-dot"></span>Automate enforcement workflows</li>
+                <li><span class="fc-dot"></span>Collector targets &amp; appraisal automation</li>
+                <li><span class="fc-dot"></span>End-to-end reconciliation with mobile money &amp; banks</li>
+              </ul>
+              <div class="fc-tags">
+                <span class="fc-tag">Revenue Automation</span>
+                <span class="fc-tag">Enforcement</span>
+                <span class="fc-tag">Reconciliation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT CARD - Standards Body ERP -->
+        <div
+          class="tilt-card-wrapper right"
+          (mousemove)="applyTilt($event, card6)"
+          (mouseleave)="resetTilt(card6)"
+          #card6
+        >
+          <div class="tilt-card">
+            <div class="card-glare"></div>
+            <div class="card-content">
+              <div class="fc-top">
+                <span class="fc-badge">Standards &amp; Compliance</span>
+                <div class="fc-icon">📋</div>
+              </div>
+              <h3>Standards Body ERP</h3>
+              <p class="tagline">A complete end-to-end standards body ERP.</p>
+              <ul class="fc-list">
+                <li><span class="fc-dot"></span>Standards generation, curation &amp; sales</li>
+                <li><span class="fc-dot"></span>Quality assurance for market goods</li>
+                <li><span class="fc-dot"></span>Import inspection with third-party integration</li>
+                <li><span class="fc-dot"></span>Levies collection &amp; penalties automation</li>
+                <li><span class="fc-dot"></span>Market surveillance &amp; complaint handling</li>
+              </ul>
+              <div class="fc-tags">
+                <span class="fc-tag">Standards</span>
+                <span class="fc-tag">QA</span>
+                <span class="fc-tag">Inspection</span>
+                <span class="fc-tag">Surveillance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</section>
 <!-- ═══════════════════════════════════════════════════ -->
 <!-- HOW WE WORK — PROCESS CIRCLE                        -->
 <!-- ═══════════════════════════════════════════════════ -->
