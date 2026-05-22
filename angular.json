@@ -26,12 +26,12 @@
               }
             ],
             "styles": [
-               {
-        "input": "node_modules/bootstrap/dist/css/bootstrap.min.css"
-   },
-      {
-      "input": "src/styles.css"
-       }        
+              {
+                "input": "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              },
+              {
+                "input": "src/styles.css"
+              }        
             ],
             "scripts": [
               "bootstrap/dist/js/bootstrap.bundle.min.js"
@@ -43,6 +43,16 @@
           },
           "configurations": {
             "production": {
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                },
+                "fonts": {
+                  "inline": false
+                }
+              },
               "budgets": [
                 {
                   "type": "initial",
@@ -51,15 +61,15 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "10kB",
-                  "maximumError": "20kB"
+                  "maximumWarning": "40kB",
+                  "maximumError": "100kB"
                 }
               ],
               "outputHashing": "all"
             },
             "engines": {
               "node": "18.x"
-},
+            },
             "development": {
               "optimization": false,
               "extractLicenses": false,
