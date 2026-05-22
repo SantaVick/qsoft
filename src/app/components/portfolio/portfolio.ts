@@ -44,17 +44,18 @@ export class Portfolio implements OnInit, AfterViewInit {
       year: '2017',
       featured: true,
       image: 'images/kakamega-logo.png',
+    }, {
+      id: 6,
+      client: 'Kenya Bureau of Standards',
+      category: 'Government · Automation',
+      title: 'Standards Automation Platform',
+      description: 'Design and development of a turn key project automating the areas of Standards development, market surveillance, design, implementation and maintenance of the import inspections corporate website, and quality assurance processes. It entailed integrations done to other government agencies and payment platforms.',
+      fullDescription: 'fkfkkfd',
+      year: '2020',
+      featured: true,
+      image: 'images/kebs_logo.png',
     },
-    {
-      id: 3,
-      client: 'Mecoy Consulting Engineers',
-      category: 'Infrastructure · Traffic',
-      title: 'Traffic Engineering — Eldoret',
-      description: 'Traffic flow evaluation at junctions across Eldoret town, formulating optimal timing and flow sequences to achieve urban decongestion.',
-      fullDescription: 'jj',
-      year: '2016',
-      image: 'images/mecoy.png',
-    },
+   
     {
       id: 4,
       client: 'Nyandarua County',
@@ -76,17 +77,17 @@ export class Portfolio implements OnInit, AfterViewInit {
       year: '2015',
       image: 'images/periodontist.png',
     },
-    {
-      id: 6,
-      client: 'Kenya Bureau of Standards',
-      category: 'Government · Automation',
-      title: 'Standards Automation Platform',
-      description: 'Design and development of a turn key project automating the areas of Standards development, market surveillance, design, implementation and maintenance of the import inspections corporate website, and quality assurance processes. It entailed integrations done to other government agencies and payment platforms.',
-      fullDescription: 'fkfkkfd',
-      year: '2020',
-      featured: true,
-      image: 'images/kebs_logo.png',
-    }
+   
+     {
+      id: 3,
+      client: 'Mecoy Consulting Engineers',
+      category: 'Infrastructure · Traffic',
+      title: 'Traffic Engineering — Eldoret',
+      description: 'Traffic flow evaluation at junctions across Eldoret town, formulating optimal timing and flow sequences to achieve urban decongestion.',
+      fullDescription: 'jj',
+      year: '2016',
+      image: 'images/mecoy.png',
+    },
   ];
 
   selectedProject: Project | null = null;
