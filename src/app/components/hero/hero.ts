@@ -147,21 +147,30 @@ export class Hero implements OnInit, OnDestroy, AfterViewInit {
   onResize() {
     this.calcCircle();
   }
+calcCircle() {
+  if (typeof window === 'undefined') return;
+  this.isMobile = window.innerWidth <= 900;
 
-  calcCircle() {
-    if (typeof window === 'undefined') return;
-    this.isMobile = window.innerWidth <= 900;
-
-    const avail     = Math.min(window.innerWidth - 80, 850);
-    this.circleSize = avail;
-    this.orbitR     = avail * 0.335;
-    this.cardW      = Math.min(210, avail * 0.262);
-    this.cardH      = 195;
-    this.cdr.markForCheck();
+  const w = window.innerWidth;
+  
+  if (w <= 480) {
+    // Small phones - use full width with minimal padding
+    this.circleSize = w - 20;  // 10px padding each side
+  } else if (w <= 900) {
+    // Tablets
+    this.circleSize = Math.min(w - 60, 600);
+  } else {
+    // Desktop
+    this.circleSize = Math.min(w - 80, 850);
   }
+  
+  this.orbitR     = this.circleSize * 0.335;
+  this.cardW      = Math.min(210, this.circleSize * 0.262);
+  this.cardH      = Math.min(195, this.circleSize * 0.30);  // Make height proportional
+  this.cdr.markForCheck();
+}
 
   getStepPos(index: number): { [k: string]: string } {
-    if (this.isMobile) return {};
     const total    = this.processSteps.length;
     const angleDeg = -90 + (360 / total) * index;
     const rad      = (angleDeg * Math.PI) / 180;

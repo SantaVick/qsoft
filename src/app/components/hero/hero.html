@@ -263,11 +263,6 @@
 <!-- ═══════════════════════════════════════════════════ -->
 <!-- HOW WE WORK — PROCESS CIRCLE                        -->
 <!-- ═══════════════════════════════════════════════════ -->
- <!-- ═══════════════════════════════════════════════════ -->
-<!-- HOW WE WORK — PROCESS CIRCLE                        -->
-<!-- Desktop: circle with absolute-positioned cards      -->
-<!-- Mobile:  simple horizontal scroll cards             -->
-<!-- ═══════════════════════════════════════════════════ -->
 <section class="how-we-work">
   <div class="max-w">
     <div class="sec-hdr text-center" data-reveal="fade-up">
@@ -276,8 +271,8 @@
       <p>A disciplined approach to building enterprise software that works.</p>
     </div>
 
-    <!-- ── DESKTOP: circle layout ── -->
-    <div *ngIf="!isMobile"
+    <!-- ALWAYS SHOW CIRCLE (desktop AND mobile) -->
+    <div
          class="process-steps"
          #processWrap
          [style.width.px]="circleSize"
@@ -344,7 +339,7 @@
 
       </div>
     </div>
-
+    
     <!-- ── MOBILE: horizontal scroll cards, zero absolute positioning ── -->
     <div *ngIf="isMobile" class="steps-mobile">
       <div *ngFor="let step of processSteps; let i = index"

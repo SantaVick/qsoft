@@ -146,103 +146,103 @@
   color: var(--red);
 }
 
-/* ===== CAROUSEL ===== */
+/* ===== CAROUSEL CONTAINER ARCHITECTURE ===== */
 .su-carousel {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 520px;
-  pointer-events: none;
+  height: 600px;
   overflow: visible;
-  z-index: 1;
+  margin-top: 50px;
 }
 
-.su-carousel * { pointer-events: auto; }
-
-/* ===== CARDS — DEFAULT POSITIONS ===== */
+/* ===== MASTER INTERACTION MECHANICS ===== */
 .su-card {
   position: absolute;
-  width: 320px;
-  transition: transform 0.5s cubic-bezier(0.33, 0, 0.1, 1);
+  width: 260px;
   cursor: pointer;
+  transform-origin: bottom center;
+  will-change: transform;
+  /* High-damping cubic bezier ensures the elastic, organic slide tracking */
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), 
+              z-index 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.su-card:nth-child(1) { transform: translateX(-280px) translateY(45px);  z-index: 1; }
-.su-card:nth-child(2) { transform: translateX(-140px) translateY(20px);  z-index: 2; }
-.su-card:nth-child(3) { transform: translateX(0px)    translateY(-15px); z-index: 10; }
-.su-card:nth-child(4) { transform: translateX(140px)  translateY(20px);  z-index: 2; }
-.su-card:nth-child(5) { transform: translateX(280px)  translateY(45px);  z-index: 1; }
-.su-card:nth-child(6) { transform: translateX(380px)  translateY(65px);  z-index: 0; }
+/* ===== STATIC BASE FAN STATE (Perfectly Balanced Deck) ===== */
+.su-card:nth-child(1) { transform: translateX(-270px) translateY(24px)  rotate(-11deg) scale(0.92); z-index: 5; }
+.su-card:nth-child(2) { transform: translateX(-165px) translateY(10px)  rotate(-6deg)  scale(0.95); z-index: 6; }
+.su-card:nth-child(3) { transform: translateX(-55px)  translateY(2px)   rotate(-2deg)  scale(0.98); z-index: 7; }
+.su-card:nth-child(4) { transform: translateX(55px)   translateY(2px)   rotate(2deg)   scale(0.98); z-index: 7; }
+.su-card:nth-child(5) { transform: translateX(165px)  translateY(10px)  rotate(6deg)   scale(0.95); z-index: 6; }
+.su-card:nth-child(6) { transform: translateX(270px)  translateY(24px)  rotate(11deg)  scale(0.92); z-index: 5; }
 
-/* ===== HOVER CARD 1 ===== */
-.su-carousel:has(.su-card:nth-child(1):hover) .su-card:nth-child(1) { transform: translateX(-280px) translateY(-45px) scale(1.03); z-index: 20 !important; }
-.su-carousel:has(.su-card:nth-child(1):hover) .su-card:nth-child(2) { transform: translateX(-110px) translateY(30px);  z-index: 3; }
-.su-carousel:has(.su-card:nth-child(1):hover) .su-card:nth-child(3) { transform: translateX(40px)   translateY(50px);  z-index: 2; }
-.su-carousel:has(.su-card:nth-child(1):hover) .su-card:nth-child(4) { transform: translateX(170px)  translateY(65px);  z-index: 1; }
-.su-carousel:has(.su-card:nth-child(1):hover) .su-card:nth-child(5) { transform: translateX(300px)  translateY(75px);  z-index: 0; }
-.su-carousel:has(.su-card:nth-child(1):hover) .su-card:nth-child(6) { transform: translateX(400px)  translateY(85px);  z-index: 0; }
+/* ===== THE FLUID WAVE TRANSITIONS (COMPRESSED ACCORDION STACKS) ===== */
 
-/* ===== HOVER CARD 2 ===== */
-.su-carousel:has(.su-card:nth-child(2):hover) .su-card:nth-child(1) { transform: translateX(-300px) translateY(70px);           z-index: 1; }
-.su-carousel:has(.su-card:nth-child(2):hover) .su-card:nth-child(2) { transform: translateX(-140px) translateY(-42px) scale(1.03); z-index: 20 !important; }
-.su-carousel:has(.su-card:nth-child(2):hover) .su-card:nth-child(3) { transform: translateX(40px)   translateY(35px);           z-index: 3; }
-.su-carousel:has(.su-card:nth-child(2):hover) .su-card:nth-child(4) { transform: translateX(170px)  translateY(55px);           z-index: 2; }
-.su-carousel:has(.su-card:nth-child(2):hover) .su-card:nth-child(5) { transform: translateX(300px)  translateY(70px);           z-index: 1; }
-.su-carousel:has(.su-card:nth-child(2):hover) .su-card:nth-child(6) { transform: translateX(400px)  translateY(80px);           z-index: 0; }
+/* --- HOVER CARD 1 (Far Left Focused) --- */
+.su-carousel:has(.su-card:nth-child(1):hover) .su-card:nth-child(1) { transform: translateX(-240px) translateY(-50px) rotate(0deg) scale(1.06); z-index: 10; }
+.su-carousel:has(.su-card:nth-child(1):hover) .su-card:nth-child(2) { transform: translateX(-60px)  translateY(15px)  rotate(6deg)  scale(0.94); z-index: 5; }
+.su-carousel:has(.su-card:nth-child(1):hover) .su-card:nth-child(3) { transform: translateX(10px)   translateY(22px)  rotate(9deg)  scale(0.91); z-index: 4; }
+.su-carousel:has(.su-card:nth-child(1):hover) .su-card:nth-child(4) { transform: translateX(80px)   translateY(30px)  rotate(12deg) scale(0.88); z-index: 3; }
+.su-carousel:has(.su-card:nth-child(1):hover) .su-card:nth-child(5) { transform: translateX(150px)  translateY(40px)  rotate(15deg) scale(0.85); z-index: 2; }
+.su-carousel:has(.su-card:nth-child(1):hover) .su-card:nth-child(6) { transform: translateX(220px)  translateY(52px)  rotate(18deg) scale(0.82); z-index: 1; }
 
-/* ===== HOVER CARD 3 ===== */
-.su-carousel:has(.su-card:nth-child(3):hover) .su-card:nth-child(1) { transform: translateX(-320px) translateY(80px);           z-index: 1; }
-.su-carousel:has(.su-card:nth-child(3):hover) .su-card:nth-child(2) { transform: translateX(-180px) translateY(50px);           z-index: 2; }
-.su-carousel:has(.su-card:nth-child(3):hover) .su-card:nth-child(3) { transform: translateX(0px)    translateY(-45px) scale(1.04); z-index: 20 !important; }
-.su-carousel:has(.su-card:nth-child(3):hover) .su-card:nth-child(4) { transform: translateX(180px)  translateY(50px);           z-index: 2; }
-.su-carousel:has(.su-card:nth-child(3):hover) .su-card:nth-child(5) { transform: translateX(320px)  translateY(80px);           z-index: 1; }
-.su-carousel:has(.su-card:nth-child(3):hover) .su-card:nth-child(6) { transform: translateX(420px)  translateY(95px);           z-index: 0; }
+/* --- HOVER CARD 2 --- */
+.su-carousel:has(.su-card:nth-child(2):hover) .su-card:nth-child(1) { transform: translateX(-290px) translateY(20px)  rotate(-8deg) scale(0.92); z-index: 5; }
+.su-carousel:has(.su-card:nth-child(2):hover) .su-card:nth-child(2) { transform: translateX(-150px) translateY(-50px) rotate(0deg)  scale(1.06); z-index: 10; }
+.su-carousel:has(.su-card:nth-child(2):hover) .su-card:nth-child(3) { transform: translateX(10px)   translateY(15px)  rotate(6deg)  scale(0.94); z-index: 5; }
+.su-carousel:has(.su-card:nth-child(2):hover) .su-card:nth-child(4) { transform: translateX(80px)   translateY(24px)  rotate(9deg)  scale(0.91); z-index: 4; }
+.su-carousel:has(.su-card:nth-child(2):hover) .su-card:nth-child(5) { transform: translateX(150px)  translateY(34px)  rotate(12deg) scale(0.88); z-index: 3; }
+.su-carousel:has(.su-card:nth-child(2):hover) .su-card:nth-child(6) { transform: translateX(220px)  translateY(46px)  rotate(15deg) scale(0.85); z-index: 2; }
 
-/* ===== HOVER CARD 4 ===== */
-.su-carousel:has(.su-card:nth-child(4):hover) .su-card:nth-child(1) { transform: translateX(-300px) translateY(70px);           z-index: 1; }
-.su-carousel:has(.su-card:nth-child(4):hover) .su-card:nth-child(2) { transform: translateX(-170px) translateY(55px);           z-index: 2; }
-.su-carousel:has(.su-card:nth-child(4):hover) .su-card:nth-child(3) { transform: translateX(-40px)  translateY(35px);           z-index: 3; }
-.su-carousel:has(.su-card:nth-child(4):hover) .su-card:nth-child(4) { transform: translateX(140px)  translateY(-42px) scale(1.03); z-index: 20 !important; }
-.su-carousel:has(.su-card:nth-child(4):hover) .su-card:nth-child(5) { transform: translateX(300px)  translateY(70px);           z-index: 1; }
-.su-carousel:has(.su-card:nth-child(4):hover) .su-card:nth-child(6) { transform: translateX(400px)  translateY(80px);           z-index: 0; }
+/* --- HOVER CARD 3 --- */
+.su-carousel:has(.su-card:nth-child(3):hover) .su-card:nth-child(1) { transform: translateX(-310px) translateY(24px)  rotate(-12deg) scale(0.90); z-index: 4; }
+.su-carousel:has(.su-card:nth-child(3):hover) .su-card:nth-child(2) { transform: translateX(-200px) translateY(14px)  rotate(-6deg)  scale(0.93); z-index: 5; }
+.su-carousel:has(.su-card:nth-child(3):hover) .su-card:nth-child(3) { transform: translateX(-60px)  translateY(-50px) rotate(0deg)   scale(1.06); z-index: 10; }
+.su-carousel:has(.su-card:nth-child(3):hover) .su-card:nth-child(4) { transform: translateX(100px)  translateY(15px)  rotate(6deg)   scale(0.94); z-index: 5; }
+.su-carousel:has(.su-card:nth-child(3):hover) .su-card:nth-child(5) { transform: translateX(170px)  translateY(24px)  rotate(9deg)   scale(0.91); z-index: 4; }
+.su-carousel:has(.su-card:nth-child(3):hover) .su-card:nth-child(6) { transform: translateX(240px)  translateY(36px)  rotate(12deg)  scale(0.88); z-index: 3; }
 
-/* ===== HOVER CARD 5 ===== */
-.su-carousel:has(.su-card:nth-child(5):hover) .su-card:nth-child(1) { transform: translateX(-300px) translateY(75px);           z-index: 0; }
-.su-carousel:has(.su-card:nth-child(5):hover) .su-card:nth-child(2) { transform: translateX(-170px) translateY(65px);           z-index: 1; }
-.su-carousel:has(.su-card:nth-child(5):hover) .su-card:nth-child(3) { transform: translateX(-40px)  translateY(50px);           z-index: 2; }
-.su-carousel:has(.su-card:nth-child(5):hover) .su-card:nth-child(4) { transform: translateX(110px)  translateY(30px);           z-index: 3; }
-.su-carousel:has(.su-card:nth-child(5):hover) .su-card:nth-child(5) { transform: translateX(280px)  translateY(-42px) scale(1.03); z-index: 20 !important; }
-.su-carousel:has(.su-card:nth-child(5):hover) .su-card:nth-child(6) { transform: translateX(400px)  translateY(60px);           z-index: 1; }
+/* --- HOVER CARD 4 --- */
+.su-carousel:has(.su-card:nth-child(4):hover) .su-card:nth-child(1) { transform: translateX(-240px) translateY(36px)  rotate(-12deg) scale(0.88); z-index: 3; }
+.su-carousel:has(.su-card:nth-child(4):hover) .su-card:nth-child(2) { transform: translateX(-170px) translateY(24px)  rotate(-9deg)  scale(0.91); z-index: 4; }
+.su-carousel:has(.su-card:nth-child(4):hover) .su-card:nth-child(3) { transform: translateX(-100px) translateY(15px)  rotate(-6deg)  scale(0.94); z-index: 5; }
+.su-carousel:has(.su-card:nth-child(4):hover) .su-card:nth-child(4) { transform: translateX(60px)   translateY(-50px) rotate(0deg)   scale(1.06); z-index: 10; }
+.su-carousel:has(.su-card:nth-child(4):hover) .su-card:nth-child(5) { transform: translateX(200px)  translateY(14px)  rotate(6deg)   scale(0.93); z-index: 5; }
+.su-carousel:has(.su-card:nth-child(4):hover) .su-card:nth-child(6) { transform: translateX(310px)  translateY(24px)  rotate(12deg)  scale(0.90); z-index: 4; }
 
-/* ===== CARD INNER ===== */
+/* --- HOVER CARD 5 --- */
+.su-carousel:has(.su-card:nth-child(5):hover) .su-card:nth-child(1) { transform: translateX(-220px) translateY(46px)  rotate(-15deg) scale(0.85); z-index: 2; }
+.su-carousel:has(.su-card:nth-child(5):hover) .su-card:nth-child(2) { transform: translateX(-150px) translateY(34px)  rotate(-12deg) scale(0.88); z-index: 3; }
+.su-carousel:has(.su-card:nth-child(5):hover) .su-card:nth-child(3) { transform: translateX(-80px)  translateY(24px)  rotate(-9deg)  scale(0.91); z-index: 4; }
+.su-carousel:has(.su-card:nth-child(5):hover) .su-card:nth-child(4) { transform: translateX(-10px)  translateY(15px)  rotate(-6deg)  scale(0.94); z-index: 5; }
+.su-carousel:has(.su-card:nth-child(5):hover) .su-card:nth-child(5) { transform: translateX(150px)  translateY(-50px) rotate(0deg)   scale(1.06); z-index: 10; }
+.su-carousel:has(.su-card:nth-child(5):hover) .su-card:nth-child(6) { transform: translateX(290px)  translateY(20px)  rotate(8deg)   scale(0.92); z-index: 5; }
+
+/* --- HOVER CARD 6 (Far Right Focused) --- */
+.su-carousel:has(.su-card:nth-child(6):hover) .su-card:nth-child(1) { transform: translateX(-220px) translateY(52px)  rotate(-18deg) scale(0.82); z-index: 1; }
+.su-carousel:has(.su-card:nth-child(6):hover) .su-card:nth-child(2) { transform: translateX(-150px) translateY(40px)  rotate(-15deg) scale(0.85); z-index: 2; }
+.su-carousel:has(.su-card:nth-child(6):hover) .su-card:nth-child(3) { transform: translateX(-80px)  translateY(30px)  rotate(-12deg) scale(0.88); z-index: 3; }
+.su-carousel:has(.su-card:nth-child(6):hover) .su-card:nth-child(4) { transform: translateX(-10px)  translateY(22px)  rotate(-9deg)  scale(0.91); z-index: 4; }
+.su-carousel:has(.su-card:nth-child(6):hover) .su-card:nth-child(5) { transform: translateX(60px)   translateY(15px)  rotate(-6deg)  scale(0.94); z-index: 5; }
+.su-carousel:has(.su-card:nth-child(6):hover) .su-card:nth-child(6) { transform: translateX(240px)  translateY(-50px) rotate(0deg)   scale(1.06); z-index: 10; }
+
+
+/* ===== PREMIUM INTERIOR FINISHING ===== */
 .su-card-inner {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 460px;
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: var(--radius);
+  height: 480px;
+  background: #ffffff;
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
-  transition: box-shadow 0.5s cubic-bezier(0.33, 0, 0.1, 1), border-color 0.5s cubic-bezier(0.33, 0, 0.1, 1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.4s ease;
 }
-
-.su-card:nth-child(3) .su-card-inner {
-  box-shadow: 0 20px 50px rgba(0,0,0,0.15), 0 4px 12px rgba(0,0,0,0.06);
-  border-color: rgba(0,0,0,0.12);
-}
-
-.su-card:nth-child(2) .su-card-inner,
-.su-card:nth-child(4) .su-card-inner { transform: scale(0.93); }
-
-.su-card:nth-child(1) .su-card-inner,
-.su-card:nth-child(5) .su-card-inner { transform: scale(0.87); }
-
-.su-card:nth-child(6) .su-card-inner { transform: scale(0.82); opacity: 0.7; }
 
 .su-card:hover .su-card-inner {
-  box-shadow: 0 30px 70px rgba(0,0,0,0.25), 0 8px 20px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.08) !important;
-  border-color: rgba(0,0,0,0.15) !important;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
 }
 
 /* ===== CARD MEDIA ===== */
