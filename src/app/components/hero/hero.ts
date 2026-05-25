@@ -6,6 +6,7 @@ import {
 import { isPlatformBrowser } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { SeoService } from '../seo-service/seo-service';
 
 interface Slide {
   imageUrl: string;
@@ -69,7 +70,7 @@ export class Hero implements OnInit, OnDestroy, AfterViewInit {
   cardH      = 195;
   isMobile   = false;
 
-  // ── New: Sector toggle for product cards ──
+  // ── Sector toggle ──
   activeSector: 'private' | 'government' = 'private';
 
   // ── Data ──
@@ -77,7 +78,7 @@ export class Hero implements OnInit, OnDestroy, AfterViewInit {
     { imageUrl: 'images/try.png', label: '', caption: 'Infrastructure that scales with you' },
     { imageUrl: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1400&q=85&auto=format&fit=crop',
       label: 'Enterprise Software', caption: 'Systems engineered for scale' },
-    { imageUrl: 'images/image 1.png', label: 'People & Process', caption: 'Collaborative teams, lasting outcomes' },
+    { imageUrl: 'images/tech.png', label: 'People & Process', caption: 'Collaborative teams, lasting outcomes' },
     { imageUrl: 'images/image2.png', label: 'Technology', caption: 'Best Tech' },
     { imageUrl: 'images/image3.png', label: 'Collab', caption: 'Digital government that works' }
   ];
@@ -121,17 +122,35 @@ export class Hero implements OnInit, OnDestroy, AfterViewInit {
   // ── Constructor ──
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private seoService: SeoService  // ADD THIS
   ) {}
 
   // ── Lifecycle ──
   ngOnInit() {
     this.startAuto();
+    this.setHomePageSEO();  // ADD THIS
+  }
+
+  // ADD THIS METHOD
+  private setHomePageSEO() {
+    this.seoService.setPageMeta({
+      title: 'QSoft Group — Custom Software Development in Karen, Nairobi, Kenya',
+      description: 'QSoft Group is a leading software development company based in Karen, Nairobi. We build custom enterprise, government, fintech, and IoT solutions that touch lives across East Africa. 15+ years of excellence.',
+      keywords: 'software development Nairobi, custom software Kenya, IT company Karen Nairobi, enterprise software Kenya, digital transformation Africa, QSoft Group, fintech solutions Kenya, government software Kenya, IoT development Nairobi, web app development Kenya, mobile app development Kenya, software company Karen, IT services Nairobi, revenue collection systems, ERP systems Kenya',
+      image: 'https://qsoft-group.com/images/qsoft-home-og.jpg',
+      url: 'https://qsoft-group.com/',
+      type: 'website'
+    });
+    this.seoService.setOrganizationSchema();
+    this.seoService.setLocalBusinessSchema();
+    this.seoService.setBreadcrumbSchema([
+      { name: 'Home', url: 'https://qsoft-group.com/' }
+    ]);
   }
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
-      // initCardAnimation() removed – no more floating scene
       this.initScrollReveal();
       this.calcCircle();
     }
@@ -147,51 +166,49 @@ export class Hero implements OnInit, OnDestroy, AfterViewInit {
   onResize() {
     this.calcCircle();
   }
-calcCircle() {
-  if (typeof window === 'undefined') return;
-  this.isMobile = window.innerWidth <= 900;
 
-  const w = window.innerWidth;
-  
-  if (w <= 480) {
-    // Small phones - use full width with minimal padding
-    this.circleSize = w - 20;  // 10px padding each side
-  } else if (w <= 900) {
-    // Tablets
-    this.circleSize = Math.min(w - 60, 600);
-  } else {
-    // Desktop
-    this.circleSize = Math.min(w - 80, 850);
+  calcCircle() {
+    if (typeof window === 'undefined') return;
+    this.isMobile = window.innerWidth <= 900;
+
+    const w = window.innerWidth;
+    
+    if (w <= 480) {
+      this.circleSize = w - 20;
+    } else if (w <= 900) {
+      this.circleSize = Math.min(w - 60, 600);
+    } else {
+      this.circleSize = Math.min(w - 80, 850);
+    }
+    
+    this.orbitR = this.circleSize * 0.335;
+    this.cardW = Math.min(210, this.circleSize * 0.262);
+    this.cardH = Math.min(195, this.circleSize * 0.30);
+    this.cdr.markForCheck();
   }
-  
-  this.orbitR     = this.circleSize * 0.335;
-  this.cardW      = Math.min(210, this.circleSize * 0.262);
-  this.cardH      = Math.min(195, this.circleSize * 0.30);  // Make height proportional
-  this.cdr.markForCheck();
-}
 
   getStepPos(index: number): { [k: string]: string } {
-    const total    = this.processSteps.length;
+    const total = this.processSteps.length;
     const angleDeg = -90 + (360 / total) * index;
-    const rad      = (angleDeg * Math.PI) / 180;
-    const cx       = this.circleSize / 2;
-    const cy       = this.circleSize / 2;
-    const x        = cx + this.orbitR * Math.cos(rad) - this.cardW / 2;
-    const y        = cy + this.orbitR * Math.sin(rad) - this.cardH / 2;
+    const rad = (angleDeg * Math.PI) / 180;
+    const cx = this.circleSize / 2;
+    const cy = this.circleSize / 2;
+    const x = cx + this.orbitR * Math.cos(rad) - this.cardW / 2;
+    const y = cy + this.orbitR * Math.sin(rad) - this.cardH / 2;
     return { position: 'absolute', top: `${y}px`, left: `${x}px`, width: `${this.cardW}px` };
   }
 
   arcPath(index: number): string {
-    const total    = this.processSteps.length;
-    const inset    = 18;
-    const r        = this.orbitR - inset;
-    const cx       = this.circleSize / 2;
-    const cy       = this.circleSize / 2;
+    const total = this.processSteps.length;
+    const inset = 18;
+    const r = this.orbitR - inset;
+    const cx = this.circleSize / 2;
+    const cy = this.circleSize / 2;
 
-    const fromDeg  = -90 + (360 / total) * index;
-    const toDeg    = -90 + (360 / total) * ((index + 1) % total);
+    const fromDeg = -90 + (360 / total) * index;
+    const toDeg = -90 + (360 / total) * ((index + 1) % total);
 
-    const toRad    = (d: number) => d * Math.PI / 180;
+    const toRad = (d: number) => d * Math.PI / 180;
     const x1 = cx + r * Math.cos(toRad(fromDeg));
     const y1 = cy + r * Math.sin(toRad(fromDeg));
     const x2 = cx + r * Math.cos(toRad(toDeg));
@@ -213,7 +230,7 @@ calcCircle() {
     const toObserve: Element[] = [];
     elements.forEach((el: Element) => {
       const htmlEl = el as HTMLElement;
-      const delay  = htmlEl.getAttribute('data-delay');
+      const delay = htmlEl.getAttribute('data-delay');
       if (delay) htmlEl.style.transitionDelay = `${delay}ms`;
 
       if (isInViewport(el)) {
@@ -276,8 +293,8 @@ calcCircle() {
   }
 
   stopAuto() {
-    if (this.timer)        { clearInterval(this.timer);        this.timer = null; }
-    if (this.progressTimer){ clearInterval(this.progressTimer); this.progressTimer = null; }
+    if (this.timer) { clearInterval(this.timer); this.timer = null; }
+    if (this.progressTimer) { clearInterval(this.progressTimer); this.progressTimer = null; }
     this.progressWidth = 0;
   }
 
@@ -290,87 +307,84 @@ calcCircle() {
     }, 50);
   }
 
-// ── 3D Tilt Effect ──
-applyTilt(event: MouseEvent, cardWrapper: HTMLElement) {
-  if (!cardWrapper || window.innerWidth <= 900) return;
+  // ── 3D Tilt Effect ──
+  applyTilt(event: MouseEvent, cardWrapper: HTMLElement) {
+    if (!cardWrapper || window.innerWidth <= 900) return;
 
-  const card = cardWrapper.querySelector('.tilt-card') as HTMLElement;
-  const glare = cardWrapper.querySelector('.card-glare') as HTMLElement;
-  if (!card || !glare) return;
+    const card = cardWrapper.querySelector('.tilt-card') as HTMLElement;
+    const glare = cardWrapper.querySelector('.card-glare') as HTMLElement;
+    if (!card || !glare) return;
 
-  const rect = cardWrapper.getBoundingClientRect();
-  const x = event.clientX - rect.left;
-  const y = event.clientY - rect.top;
-  
-  const centerX = rect.width / 2;
-  const centerY = rect.height / 2;
+    const rect = cardWrapper.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
 
-  /* Interactive tilt - subtle movement */
-  const rotateX = ((y - centerY) / centerY) * -8;
-  const rotateY = ((x - centerX) / centerX) * 8;
+    const rotateX = ((y - centerY) / centerY) * -8;
+    const rotateY = ((x - centerX) / centerX) * 8;
 
-  // Get base rotation for side cards
-  const isLeft = cardWrapper.classList.contains('left');
-  const isRight = cardWrapper.classList.contains('right');
-  
-  let baseRotateY = 0;
-  if (isLeft) baseRotateY = 5;
-  if (isRight) baseRotateY = -5;
+    const isLeft = cardWrapper.classList.contains('left');
+    const isRight = cardWrapper.classList.contains('right');
+    
+    let baseRotateY = 0;
+    if (isLeft) baseRotateY = 5;
+    if (isRight) baseRotateY = -5;
 
-  card.style.transform = `
-    perspective(1200px)
-    rotateX(${25 + rotateX}deg)
-    rotateY(${baseRotateY + rotateY}deg)
-    translateY(-10px)
-  `;
+    card.style.transform = `
+      perspective(1200px)
+      rotateX(${25 + rotateX}deg)
+      rotateY(${baseRotateY + rotateY}deg)
+      translateY(-10px)
+    `;
 
-  /* Glare follows mouse */
-  const glareX = (x / rect.width) * 100;
-  const glareY = (y / rect.height) * 100;
-  
-  glare.style.background = `
-    radial-gradient(circle at ${glareX}% ${glareY}%,
-      rgba(255,255,255,0.5),
-      transparent 60%)
-  `;
-}
-
-/* Return to floating state */
-resetTilt(cardWrapper: HTMLElement) {
-  if (!cardWrapper || window.innerWidth <= 900) return;
-
-  const card = cardWrapper.querySelector('.tilt-card') as HTMLElement;
-  const glare = cardWrapper.querySelector('.card-glare') as HTMLElement;
-  if (!card || !glare) return;
-
-  const isLeft = cardWrapper.classList.contains('left');
-  const isRight = cardWrapper.classList.contains('right');
-  
-  let defaultTransform = 'perspective(1200px) rotateX(30deg)';
-  
-  if (isLeft) {
-    defaultTransform = 'perspective(1200px) rotateX(30deg) rotateY(5deg)';
-  } else if (isRight) {
-    defaultTransform = 'perspective(1200px) rotateX(30deg) rotateY(-5deg)';
+    const glareX = (x / rect.width) * 100;
+    const glareY = (y / rect.height) * 100;
+    
+    glare.style.background = `
+      radial-gradient(circle at ${glareX}% ${glareY}%,
+        rgba(255,255,255,0.5),
+        transparent 60%)
+    `;
   }
 
-  card.style.transform = defaultTransform;
-  
-  glare.style.background = `
-    radial-gradient(circle at 50% 50%,
-      rgba(255,255,255,0.3),
-      transparent 60%)
-  `;
-}
+  resetTilt(cardWrapper: HTMLElement) {
+    if (!cardWrapper || window.innerWidth <= 900) return;
+
+    const card = cardWrapper.querySelector('.tilt-card') as HTMLElement;
+    const glare = cardWrapper.querySelector('.card-glare') as HTMLElement;
+    if (!card || !glare) return;
+
+    const isLeft = cardWrapper.classList.contains('left');
+    const isRight = cardWrapper.classList.contains('right');
+    
+    let defaultTransform = 'perspective(1200px) rotateX(30deg)';
+    
+    if (isLeft) {
+      defaultTransform = 'perspective(1200px) rotateX(30deg) rotateY(5deg)';
+    } else if (isRight) {
+      defaultTransform = 'perspective(1200px) rotateX(30deg) rotateY(-5deg)';
+    }
+
+    card.style.transform = defaultTransform;
+    
+    glare.style.background = `
+      radial-gradient(circle at 50% 50%,
+        rgba(255,255,255,0.3),
+        transparent 60%)
+    `;
+  }
+
   // ── Modal ──
   openModal(project: Project) {
     this.selectedProject = project;
-    this.isModalOpen     = true;
+    this.isModalOpen = true;
     document.body.style.overflow = 'hidden';
   }
 
   closeModal() {
-    this.isModalOpen     = false;
+    this.isModalOpen = false;
     this.selectedProject = null;
     document.body.style.overflow = '';
   }

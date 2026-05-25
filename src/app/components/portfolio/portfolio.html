@@ -1,4 +1,5 @@
 <section class="portfolio-section">
+  <!-- Ticker Strip -->
   <div class="ticker-outer">
     <div class="ticker-track">
       <span *ngFor="let item of [
@@ -10,6 +11,7 @@
   </div>
 
   <div class="port-container">
+    <!-- Header -->
     <div class="port-header">
       <div class="port-label">
         <span class="label-dot"></span>
@@ -25,42 +27,42 @@
       </p>
     </div>
 
-    <div class="social-updates-wrapper">
-      <!-- Background ambient shapes -->
-      <div class="su-bg">
-        <div class="su-bg-shape su-bg-shape--1"></div>
-        <div class="su-bg-shape su-bg-shape--2"></div>
-        <div class="su-bg-shape su-bg-shape--3"></div>
-      </div>
-      <!-- Cards Carousel -->
-      <div class="su-carousel">
-        <div *ngFor="let p of projects; let i = index"
-             class="su-card"
-             [class.su-card--center]="i === 2"
-             (click)="openModal(p)">
-          <div class="su-card-inner">
-            <div class="su-card-media">
-              <img [src]="p.image" [alt]="p.title" loading="lazy" />
-              
-              <span class="su-card-num">{{ pad(p.id) }}</span>
-            </div>
-            <div class="su-card-body">
-              <div class="su-card-top">
-                <span class="su-card-category">{{ p.category }}</span>
-                <span class="su-card-year">{{ p.year }}</span>
-              </div>
-              <div class="su-card-client">{{ p.client }}</div>
-              <h3 class="su-card-title">{{ p.title }}</h3>
-              <p class="su-card-caption">{{ p.description }}</p>
-              <a class="su-card-link" (click)="openModal(p); $event.preventDefault()">
-                View Project <span class="arrow">→</span>
-              </a>
-            </div>
-          </div>
+    <!-- Projects Hand - Fanned Card Layout -->
+    <div class="projects-hand"
+         [class.loaded]="isLoaded"
+         [style.--count]="projects.length">
+      <div
+        *ngFor="let p of projects; let i = index"
+        class="proj-card"
+        [class.featured]="p.featured"
+        [style.--i]="i"
+        [style.--dist]="getDist(i)"
+        (click)="openModal(p)">
+        <div class="card-image" *ngIf="p.image">
+          <img [src]="p.image" [alt]="p.title" />
+        </div>
+        <span class="card-num">{{ pad(p.id) }}</span>
+        <div class="card-top">
+          <span class="card-category">{{ p.category }}</span>
+          <span class="card-year">{{ p.year }}</span>
+        </div>
+        <div class="card-body">
+          <div class="card-client">{{ p.client }}</div>
+          <h3 class="card-title">{{ p.title }}</h3>
+          <p class="card-desc">{{ p.description }}</p>
+        </div>
+        <a class="card-explore-link" (click)="openModal(p); $event.preventDefault()">
+          Explore more <span class="arrow">→</span>
+        </a>
+        <div class="card-arrow">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+            <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </div>
       </div>
     </div>
 
+    <!-- Stats Strip -->
     <div class="stats-strip">
       <div class="stat-item"><span class="stat-n">50+</span><span class="stat-l">Enterprise Experts</span></div>
       <div class="stat-divider"></div>
@@ -73,6 +75,7 @@
   </div>
 </section>
 
+<!-- Modal -->
 <div class="modal-overlay" [class.open]="isModalOpen" (click)="closeModal()">
   <div class="modal-panel" (click)="$event.stopPropagation()">
     <button class="modal-close" (click)="closeModal()">

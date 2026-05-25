@@ -1,6 +1,6 @@
 /* ── Root ── */
 :root {
-  --bs-danger: #dc2626;
+  --bs-danger: #DC2626;
   --bs-danger-rgb: 220, 38, 38;
 }
 
@@ -36,7 +36,7 @@ button,
   position: absolute;
   bottom: 0; left: 0; right: 0;
   height: 2px;
-  background: #dc2626;
+  background: #DC2626;
   border-radius: 2px;
   transform: scaleX(0);
   transition: transform 0.25s ease;
