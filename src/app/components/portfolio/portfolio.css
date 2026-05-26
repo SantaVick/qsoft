@@ -57,7 +57,7 @@
   overflow: visible;
 }
 
-/* ===== PORT HEADER - FIXED VISIBILITY ===== */
+/* ===== PORT HEADER ===== */
 .port-header {
   margin-bottom: 20px;
   position: relative;
@@ -309,251 +309,7 @@
   background: #eee;
 }
 
-/* ===== RESPONSIVE - TABLET ===== */
-@media (max-width: 900px) {
-  .portfolio-section {
-    padding: 60px 0;
-  }
-  
-  .ticker-outer {
-    margin-bottom: 50px;
-  }
-  
-  .port-header {
-    margin-bottom: 30px;
-    text-align: left;
-    padding: 0 5px;
-  }
-  
-  .port-title {
-    font-size: clamp(1.8rem, 5vw, 2.5rem);
-  }
-  
-  .port-sub {
-    font-size: 0.9rem;
-  }
-  
-  .projects-hand {
-    height: 520px;
-    transform: none;
-    margin: 40px 0 80px 0;
-  }
-  
-  .proj-card {
-    width: 230px;
-    height: 390px;
-    padding: 18px;
-    border-radius: 20px;
-  }
-  
-  .projects-hand.loaded .proj-card {
-    transform:
-      translateX(calc(var(--dist) * 85px))
-      translateY(calc(var(--dist) * var(--dist) * 7px))
-      rotate(calc(var(--dist) * 4deg))
-      scale(1);
-  }
-  
-  .proj-card:hover {
-    transform:
-      translateX(calc(var(--dist) * 85px))
-      translateY(calc(var(--dist) * var(--dist) * 7px - 7px))
-      rotate(calc(var(--dist) * 4deg))
-      scale(1) !important;
-  }
-  
-  .card-title { font-size: 0.95rem; }
-  .card-image img { height: 110px; }
-  .card-client { font-size: 0.7rem; }
-  .card-category, .card-year { font-size: 0.6rem; }
-  .card-desc { font-size: 0.7rem; }
-  .card-num { font-size: 0.75rem; top: 10px; right: 10px; }
-}
-
-/* ===== RESPONSIVE - MOBILE ===== */
-@media (max-width: 700px) {
-  .stat-divider { display: none; }
-  .stats-strip { justify-content: center; gap: 25px; padding-top: 30px; margin-top: 40px; }
-  
-  .portfolio-section {
-    padding: 40px 0;
-  }
-  
-  .ticker-outer {
-    margin-bottom: 40px;
-    padding: 15px 0;
-  }
-  
-  .port-header {
-    margin-bottom: 25px;
-    text-align: left;
-    padding: 0 5px;
-  }
-  
-  .port-title {
-    font-size: 1.6rem;
-  }
-  
-  .port-sub {
-    font-size: 0.85rem;
-  }
-  
-  .projects-hand {
-    height: 460px;
-    margin: 30px 0 60px 0;
-  }
-  
-  .proj-card {
-    width: 200px;
-    height: 350px;
-    padding: 16px;
-    border-radius: 18px;
-  }
-  
-  .projects-hand.loaded .proj-card {
-    transform:
-      translateX(calc(var(--dist) * 70px))
-      translateY(calc(var(--dist) * var(--dist) * 5px))
-      rotate(calc(var(--dist) * 3deg))
-      scale(1);
-  }
-  
-  .proj-card:hover {
-    transform:
-      translateX(calc(var(--dist) * 70px))
-      translateY(calc(var(--dist) * var(--dist) * 5px - 6px))
-      rotate(calc(var(--dist) * 3deg))
-      scale(1) !important;
-  }
-  
-  .card-title { font-size: 0.85rem; }
-  .card-image img { height: 95px; }
-  .card-client { font-size: 0.65rem; }
-  .card-category, .card-year { font-size: 0.55rem; }
-  .card-num { font-size: 0.68rem; top: 8px; right: 8px; padding: 2px 6px; }
-  .card-explore-link { font-size: 0.7rem; }
-}
-
-/* ===== RESPONSIVE - SMALL MOBILE ===== */
-@media (max-width: 480px) {
-  .portfolio-section {
-    padding: 30px 0;
-  }
-  
-  .port-container {
-    padding: 0 12px;
-  }
-  
-  .port-header {
-    margin-bottom: 20px;
-    text-align: left;
-    padding: 0;
-  }
-  
-  .port-label {
-    font-size: 0.7rem;
-    margin-bottom: 8px;
-  }
-  
-  .port-title {
-    font-size: 1.4rem;
-    margin-bottom: 8px;
-  }
-  
-  .port-sub {
-    font-size: 0.78rem;
-    line-height: 1.5;
-  }
-  
-  .projects-hand {
-    height: 400px;
-    margin: 20px 0 50px 0;
-  }
-  
-  .proj-card {
-    width: 160px;
-    height: 300px;
-    padding: 12px;
-    border-radius: 16px;
-  }
-  
-  .projects-hand.loaded .proj-card {
-    transform:
-      translateX(calc(var(--dist) * 55px))
-      translateY(calc(var(--dist) * var(--dist) * 4px))
-      rotate(calc(var(--dist) * 2deg))
-      scale(1);
-  }
-  
-  .proj-card:hover {
-    transform:
-      translateX(calc(var(--dist) * 55px))
-      translateY(calc(var(--dist) * var(--dist) * 4px - 5px))
-      rotate(calc(var(--dist) * 2deg))
-      scale(1) !important;
-  }
-  
-  .card-title { font-size: 0.78rem; }
-  .card-image img { height: 80px; border-radius: 8px; }
-  .card-image { margin-bottom: 10px; }
-  .card-client { font-size: 0.6rem; }
-  .card-category, .card-year { font-size: 0.5rem; }
-  .card-top { margin-bottom: 8px; }
-  .card-num { font-size: 0.6rem; top: 6px; right: 6px; padding: 2px 5px; border-radius: 14px; }
-  .card-desc { font-size: 0.6rem; }
-  .card-explore-link { font-size: 0.65rem; margin-top: 8px; }
-  .card-arrow { bottom: 12px; right: 12px; }
-  .card-arrow svg { width: 12px; height: 12px; }
-  .card-body { gap: 2px; }
-}
-
-/* ===== RESPONSIVE - VERY SMALL MOBILE ===== */
-@media (max-width: 360px) {
-  .port-title {
-    font-size: 1.2rem;
-  }
-  
-  .port-sub {
-    font-size: 0.7rem;
-  }
-  
-  .projects-hand {
-    height: 360px;
-    margin: 15px 0 40px 0;
-  }
-  
-  .proj-card {
-    width: 140px;
-    height: 260px;
-    padding: 10px;
-    border-radius: 14px;
-  }
-  
-  .projects-hand.loaded .proj-card {
-    transform:
-      translateX(calc(var(--dist) * 48px))
-      translateY(calc(var(--dist) * var(--dist) * 3px))
-      rotate(calc(var(--dist) * 1.5deg))
-      scale(1);
-  }
-  
-  .proj-card:hover {
-    transform:
-      translateX(calc(var(--dist) * 48px))
-      translateY(calc(var(--dist) * var(--dist) * 3px - 4px))
-      rotate(calc(var(--dist) * 1.5deg))
-      scale(1) !important;
-  }
-  
-  .card-title { font-size: 0.7rem; }
-  .card-image img { height: 65px; }
-  .card-client { font-size: 0.55rem; }
-  .card-category, .card-year { font-size: 0.45rem; }
-  .card-num { font-size: 0.55rem; }
-  .card-desc { font-size: 0.55rem; }
-}
-
-/* ===== MODAL - FIXED (not scrollable background) ===== */
+/* ===== MODAL ===== */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -570,14 +326,12 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
-  overflow: hidden; /* Prevent background scroll */
+  overflow: hidden;
 }
-
 .modal-overlay.open {
   opacity: 1;
   visibility: visible;
 }
-
 .modal-panel {
   background: #fff;
   max-width: 500px;
@@ -588,14 +342,12 @@
   transform: scale(0.95);
   transition: transform 0.3s var(--spring);
   max-height: 85vh;
-  overflow-y: auto; /* Modal content scrollable */
-  -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
-
-.modal-overlay.open .modal-panel { 
-  transform: scale(1); 
+.modal-overlay.open .modal-panel {
+  transform: scale(1);
 }
-
 .modal-close {
   position: sticky;
   top: 0;
@@ -613,11 +365,7 @@
   transition: background 0.2s ease;
   margin-bottom: 16px;
 }
-
-.modal-close:hover {
-  background: #e5e7eb;
-}
-
+.modal-close:hover { background: #e5e7eb; }
 .modal-eyebrow {
   display: flex;
   justify-content: space-between;
@@ -626,48 +374,123 @@
   color: var(--red);
   text-transform: uppercase;
 }
-
 .modal-client {
   font-size: 0.9rem;
   color: #555;
   margin-bottom: 8px;
 }
-
 .modal-title {
   font-size: 1.8rem;
   font-weight: 500;
   margin-bottom: 16px;
   color: var(--ink);
 }
-
 .modal-divider {
   height: 2px;
   background: #eee;
   margin: 16px 0;
 }
-
 .modal-desc {
   font-size: 1rem;
   line-height: 1.6;
   color: #333;
 }
 
+/* ===== RESPONSIVE — TABLET ===== */
+@media (max-width: 900px) {
+  .portfolio-section { padding: 60px 0; }
+  .ticker-outer { margin-bottom: 50px; }
+  .port-header { margin-bottom: 30px; }
+  .port-title { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+  .port-sub { font-size: 0.9rem; }
+  .projects-hand { height: 520px; margin: 40px 0 80px 0; }
+  .proj-card { width: 230px; height: 390px; padding: 18px; border-radius: 20px; }
+  .projects-hand.loaded .proj-card {
+    transform:
+      translateX(calc(var(--dist) * 85px))
+      translateY(calc(var(--dist) * var(--dist) * 7px))
+      rotate(calc(var(--dist) * 4deg))
+      scale(1);
+  }
+  .proj-card:hover {
+    transform:
+      translateX(calc(var(--dist) * 85px))
+      translateY(calc(var(--dist) * var(--dist) * 7px - 7px))
+      rotate(calc(var(--dist) * 4deg))
+      scale(1) !important;
+  }
+  .card-title { font-size: 0.95rem; }
+  .card-image img { height: 110px; }
+  .card-client { font-size: 0.7rem; }
+  .card-category, .card-year { font-size: 0.6rem; }
+  .card-desc { font-size: 0.7rem; }
+  .card-num { font-size: 0.75rem; top: 10px; right: 10px; }
+}
+
+/* ===== RESPONSIVE — MOBILE (THE REAL FIX) ===== */
+/*
+ * The fan layout uses absolute-positioned cards with translateX spread.
+ * On mobile the spread overflows the viewport triggering body scroll.
+ * Fix: scale the entire .projects-hand down as one unit so the fan
+ * fits within the viewport — same design, same angles, all cards visible.
+ * Negative margin compensates for the height gap after scaling.
+ */
+@media (max-width: 700px) {
+  .portfolio-section,
+  .port-container {
+    overflow-x: clip; /* clip overflow without affecting scroll */
+  }
+
+  .projects-hand {
+    height: 520px;
+    margin: 10px 0 10px 0;
+    transform: scale(0.68);
+    transform-origin: center center;
+    /* negative margin pulls surrounding content up to fill scaled gap */
+    margin-top: calc((520px * (1 - 0.68) / 2) * -1);
+    margin-bottom: calc((520px * (1 - 0.68) / 2) * -1);
+  }
+
+  .stat-divider { display: none; }
+  .stats-strip { justify-content: center; gap: 25px; padding-top: 30px; margin-top: 40px; }
+  .ticker-outer { margin-bottom: 40px; padding: 15px 0; }
+  .port-header { margin-bottom: 25px; }
+  .port-title { font-size: 1.6rem; }
+  .port-sub { font-size: 0.85rem; }
+}
+
+@media (max-width: 480px) {
+  .port-container { padding: 0 12px; }
+  .port-label { font-size: 0.7rem; margin-bottom: 8px; }
+  .port-title { font-size: 1.4rem; margin-bottom: 8px; }
+  .port-sub { font-size: 0.78rem; line-height: 1.5; }
+
+  .projects-hand {
+    height: 520px;
+    transform: scale(0.52);
+    transform-origin: center center;
+    margin-top: calc((520px * (1 - 0.52) / 2) * -1);
+    margin-bottom: calc((520px * (1 - 0.52) / 2) * -1);
+  }
+}
+
+@media (max-width: 360px) {
+  .port-title { font-size: 1.2rem; }
+  .port-sub { font-size: 0.7rem; }
+
+  .projects-hand {
+    height: 520px;
+    transform: scale(0.42);
+    transform-origin: center center;
+    margin-top: calc((520px * (1 - 0.42) / 2) * -1);
+    margin-bottom: calc((520px * (1 - 0.42) / 2) * -1);
+  }
+}
+
 /* Modal responsive */
 @media (max-width: 480px) {
-  .modal-panel {
-    padding: 24px 20px;
-    border-radius: 22px;
-    max-height: 80vh;
-  }
-  .modal-title { 
-    font-size: 1.3rem; 
-  }
-  .modal-desc { 
-    font-size: 0.9rem; 
-  }
-  .modal-close {
-    width: 32px;
-    height: 32px;
-    margin-bottom: 12px;
-  }
+  .modal-panel { padding: 24px 20px; border-radius: 22px; max-height: 80vh; }
+  .modal-title { font-size: 1.3rem; }
+  .modal-desc { font-size: 0.9rem; }
+  .modal-close { width: 32px; height: 32px; margin-bottom: 12px; }
 }

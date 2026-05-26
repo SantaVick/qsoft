@@ -53,6 +53,7 @@ export class Hero implements OnInit, OnDestroy, AfterViewInit {
   private progressTimer: any = null;
   private busy = false;
   private readonly INTERVAL = 3500;
+  
 
   // ── Modal ──
   selectedProject: Project | null = null;
@@ -91,6 +92,11 @@ export class Hero implements OnInit, OnDestroy, AfterViewInit {
     'Standards Automation', 'Web Development', 'Mobile Apps',
     'Fintech', 'Industrial Automation', 'Security Solutions', 'Analytics'
   ];
+  activeCardIndex = 1; // default center card
+
+setActiveCard(index: number) {
+  this.activeCardIndex = index;
+}
 
   features: Feature[] = [
     {
@@ -135,8 +141,8 @@ export class Hero implements OnInit, OnDestroy, AfterViewInit {
   // ADD THIS METHOD
   private setHomePageSEO() {
     this.seoService.setPageMeta({
-      title: 'QSoft Group — Custom Software Development in Karen, Nairobi, Kenya',
-      description: 'QSoft Group is a leading software development company based in Karen, Nairobi. We build custom enterprise, government, fintech, and IoT solutions that touch lives across East Africa. 15+ years of excellence.',
+      title: 'Qsoft-Group — Touching lives Through intelligent technology',
+      description: 'Qsoft-Group is a leading software development company based in Karen, Nairobi. We build custom enterprise, government, fintech, and IoT solutions that touch lives across East Africa. 15+ years of excellence.',
       keywords: 'software development Nairobi, custom software Kenya, IT company Karen Nairobi, enterprise software Kenya, digital transformation Africa, QSoft Group, fintech solutions Kenya, government software Kenya, IoT development Nairobi, web app development Kenya, mobile app development Kenya, software company Karen, IT services Nairobi, revenue collection systems, ERP systems Kenya',
       image: 'https://qsoft-group.com/images/qsoft-home-og.jpg',
       url: 'https://qsoft-group.com/',

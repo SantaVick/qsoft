@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Inject, PLATFORM_ID, HostListener } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -24,6 +24,7 @@ export interface Project {
 })
 export class Portfolio implements OnInit, AfterViewInit {
   isLoaded = false;
+  spreadMultiplier = 120; // Default desktop spread
   
   projects: Project[] = [
     {
@@ -94,13 +95,15 @@ export class Portfolio implements OnInit, AfterViewInit {
   selectedProject: Project | null = null;
   isModalOpen = false;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.updateSpreadMultiplier();
+  }
 
   ngOnInit() {
-    // Prevent horizontal scroll globally
     if (isPlatformBrowser(this.platformId)) {
       document.body.style.overflowX = 'hidden';
       document.documentElement.style.overflowX = 'hidden';
+      this.updateSpreadMultiplier();
     }
   }
 
@@ -110,11 +113,31 @@ export class Portfolio implements OnInit, AfterViewInit {
     }, 120);
   }
 
+  @HostListener('window:resize')
+  onResize() {
+    this.updateSpreadMultiplier();
+  }
+
+  updateSpreadMultiplier() {
+    if (typeof window === 'undefined') return;
+    const w = window.innerWidth;
+    if (w <= 360) {
+      this.spreadMultiplier = 48;
+    } else if (w <= 480) {
+      this.spreadMultiplier = 55;
+    } else if (w <= 700) {
+      this.spreadMultiplier = 70;
+    } else if (w <= 900) {
+      this.spreadMultiplier = 85;
+    } else {
+      this.spreadMultiplier = 120;
+    }
+  }
+
   openModal(project: Project) {
     this.selectedProject = project;
     this.isModalOpen = true;
     
-    // Lock body scroll completely
     if (isPlatformBrowser(this.platformId)) {
       const scrollY = window.scrollY;
       document.body.style.position = 'fixed';
@@ -129,7 +152,6 @@ export class Portfolio implements OnInit, AfterViewInit {
     this.isModalOpen = false;
     this.selectedProject = null;
     
-    // Restore body scroll
     if (isPlatformBrowser(this.platformId)) {
       const scrollY = document.body.style.top;
       document.body.style.position = '';
@@ -148,4 +170,4 @@ export class Portfolio implements OnInit, AfterViewInit {
   getDist(i: number): number {
     return i - (this.projects.length - 1) / 2;
   }
-} 
+}
