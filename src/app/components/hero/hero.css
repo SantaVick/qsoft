@@ -729,5 +729,10 @@
   background: #d1d5db;
   transition: background 0.3s;
 }
+.swipe-dot.end-reached {
+  background: #111827;
+  width: 20px;
+  border-radius: 4px;
+}
 .swipe-dot.active { background: #dc2626; }
 .swipe-text { font-size: 0.75rem; color: #9ca3af; font-weight: 500; }

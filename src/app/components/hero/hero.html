@@ -203,10 +203,10 @@
 
       <!-- MOBILE SWIPE INDICATOR -->
       <div class="swipe-indicator" *ngIf="isMobile">
-        <div class="swipe-dots">
+        <div class="swipe-dot">
           <span class="swipe-dot" [class.active]="activeCardIndex === 0"></span>
           <span class="swipe-dot" [class.active]="activeCardIndex === 1"></span>
-          <span class="swipe-dot" [class.active]="activeCardIndex === 2"></span>
+          <span class="swipe-dot end" [class.active]="activeCardIndex === 2"></span>
         </div>
         <span class="swipe-text">← Swipe to explore →</span>
       </div>

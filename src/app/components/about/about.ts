@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, QueryList, ViewChildren, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { SeoService } from '../seo-service/seo-service';
 
 interface TeamMember {
   name: string;
@@ -84,17 +85,31 @@ export class About implements OnInit, OnDestroy, AfterViewInit {
   @ViewChildren('animateElement') animateElements!: QueryList<ElementRef>;
   private observer: IntersectionObserver | null = null;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private seoService: SeoService
+  ) {}
 
   ngOnInit() {
-    // Only run timer-based code in the browser
+    this.seoService.setPageMeta({
+      title: 'About Us | Qsoft Group — Enterprise Software Kenya',
+      description: 'Meet the Qsoft Group team. 15+ years delivering enterprise software, government systems, fintech and IoT solutions across East Africa from our base in Karen, Nairobi.',
+      keywords: 'about Qsoft Group, software company Kenya, IT team Nairobi, Charles Njihia, Andrew Muiruri, Kenneth Muhia, enterprise software team Kenya',
+      image: 'https://qsoft-group.com/images/qsoft-home-og.jpg',
+      url: 'https://qsoft-group.com/about',
+      type: 'website'
+    });
+    this.seoService.setBreadcrumbSchema([
+      { name: 'Home', url: 'https://qsoft-group.com/' },
+      { name: 'About', url: 'https://qsoft-group.com/about' }
+    ]);
+
     if (isPlatformBrowser(this.platformId)) {
       this.startAutoSlide();
     }
   }
 
   ngAfterViewInit() {
-    // IntersectionObserver and window are browser-only APIs
     if (isPlatformBrowser(this.platformId)) {
       setTimeout(() => this.setupIntersectionObserver(), 100);
     }
@@ -102,7 +117,7 @@ export class About implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnDestroy() {
     if (this.intervalId) clearInterval(this.intervalId);
-    if (this.observer)   this.observer.disconnect();
+    if (this.observer) this.observer.disconnect();
   }
 
   startAutoSlide() {
@@ -161,7 +176,6 @@ export class About implements OnInit, OnDestroy, AfterViewInit {
       this.observer?.observe(el.nativeElement);
     });
 
-    // Check elements already visible on load
     this.animateElements.forEach(el => {
       const rect = el.nativeElement.getBoundingClientRect();
       const isVisible = rect.top < window.innerHeight * 0.85 && rect.bottom > 0;

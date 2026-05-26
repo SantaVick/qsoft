@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, Inject, PLATFORM_ID, HostListener } f
 import { isPlatformBrowser } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { SeoService } from '../seo-service/seo-service';
 
 export interface Project {
   id: number;
@@ -24,8 +25,8 @@ export interface Project {
 })
 export class Portfolio implements OnInit, AfterViewInit {
   isLoaded = false;
-  spreadMultiplier = 120; // Default desktop spread
-  
+  spreadMultiplier = 120;
+
   projects: Project[] = [
     {
       id: 1,
@@ -95,11 +96,27 @@ export class Portfolio implements OnInit, AfterViewInit {
   selectedProject: Project | null = null;
   isModalOpen = false;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private seoService: SeoService
+  ) {
     this.updateSpreadMultiplier();
   }
 
   ngOnInit() {
+    this.seoService.setPageMeta({
+      title: 'Our Work | Qsoft Group — Projects That Made an Impact',
+      description: 'Explore Qsoft Group\'s portfolio. From Kajiado County revenue systems to KEBS standards automation — real systems, real scale, real outcomes across Kenya and East Africa.',
+      keywords: 'Qsoft portfolio, government software Kenya, Kajiado County system, KEBS automation, Kakamega revenue collection, Nyandarua county, traffic engineering Kenya, software projects Kenya',
+      image: 'https://qsoft-group.com/images/qsoft-home-og.jpg',
+      url: 'https://qsoft-group.com/portfolio',
+      type: 'website'
+    });
+    this.seoService.setBreadcrumbSchema([
+      { name: 'Home', url: 'https://qsoft-group.com/' },
+      { name: 'Portfolio', url: 'https://qsoft-group.com/portfolio' }
+    ]);
+
     if (isPlatformBrowser(this.platformId)) {
       document.body.style.overflowX = 'hidden';
       document.documentElement.style.overflowX = 'hidden';
@@ -137,7 +154,7 @@ export class Portfolio implements OnInit, AfterViewInit {
   openModal(project: Project) {
     this.selectedProject = project;
     this.isModalOpen = true;
-    
+
     if (isPlatformBrowser(this.platformId)) {
       const scrollY = window.scrollY;
       document.body.style.position = 'fixed';
@@ -151,7 +168,7 @@ export class Portfolio implements OnInit, AfterViewInit {
   closeModal() {
     this.isModalOpen = false;
     this.selectedProject = null;
-    
+
     if (isPlatformBrowser(this.platformId)) {
       const scrollY = document.body.style.top;
       document.body.style.position = '';

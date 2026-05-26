@@ -1,8 +1,9 @@
-import { Component, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
+import { SeoService } from '../seo-service/seo-service';
 
 @Component({
   selector: 'app-contact',
@@ -11,7 +12,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './contact.html',
   styleUrls: ['./contact.css']
 })
-export class Contact implements OnDestroy {
+export class Contact implements OnInit, OnDestroy {
 
   @ViewChild('contactForm') contactForm!: NgForm;
 
@@ -28,7 +29,25 @@ export class Contact implements OnDestroy {
   private t1!: ReturnType<typeof setTimeout>;
   private t2!: ReturnType<typeof setTimeout>;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private seoService: SeoService
+  ) {}
+
+  ngOnInit() {
+    this.seoService.setPageMeta({
+      title: 'Contact Us | Qsoft Group — Start a Project',
+      description: 'Get in touch with Qsoft Group in Karen, Nairobi. Let\'s discuss how we can transform your organisation with enterprise technology that scales.',
+      keywords: 'contact Qsoft Group, hire software company Kenya, IT company Karen Nairobi, start a project Kenya, enterprise software quote Kenya',
+      image: 'https://qsoft-group.com/images/qsoft-home-og.jpg',
+      url: 'https://qsoft-group.com/contact',
+      type: 'website'
+    });
+    this.seoService.setBreadcrumbSchema([
+      { name: 'Home', url: 'https://qsoft-group.com/' },
+      { name: 'Contact', url: 'https://qsoft-group.com/contact' }
+    ]);
+  }
 
   get emailInvalid(): boolean {
     const email = this.contactForm?.value?.email?.trim();
@@ -58,7 +77,7 @@ export class Contact implements OnDestroy {
       !!v.email?.trim()                      &&
       this.EMAIL_REGEX.test(v.email?.trim()) &&
       !!v.service                            &&
-      !!msg && msg.length >= 10;             // min 10 chars
+      !!msg && msg.length >= 10;
 
     if (!coreValid) {
       setTimeout(() => {
@@ -95,24 +114,19 @@ export class Contact implements OnDestroy {
     if (v.phone?.trim())   payload.phone   = v.phone.trim();
     if (v.company?.trim()) payload.company = v.company.trim();
 
-    console.log('📤 Submitting:', payload);
-
     this.sub = this.http.post(this.API, payload).subscribe({
       next: (res) => {
-        console.log('✅ Success:', res);
         this.clearTimers();
         this.submitted           = true;
         this.loading             = false;
         this.formSubmitAttempted = false;
         this.contactForm.reset();
 
-         setTimeout(() => {
-      this.submitted = false;
-    }, 5000);
+        setTimeout(() => {
+          this.submitted = false;
+        }, 5000);
       },
       error: (err) => {
-        console.error('❌ Error status:', err.status);
-        console.error('❌ Error body:', err.error);
         this.clearTimers();
         this.loading = false;
         this.error   = true;

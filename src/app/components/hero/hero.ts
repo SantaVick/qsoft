@@ -354,6 +354,15 @@ setActiveCard(index: number) {
         transparent 60%)
     `;
   }
+  @ViewChild('tiltGrid') tiltGrid!: ElementRef;
+
+onTiltScroll(e: Event) {
+  const el = e.target as HTMLElement;
+  const cardWidth = el.firstElementChild
+    ? (el.firstElementChild as HTMLElement).offsetWidth + 16
+    : el.scrollWidth / 3;
+  this.activeCardIndex = Math.round(el.scrollLeft / cardWidth);
+}
 
   resetTilt(cardWrapper: HTMLElement) {
     if (!cardWrapper || window.innerWidth <= 900) return;
