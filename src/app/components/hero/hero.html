@@ -51,11 +51,15 @@
       </div>
 
       <!-- CARDS GRID -->
-      <div class="tilt-grid">
+      <div class="tilt-grid" #tiltGrid (scroll)="onTiltScroll($event)">
+
         <!-- PRIVATE SECTOR CARDS -->
         <ng-container *ngIf="activeSector === 'private'">
-          <div class="tilt-card-wrapper left">
+          <div class="tilt-card-wrapper left"
+               (mousemove)="applyTilt($event, $any($event.currentTarget))"
+               (mouseleave)="resetTilt($any($event.currentTarget))">
             <div class="tilt-card">
+              <div class="card-glare"></div>
               <div class="card-content">
                 <div class="fc-top">
                   <span class="fc-badge">Fintech</span>
@@ -77,8 +81,11 @@
             </div>
           </div>
 
-          <div class="tilt-card-wrapper center">
+          <div class="tilt-card-wrapper center"
+               (mousemove)="applyTilt($event, $any($event.currentTarget))"
+               (mouseleave)="resetTilt($any($event.currentTarget))">
             <div class="tilt-card">
+              <div class="card-glare"></div>
               <div class="card-content">
                 <div class="fc-top">
                   <span class="fc-badge">IoT</span>
@@ -100,8 +107,11 @@
             </div>
           </div>
 
-          <div class="tilt-card-wrapper right">
+          <div class="tilt-card-wrapper right"
+               (mousemove)="applyTilt($event, $any($event.currentTarget))"
+               (mouseleave)="resetTilt($any($event.currentTarget))">
             <div class="tilt-card">
+              <div class="card-glare"></div>
               <div class="card-content">
                 <div class="fc-top">
                   <span class="fc-badge">Communication</span>
@@ -126,8 +136,11 @@
 
         <!-- GOVERNMENT SECTOR CARDS -->
         <ng-container *ngIf="activeSector === 'government'">
-          <div class="tilt-card-wrapper left">
+          <div class="tilt-card-wrapper left"
+               (mousemove)="applyTilt($event, $any($event.currentTarget))"
+               (mouseleave)="resetTilt($any($event.currentTarget))">
             <div class="tilt-card">
+              <div class="card-glare"></div>
               <div class="card-content">
                 <div class="fc-top">
                   <span class="fc-badge">County Government</span>
@@ -149,8 +162,11 @@
             </div>
           </div>
 
-          <div class="tilt-card-wrapper center">
+          <div class="tilt-card-wrapper center"
+               (mousemove)="applyTilt($event, $any($event.currentTarget))"
+               (mouseleave)="resetTilt($any($event.currentTarget))">
             <div class="tilt-card">
+              <div class="card-glare"></div>
               <div class="card-content">
                 <div class="fc-top">
                   <span class="fc-badge">Revenue Collection</span>
@@ -173,8 +189,11 @@
             </div>
           </div>
 
-          <div class="tilt-card-wrapper right">
+          <div class="tilt-card-wrapper right"
+               (mousemove)="applyTilt($event, $any($event.currentTarget))"
+               (mouseleave)="resetTilt($any($event.currentTarget))">
             <div class="tilt-card">
+              <div class="card-glare"></div>
               <div class="card-content">
                 <div class="fc-top">
                   <span class="fc-badge">Standards &amp; Compliance</span>
@@ -203,13 +222,18 @@
 
       <!-- MOBILE SWIPE INDICATOR -->
       <div class="swipe-indicator" *ngIf="isMobile">
-        <div class="swipe-dot">
+        <div class="swipe-dots">
           <span class="swipe-dot" [class.active]="activeCardIndex === 0"></span>
           <span class="swipe-dot" [class.active]="activeCardIndex === 1"></span>
-          <span class="swipe-dot end" [class.active]="activeCardIndex === 2"></span>
+          <span class="swipe-dot"
+                [class.active]="activeCardIndex === 2"
+                [class.end-reached]="activeCardIndex === 2"></span>
         </div>
-        <span class="swipe-text">← Swipe to explore →</span>
+        <span class="swipe-text">
+          {{ activeCardIndex === 2 ? "You've seen them all ✓" : '← Swipe to explore →' }}
+        </span>
       </div>
+
     </div>
   </section>
 
@@ -229,7 +253,7 @@
           <span>deliver results</span>
         </div>
 
-        <!-- SVG orbit ring + dashed connectors -->
+        <!-- SVG orbit ring -->
         <svg class="connectors" [attr.viewBox]="'0 0 ' + circleSize + ' ' + circleSize" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -250,7 +274,7 @@
         </div>
       </div>
 
-      <!-- MOBILE: horizontal scroll cards -->
+      <!-- MOBILE: vertical stack cards -->
       <div *ngIf="isMobile" class="steps-mobile">
         <div *ngFor="let step of processSteps; let i = index" class="step-mobile-card">
           <div class="step-num">{{ pad(i + 1) }}</div>
@@ -459,4 +483,5 @@
       </ng-container>
     </div>
   </div>
+
 </section>
