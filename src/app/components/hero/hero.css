@@ -59,9 +59,6 @@
 .btn-light { background: #fff; color: #111827; }
 .btn-light:hover { background: #dc2626; color: #fff; }
 
-/* =========================================================
-   HERO
-========================================================= */
 .hero {
   min-height: 100vh;
   display: grid;
@@ -105,9 +102,6 @@
 
 .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-/* =========================================================
-   HERO SLIDER
-========================================================= */
 .hero-imgs { position: relative; }
 .hi-main {
   position: relative;
@@ -136,9 +130,7 @@
 .slide-nav--p { left: 1rem; }
 .slide-nav--n { right: 1rem; }
 
-/* =========================================================
-   MARQUEE
-========================================================= */
+
 .marquee-strip { overflow: hidden; background: #111827; padding: .9rem 0; }
 .marquee-track { display: flex; width: max-content; animation: marquee 28s linear infinite; }
 .marquee-item {
@@ -148,9 +140,7 @@
 .marquee-sep { color: #dc2626; margin-left: 1rem; }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-/* =========================================================
-   ADVANTAGE
-========================================================= */
+
 .advantage {
   padding: 7rem 2rem;
   background: #fff;
@@ -230,9 +220,8 @@
 .feature h4 { margin-bottom: .35rem; font-size: 1rem; font-weight: 700; }
 .feature p { font-size: .9rem; line-height: 1.7; color: #4b5563; }
 
-/* =========================================================
-   HOW WE WORK — PROCESS CIRCLE (desktop)
-========================================================= */
+
+
 .how-we-work {
   padding: 4rem 2rem 5rem;
   background: #ffffff;
@@ -307,9 +296,7 @@
 .process-step h4 { margin-bottom: .5rem; font-size: .95rem; font-weight: 700; }
 .process-step p { font-size: .84rem; line-height: 1.7; color: #4b5563; margin: 0; }
 
-/* =========================================================
-   HOW WE WORK — MOBILE CARDS
-========================================================= */
+/* HOW WE WORK — MOBILE CARDS */
 .steps-mobile {
   display: flex;
   flex-direction: column;
@@ -349,9 +336,8 @@
 .step-mobile-card h4 { font-size: 1.05rem; font-weight: 700; color: #111; margin: 0 0 .4rem; }
 .step-mobile-card p { font-size: .92rem; line-height: 1.75; color: #4b5563; margin: 0; }
 
-/* =========================================================
-   HOW WE WORK — RESPONSIVE
-========================================================= */
+/*
+   HOW WE WORK — RESPONSIVE */
 @media (max-width: 900px) {
   .how-we-work { overflow: hidden; padding: 2rem 0.5rem 3rem; }
   .process-steps { display: block !important; margin: 1.5rem auto 0; }
@@ -388,9 +374,7 @@
   .process-step p { font-size: 0.38rem !important; }
 }
 
-/* =========================================================
-   BESPOKE SOFTWARE
-========================================================= */
+/* BESPOKE SOFTWARE */
 .bespoke-strip { background: #fff; }
 .bespoke-section { padding: 6rem 2rem; background: #fff; }
 .bespoke-grid {
@@ -423,17 +407,13 @@
 .bespoke-sub-item:hover { color: #dc2626; }
 .bespoke-sub-dot { width: 6px; height: 6px; border-radius: 50%; background: #dc2626; flex-shrink: 0; }
 
-/* =========================================================
-   CTA
-========================================================= */
+/* CTA */
 .ready-build { padding: 6rem 2rem; }
 .build-banner { display: flex; justify-content: space-between; align-items: center; gap: 2rem; padding: 4rem; border-radius: 32px; background: linear-gradient(135deg, #111827, #1f2937); }
 .build-content h2 { margin-bottom: .75rem; font-size: clamp(2rem,4vw,3rem); font-weight: 800; color: #fff; }
 .build-content p { color: rgba(255,255,255,.7); line-height: 1.8; }
 
-/* =========================================================
-   MODAL
-========================================================= */
+/* MODAL */
 .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.55); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: .25s ease; z-index: 100; }
 .modal-overlay.open { opacity: 1; pointer-events: auto; }
 .modal-panel { position: relative; width: 90%; max-width: 560px; max-height: 85vh; overflow-y: auto; padding: 2.5rem; border-radius: 28px; background: #fff; }
@@ -442,9 +422,7 @@
 .modal-desc { line-height: 1.8; color: #4b5563; }
 .modal-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
 
-/* =========================================================
-   RESPONSIVE — General
-========================================================= */
+/* RESPONSIVE — General */
 @media (max-width: 1100px) {
   .hero { grid-template-columns: 1fr; }
   .build-banner { flex-direction: column; }
@@ -464,9 +442,7 @@
   .advantage-features { grid-template-columns: 1fr; }
 }
 
-/* =========================================================
-   PRODUCT PORTFOLIO SECTION
-========================================================= */
+/* PRODUCT PORTFOLIO SECTION */
 .product-portfolio-section {
   padding: 6rem 2rem;
   background: #fff;
@@ -530,7 +506,6 @@
   box-shadow: 0 6px 18px rgba(0,0,0,0.2);
 }
 
-/* ───────── 3D TILT GRID — DESKTOP ───────── */
 .tilt-grid {
   display: flex;
   justify-content: center;
@@ -601,11 +576,6 @@
 .card-glare { position: absolute; inset: 0; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: 1; }
 .tilt-card-wrapper:hover .card-glare { opacity: 1; }
 
-/* =========================================================
-   PRODUCT PORTFOLIO — MOBILE
-   Strategy: horizontal scroll snap, one card visible at a time,
-   styled like the desktop but flat (no 3D tilt, no overflow)
-========================================================= */
 @media (max-width: 900px) {
   .product-portfolio-section {
     padding: 3rem 0 3rem;
@@ -616,7 +586,6 @@
     padding: 0 1.5rem;
   }
 
-  /* Reset the desktop 3D layout entirely */
   .tilt-grid {
     display: flex;
     flex-direction: row;
@@ -643,7 +612,6 @@
   .tilt-grid::-webkit-scrollbar { display: none; }
   .tilt-grid:hover { gap: 16px; } /* override desktop hover gap */
 
-  /* Each wrapper: fixed width, full visible */
   .tilt-card-wrapper,
   .tilt-card-wrapper.left,
   .tilt-card-wrapper.right,
@@ -657,7 +625,6 @@
     transition: none;
   }
 
-  /* Flat card — keep the white card look, remove 3D tilt */
   .tilt-card,
   .tilt-card-wrapper.left .tilt-card,
   .tilt-card-wrapper.right .tilt-card {
@@ -675,7 +642,6 @@
     box-shadow: 0 8px 30px rgba(0,0,0,0.10) !important;
   }
 
-  /* Card content: no translateZ (3D only) */
   .card-content {
     transform: none;
     padding: 1.4rem;
@@ -689,7 +655,6 @@
   .fc-badge { font-size: 0.68rem; }
   .fc-icon { font-size: 1.3rem; }
 
-  /* Show swipe dots */
   .swipe-indicator {
     display: flex !important;
     flex-direction: column;
@@ -716,7 +681,6 @@
   .tilt-card h3 { font-size: 1rem; }
 }
 
-/* ── Swipe indicator ── */
 .swipe-indicator {
   display: none;
   text-align: center;

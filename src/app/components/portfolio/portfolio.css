@@ -10,7 +10,6 @@
   font-family: 'DM Sans', sans-serif;
 }
 
-/* ===== PORTFOLIO SECTION ===== */
 .portfolio-section {
   padding: 80px 0;
   background: #FFFFFF;
@@ -18,7 +17,6 @@
   position: relative;
 }
 
-/* ===== TICKER ===== */
 .ticker-outer {
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
@@ -47,7 +45,6 @@
 }
 .ticker-sep { color: var(--red); margin-left: 20px; }
 
-/* ===== PORT CONTAINER ===== */
 .port-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -57,7 +54,6 @@
   overflow: visible;
 }
 
-/* ===== PORT HEADER ===== */
 .port-header {
   margin-bottom: 20px;
   position: relative;
@@ -103,8 +99,6 @@
   color: #444;
   max-width: 600px;
 }
-
-/* ===== PROJECTS HAND — FANNED CARD LAYOUT ===== */
 .projects-hand {
   position: relative;
   height: 620px;
@@ -138,7 +132,6 @@
   -webkit-font-smoothing: antialiased;
 }
 
-/* Entrance: collapsed below, fans out when .loaded is added */
 .projects-hand .proj-card {
   opacity: 0;
   transform: translateX(0) translateY(120px) scale(0.8) rotate(0deg);
@@ -165,7 +158,6 @@
   box-shadow: 0 30px 60px rgba(0,0,0,0.2), 0 0 20px rgba(230,51,41,0.1);
 }
 
-/* ===== CARD INTERNALS ===== */
 .card-image {
   width: 100%;
   margin-bottom: 16px;
@@ -427,18 +419,11 @@
   .card-num { font-size: 0.75rem; top: 10px; right: 10px; }
 }
 
-/* ===== RESPONSIVE — MOBILE (THE REAL FIX) ===== */
-/*
- * The fan layout uses absolute-positioned cards with translateX spread.
- * On mobile the spread overflows the viewport triggering body scroll.
- * Fix: scale the entire .projects-hand down as one unit so the fan
- * fits within the viewport — same design, same angles, all cards visible.
- * Negative margin compensates for the height gap after scaling.
- */
+
 @media (max-width: 700px) {
   .portfolio-section,
   .port-container {
-    overflow-x: clip; /* clip overflow without affecting scroll */
+    overflow-x: clip; 
   }
 
   .projects-hand {

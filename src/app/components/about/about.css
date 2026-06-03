@@ -145,7 +145,6 @@ body, .about-section {
 .prev { left: 1.5rem; }
 .next { right: 1.5rem; }
 
-/* ── ABOUT TEXT ── */
 .about-text { padding-top: 4rem; }
 
 .eyebrow {
@@ -187,7 +186,7 @@ body, .about-section {
   max-width: 72ch;
 }
 
-/* ── STATS BAR (optional – you may or may not use) ── */
+
 .stats-bar {
   display: flex;
   align-items: center;
@@ -250,7 +249,7 @@ body, .about-section {
   .stat-divider { display: none; }
 }
 
-/* ── HIGHLIGHTS ── */
+
 .about-highlights {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -285,7 +284,7 @@ body, .about-section {
 
 .highlight-item p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; margin: 0; max-width: none; }
 
-/* ── VALUES SECTION ── */
+
 .values-section { margin: 4rem 0 3rem; }
 
 .section-header { text-align: center; margin-bottom: 2.5rem; }
@@ -409,7 +408,7 @@ body, .about-section {
 
 .value-card:hover .value-accent { transform: scaleX(1); }
 
-/* ── LEADERSHIP HEADING ── */
+
 .leadership-title {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3rem);
@@ -430,7 +429,6 @@ body, .about-section {
   max-width: 58ch;
 }
 
-/* ── TEAM STRIPS (Clean Hover – No Text Hiding) ── */
 .team-strips {
   margin: 0;
   display: flex;
@@ -602,7 +600,6 @@ body, .about-section {
   margin-top: 1px;
 }
 
-/* ── CTA (Modern, Bold Design) ── */
 .about-cta {
   margin-top: 5rem;
   padding-top: 3rem;
@@ -659,32 +656,29 @@ body, .about-section {
   .cta-button { padding: 1rem 2.5rem; font-size: 1rem; }
 }
 
-/* Extra images row below Charles's bio */
 .extra-image {
   grid-column: 4;
   margin-top: 2.0rem;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 1.25rem;               /* space between the two logos */
+  gap: 1.25rem;              
 }
-
-/* ── EXTRA IMAGES BELOW BIO (FOR ALL TEAM MEMBERS) ── */
 .extra-images {
-  grid-column: 4;                /* same column as the bio text */
-  margin-top: 2rem;              /* space between bio and images */
+  grid-column: 4;                
+  margin-top: 2rem;              
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;               /* wrap on smaller screens */
+  flex-wrap: wrap;               
   align-items: center;
-  gap: 1.25rem;                  /* space between logos */
+  gap: 1.25rem;                  
 }
 
 .extra-images img {
-  width: 54px;                   /* smaller than 72px avatar */
+  width: 54px;                   
   height: auto;
   display: block;
-  border-radius: 8px;            /* optional rounded corners */
+  border-radius: 8px;            
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--border);
 }
