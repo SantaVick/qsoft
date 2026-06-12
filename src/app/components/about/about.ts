@@ -33,7 +33,7 @@ export class About implements OnInit, OnDestroy, AfterViewInit {
       name: 'Charles Njihia',
       role: 'Director',
       image: 'images/Charles.png',
-      bio: `Senior level Manager with over 12 years of Information Technology (IT) and business management experience in the private sector with key emphasis on infrastructure management, billing systems, biometric systems, telecommunications, telco revenue assurance, vendor management and project management. Held key roles in IBM East Africa, Airtel Kenya, Steadman Group, International Energy Technik.`,
+      bio: `Senior level Manager with over 20 years of Information Technology (IT) and business management experience in the private sector with key emphasis on infrastructure management, billing systems, biometric systems, telecommunications, telco revenue assurance, vendor management and project management. Held key roles in IBM East Africa, Airtel Kenya, Steadman Group, International Energy Technik.`,
       initials: 'CN',
       extraImages: [
         'images/2.png',

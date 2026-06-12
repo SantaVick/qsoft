@@ -282,7 +282,7 @@ body, .about-section {
   color: var(--ink);
 }
 
-.highlight-item p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; margin: 0; max-width: none; }
+.highlight-item p { font-size: 1.2rem; color: var(--muted); line-height: 1.65; margin: 0; max-width: none; font-weight: 700; }
 
 
 .values-section { margin: 4rem 0 3rem; }

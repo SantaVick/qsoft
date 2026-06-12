@@ -9,7 +9,8 @@
       </h1>
       <p class="hero-sub">We design, build, and support enterprise-grade digital solutions that help businesses, governments, and institutions innovate, automate, and grow with confidence.</p>
       <div class="hero-btns">
-        <a class="btn-dark" routerLink="/portfolio">Explore Our Clientel</a>
+        <a class="btn-dark" routerLink="/portfolio">Our Clientel</a>
+        <a class="btn-center" routerLink="/about">About Us</a> <br>
         <a class="btn-out" routerLink="/contact">Start a Project</a>
       </div>
     </div>
@@ -62,8 +63,10 @@
               <div class="card-glare"></div>
               <div class="card-content">
                 <div class="fc-top">
-                  <span class="fc-badge">Fintech</span>
-                  <span class="fc-icon">💳</span>
+                    <div class="fc-logo">
+    <img src="images/payment.png"
+         alt="SmartH2O Logo">
+  </div>
                 </div>
                 <h3>Payment Processor</h3>
                 <p class="tagline">Enables payment processing via banking channels and mobile money.</p>
@@ -87,10 +90,13 @@
             <div class="tilt-card">
               <div class="card-glare"></div>
               <div class="card-content">
-                <div class="fc-top">
-                  <span class="fc-badge">IoT</span>
-                  <span class="fc-icon">💧</span>
-                </div>
+               <div class="fc-top">
+
+  <div class="fc-logo">
+    <img src="images/smart.png"
+         alt="SmartH2O Logo">
+  </div>
+</div>
                 <h3>SmartH₂O</h3>
                 <p class="tagline">Smart water billing using internet of things (IoT).</p>
                 <ul class="fc-list">
@@ -114,8 +120,10 @@
               <div class="card-glare"></div>
               <div class="card-content">
                 <div class="fc-top">
-                  <span class="fc-badge">Communication</span>
-                  <span class="fc-icon">📡</span>
+                    <div class="fc-logo">
+    <img src="images/VAS logo.png"
+         alt="VAS Logo">
+  </div>
                 </div>
                 <h3>VAS Platform</h3>
                 <p class="tagline">Enables organizations to communicate via multiple channels.</p>
@@ -135,89 +143,121 @@
         </ng-container>
 
         <!-- GOVERNMENT SECTOR CARDS -->
-        <ng-container *ngIf="activeSector === 'government'">
-          <div class="tilt-card-wrapper left"
-               (mousemove)="applyTilt($event, $any($event.currentTarget))"
-               (mouseleave)="resetTilt($any($event.currentTarget))">
-            <div class="tilt-card">
-              <div class="card-glare"></div>
-              <div class="card-content">
-                <div class="fc-top">
-                  <span class="fc-badge">County Government</span>
-                  <span class="fc-icon">🏛️</span>
-                </div>
-                <h3>Kajiado County</h3>
-                <p class="tagline">Digital transformation for county service delivery and revenue management.</p>
-                <ul class="fc-list">
-                  <li><span class="fc-dot"></span> County revenue management system</li>
-                  <li><span class="fc-dot"></span> Digital service delivery platform</li>
-                  <li><span class="fc-dot"></span> Citizen engagement portal</li>
-                </ul>
-                <div class="fc-tags">
-                  <span class="fc-tag">County</span>
-                  <span class="fc-tag">Revenue</span>
-                  <span class="fc-tag">Citizen Services</span>
-                </div>
-              </div>
-            </div>
-          </div>
+<!-- GOVERNMENT SECTOR CARDS -->
+<ng-container *ngIf="activeSector === 'government'">
 
-          <div class="tilt-card-wrapper center"
-               (mousemove)="applyTilt($event, $any($event.currentTarget))"
-               (mouseleave)="resetTilt($any($event.currentTarget))">
-            <div class="tilt-card">
-              <div class="card-glare"></div>
-              <div class="card-content">
-                <div class="fc-top">
-                  <span class="fc-badge">Revenue Collection</span>
-                  <span class="fc-icon">🏙️</span>
-                </div>
-                <h3>CountyPay</h3>
-                <p class="tagline">A complete revenue collection and management system for regional governments.</p>
-                <ul class="fc-list">
-                  <li><span class="fc-dot"></span> Automate revenue collection processes</li>
-                  <li><span class="fc-dot"></span> Automate enforcement workflows</li>
-                  <li><span class="fc-dot"></span> Collector targets &amp; appraisal automation</li>
-                  <li><span class="fc-dot"></span> End-to-end reconciliation with mobile money &amp; banks</li>
-                </ul>
-                <div class="fc-tags">
-                  <span class="fc-tag">Revenue Automation</span>
-                  <span class="fc-tag">Enforcement</span>
-                  <span class="fc-tag">Reconciliation</span>
-                </div>
-              </div>
-            </div>
-          </div>
+  <!-- Nyandarua County -->
+  <div class="tilt-card-wrapper left"
+       (mousemove)="applyTilt($event, $any($event.currentTarget))"
+       (mouseleave)="resetTilt($any($event.currentTarget))">
+    <div class="tilt-card">
+      <div class="card-glare"></div>
+      <div class="card-content">
+        <div class="fc-top">
+          <div class="fc-logo">
+    <img src="images/multi.png"
+         alt="Multi-Channel Revenue Platform Logo">
+  </div>
+        </div>
 
-          <div class="tilt-card-wrapper right"
-               (mousemove)="applyTilt($event, $any($event.currentTarget))"
-               (mouseleave)="resetTilt($any($event.currentTarget))">
-            <div class="tilt-card">
-              <div class="card-glare"></div>
-              <div class="card-content">
-                <div class="fc-top">
-                  <span class="fc-badge">Standards &amp; Compliance</span>
-                  <span class="fc-icon">📋</span>
-                </div>
-                <h3>Standards Body ERP</h3>
-                <p class="tagline">A complete end-to-end standards body ERP.</p>
-                <ul class="fc-list">
-                  <li><span class="fc-dot"></span> Standards generation, curation &amp; sales</li>
-                  <li><span class="fc-dot"></span> Quality assurance for market goods</li>
-                  <li><span class="fc-dot"></span> Import inspection with third-party integration</li>
-                  <li><span class="fc-dot"></span> Levies collection &amp; penalties automation</li>
-                  <li><span class="fc-dot"></span> Market surveillance &amp; complaint handling</li>
-                </ul>
-                <div class="fc-tags">
-                  <span class="fc-tag">Standards</span>
-                  <span class="fc-tag">QA</span>
-                  <span class="fc-tag">Inspection</span>
-                  <span class="fc-tag">Surveillance</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </ng-container>
+        <h3>Multi-Channel Revenue Platform</h3>
+
+        <p class="tagline">
+          County-wide revenue collection system serving 200+ users for over 5 years.
+        </p>
+
+        <ul class="fc-list">
+          <li><span class="fc-dot"></span> Electronic receipting through POS devices</li>
+          <li><span class="fc-dot"></span> Cashless collections via mobile money</li>
+          <li><span class="fc-dot"></span> Banking channel integrations</li>
+          <li><span class="fc-dot"></span> Revenue collections exceeding USD 2.5 million</li>
+        </ul>
+
+        <div class="fc-tags">
+          <span class="fc-tag">Nyandarua County</span>
+          <span class="fc-tag">POS Receipting</span>
+          <span class="fc-tag">Mobile Money</span>
+          <span class="fc-tag">Banking</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CountyPay -->
+  <div class="tilt-card-wrapper center"
+       (mousemove)="applyTilt($event, $any($event.currentTarget))"
+       (mouseleave)="resetTilt($any($event.currentTarget))">
+    <div class="tilt-card">
+      <div class="card-glare"></div>
+      <div class="card-content">
+        <div class="fc-top">
+           <div class="fc-logo">
+    <img src="images/County pay.png"
+         alt="County Pay Logo">
+  </div>
+        </div>
+
+        <h3>CountyPay</h3>
+
+        <p class="tagline">
+          A complete revenue collection and management system for regional governments.
+        </p>
+
+        <ul class="fc-list">
+          <li><span class="fc-dot"></span> Automate revenue collection processes</li>
+          <li><span class="fc-dot"></span> Automate enforcement workflows</li>
+          <li><span class="fc-dot"></span> Collector targets &amp; appraisal automation</li>
+          <li><span class="fc-dot"></span> End-to-end reconciliation with mobile money &amp; banks</li>
+        </ul>
+
+        <div class="fc-tags">
+          <span class="fc-tag">Revenue Automation</span>
+          <span class="fc-tag">Enforcement</span>
+          <span class="fc-tag">Reconciliation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Standards ERP -->
+  <div class="tilt-card-wrapper right"
+       (mousemove)="applyTilt($event, $any($event.currentTarget))"
+       (mouseleave)="resetTilt($any($event.currentTarget))">
+    <div class="tilt-card">
+      <div class="card-glare"></div>
+      <div class="card-content">
+        <div class="fc-top">
+          <div class="fc-logo">
+    <img src="images/standard.png"
+         alt="Standards Body ERP Logo">
+  </div>
+        </div>
+
+        <h3>Standards Body ERP</h3>
+
+        <p class="tagline">
+          A complete end-to-end standards body ERP.
+        </p>
+
+        <ul class="fc-list">
+          <li><span class="fc-dot"></span> Standards generation, curation &amp; sales</li>
+          <li><span class="fc-dot"></span> Quality assurance for market goods</li>
+          <li><span class="fc-dot"></span> Import inspection with third-party integration</li>
+          <li><span class="fc-dot"></span> Levies collection &amp; penalties automation</li>
+          <li><span class="fc-dot"></span> Market surveillance &amp; complaint handling</li>
+        </ul>
+
+        <div class="fc-tags">
+          <span class="fc-tag">Standards</span>
+          <span class="fc-tag">QA</span>
+          <span class="fc-tag">Inspection</span>
+          <span class="fc-tag">Surveillance</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>
       </div>
 
       <!-- MOBILE SWIPE INDICATOR -->
@@ -253,17 +293,41 @@
           <span>deliver results</span>
         </div>
 
-        <!-- SVG orbit ring -->
-        <svg class="connectors" [attr.viewBox]="'0 0 ' + circleSize + ' ' + circleSize" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-              <path d="M2 1L8 5L2 9" fill="none" stroke="#dc2626" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </marker>
-          </defs>
-          <circle [attr.cx]="circleSize / 2" [attr.cy]="circleSize / 2" [attr.r]="orbitR" fill="none" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="6 5" opacity="0.18"/>
-        </svg>
+        <svg class="connectors"
+     [attr.viewBox]="'0 0 ' + circleSize + ' ' + circleSize">
 
-        <!-- Step cards -->
+  <defs>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M1 1 L9 5 L1 9 Z" fill="#dc2626" stroke="none"/>
+    </marker>
+  </defs>
+
+  <circle
+  [attr.cx]="circleSize / 2"
+  [attr.cy]="circleSize / 2"
+  [attr.r]="orbitR"
+  fill="none"
+  stroke="#ef4444"
+  stroke-width="2"
+  stroke-dasharray="8 8"
+  stroke-linecap="round"
+  opacity="0.7"
+/>
+
+  <line
+    *ngFor="let a of getOrbitArrows()"
+    [attr.x1]="a.x1"
+    [attr.y1]="a.y1"
+    [attr.x2]="a.x2"
+    [attr.y2]="a.y2"
+    stroke="#dc2626"
+    stroke-width="2"
+    marker-end="url(#arrowhead)"
+  />
+
+</svg>
+        
         <div *ngFor="let step of processSteps; let i = index" class="process-step" [ngStyle]="getStepPos(i)" [attr.data-reveal]="'fade-up'" [attr.data-delay]="i * 120">
           <div class="step-num">{{ pad(i + 1) }}</div>
           <div class="step-icon">

@@ -1,12 +1,13 @@
 import {
   Component, OnInit, OnDestroy, AfterViewInit,
   Inject, PLATFORM_ID,
-  ViewChild, ElementRef, HostListener, ChangeDetectorRef
+  ViewChild, ElementRef, HostListener, ChangeDetectorRef, ViewEncapsulation,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SeoService } from '../seo-service/seo-service';
+
 
 interface Slide {
   imageUrl: string;
@@ -42,7 +43,8 @@ interface ProcessStep {
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './hero.html',
-  styleUrls: ['./hero.css']
+  styleUrls: ['./hero.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class Hero implements OnInit, OnDestroy, AfterViewInit {
 
@@ -53,7 +55,6 @@ export class Hero implements OnInit, OnDestroy, AfterViewInit {
   private progressTimer: any = null;
   private busy = false;
   private readonly INTERVAL = 3500;
-  
 
   // ── Modal ──
   selectedProject: Project | null = null;
@@ -92,11 +93,11 @@ export class Hero implements OnInit, OnDestroy, AfterViewInit {
     'Standards Automation', 'Web Development', 'Mobile Apps',
     'Fintech', 'Industrial Automation', 'Security Solutions', 'Analytics'
   ];
-  activeCardIndex = 1; // default center card
+  activeCardIndex = 1;
 
-setActiveCard(index: number) {
-  this.activeCardIndex = index;
-}
+  setActiveCard(index: number) {
+    this.activeCardIndex = index;
+  }
 
   features: Feature[] = [
     {
@@ -118,9 +119,9 @@ setActiveCard(index: number) {
   ];
 
   processSteps: ProcessStep[] = [
-    { image: 'images/discover.png', title: 'Discovery', body: 'Deep-dive workshops to understand your business, users, and technical constraints.' },
+    { image: 'images/discover.png', title: 'Discovery', body: 'Deep-dive workshops to understand your business, users, and technical requirements.' },
     { image: 'images/architecture.png', title: 'Architecture', body: 'We design scalable, secure systems tailored precisely to your requirements.' },
-    { image: 'images/build.png', title: 'Build', body: 'Agile sprints with continuous delivery and regular client checkpoints.' },
+    { image: 'images/build.png', title: 'Build', body: 'Agile sprints with continuous delivery and regular client touchpoints.' },
     { image: 'images/test.png', title: 'Test & Secure', body: 'Rigorous QA, load testing, and security audits before any go-live.' },
     { image: 'images/deploy.png', title: 'Deploy & Support', body: 'Smooth rollout with 24/7 monitoring and dedicated support SLAs.' }
   ];
@@ -129,16 +130,15 @@ setActiveCard(index: number) {
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private cdr: ChangeDetectorRef,
-    private seoService: SeoService  // ADD THIS
+    private seoService: SeoService
   ) {}
 
   // ── Lifecycle ──
   ngOnInit() {
     this.startAuto();
-    this.setHomePageSEO();  // ADD THIS
+    this.setHomePageSEO();
   }
 
-  // ADD THIS METHOD
   private setHomePageSEO() {
     this.seoService.setPageMeta({
       title: 'Qsoft-Group — Touching lives Through intelligent technology',
@@ -176,21 +176,38 @@ setActiveCard(index: number) {
   calcCircle() {
     if (typeof window === 'undefined') return;
     this.isMobile = window.innerWidth <= 900;
-
     const w = window.innerWidth;
-    
+
     if (w <= 480) {
       this.circleSize = w - 20;
     } else if (w <= 900) {
       this.circleSize = Math.min(w - 60, 600);
     } else {
-      this.circleSize = Math.min(w - 80, 850);
+      this.circleSize = Math.min(w - 20, 800);
     }
-    
-    this.orbitR = this.circleSize * 0.335;
-    this.cardW = Math.min(210, this.circleSize * 0.262);
-    this.cardH = Math.min(195, this.circleSize * 0.30);
+
+    this.orbitR = this.circleSize * 0.43;
+    this.cardW  = Math.min(210, this.circleSize * 0.262);
+    this.cardH  = Math.min(195, this.circleSize * 0.30);
     this.cdr.markForCheck();
+  }
+
+  // ── Orbit arrows — one arrowhead between each pair of cards ──
+  getOrbitArrows(): { x1: number; y1: number; x2: number; y2: number }[] {
+    const r = this.orbitR;
+    const cx = this.circleSize / 2;
+    const cy = this.circleSize / 2;
+    const toRad = (d: number) => d * Math.PI / 180;
+    return this.processSteps.map((_, i) => {
+      // midpoint angle between card i and card i+1
+      const mid = -90 + (360 / this.processSteps.length) * (i + 0.5);
+      return {
+        x1: cx + r * Math.cos(toRad(mid - 3)),
+        y1: cy + r * Math.sin(toRad(mid - 3)),
+        x2: cx + r * Math.cos(toRad(mid + 3)),
+        y2: cy + r * Math.sin(toRad(mid + 3)),
+      };
+    });
   }
 
   getStepPos(index: number): { [k: string]: string } {
@@ -202,25 +219,6 @@ setActiveCard(index: number) {
     const x = cx + this.orbitR * Math.cos(rad) - this.cardW / 2;
     const y = cy + this.orbitR * Math.sin(rad) - this.cardH / 2;
     return { position: 'absolute', top: `${y}px`, left: `${x}px`, width: `${this.cardW}px` };
-  }
-
-  arcPath(index: number): string {
-    const total = this.processSteps.length;
-    const inset = 18;
-    const r = this.orbitR - inset;
-    const cx = this.circleSize / 2;
-    const cy = this.circleSize / 2;
-
-    const fromDeg = -90 + (360 / total) * index;
-    const toDeg = -90 + (360 / total) * ((index + 1) % total);
-
-    const toRad = (d: number) => d * Math.PI / 180;
-    const x1 = cx + r * Math.cos(toRad(fromDeg));
-    const y1 = cy + r * Math.sin(toRad(fromDeg));
-    const x2 = cx + r * Math.cos(toRad(toDeg));
-    const y2 = cy + r * Math.sin(toRad(toDeg));
-
-    return `M ${x1.toFixed(1)} ${y1.toFixed(1)} A ${r.toFixed(1)} ${r.toFixed(1)} 0 0 1 ${x2.toFixed(1)} ${y2.toFixed(1)}`;
   }
 
   // ── Scroll reveal ──
@@ -324,7 +322,7 @@ setActiveCard(index: number) {
     const rect = cardWrapper.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
-    
+
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
@@ -333,7 +331,7 @@ setActiveCard(index: number) {
 
     const isLeft = cardWrapper.classList.contains('left');
     const isRight = cardWrapper.classList.contains('right');
-    
+
     let baseRotateY = 0;
     if (isLeft) baseRotateY = 5;
     if (isRight) baseRotateY = -5;
@@ -347,22 +345,23 @@ setActiveCard(index: number) {
 
     const glareX = (x / rect.width) * 100;
     const glareY = (y / rect.height) * 100;
-    
+
     glare.style.background = `
       radial-gradient(circle at ${glareX}% ${glareY}%,
         rgba(255,255,255,0.5),
         transparent 60%)
     `;
   }
+
   @ViewChild('tiltGrid') tiltGrid!: ElementRef;
 
-onTiltScroll(e: Event) {
-  const el = e.target as HTMLElement;
-  const cardWidth = el.firstElementChild
-    ? (el.firstElementChild as HTMLElement).offsetWidth + 16
-    : el.scrollWidth / 3;
-  this.activeCardIndex = Math.round(el.scrollLeft / cardWidth);
-}
+  onTiltScroll(e: Event) {
+    const el = e.target as HTMLElement;
+    const cardWidth = el.firstElementChild
+      ? (el.firstElementChild as HTMLElement).offsetWidth + 16
+      : el.scrollWidth / 3;
+    this.activeCardIndex = Math.round(el.scrollLeft / cardWidth);
+  }
 
   resetTilt(cardWrapper: HTMLElement) {
     if (!cardWrapper || window.innerWidth <= 900) return;
@@ -373,9 +372,9 @@ onTiltScroll(e: Event) {
 
     const isLeft = cardWrapper.classList.contains('left');
     const isRight = cardWrapper.classList.contains('right');
-    
+
     let defaultTransform = 'perspective(1200px) rotateX(30deg)';
-    
+
     if (isLeft) {
       defaultTransform = 'perspective(1200px) rotateX(30deg) rotateY(5deg)';
     } else if (isRight) {
@@ -383,7 +382,7 @@ onTiltScroll(e: Event) {
     }
 
     card.style.transform = defaultTransform;
-    
+
     glare.style.background = `
       radial-gradient(circle at 50% 50%,
         rgba(255,255,255,0.3),

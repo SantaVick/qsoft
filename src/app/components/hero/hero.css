@@ -41,7 +41,7 @@
   color: #4b5563;
 }
 
-.btn-dark, .btn-out, .btn-light {
+.btn-dark, .btn-out, .btn-light,.btn-center {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -51,6 +51,17 @@
   font-weight: 700;
   text-decoration: none;
   transition: all .25s ease;
+  cursor: pointer;
+}.btn-center {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.btn-center:hover {
+  background: #dc2626;
+  color: #fff;
+  transform: translateY(-2px);
 }
 .btn-dark { background: #111827; color: #fff; }
 .btn-dark:hover { background: #dc2626; transform: translateY(-2px); }
@@ -223,22 +234,22 @@
 
 
 .how-we-work {
-  padding: 4rem 2rem 5rem;
-  background: #ffffff;
+  padding: 3rem 2rem ;
+  background: #fff;
   overflow: visible;
 }
 
 .process-steps {
   position: relative;
   box-sizing: border-box;
-  width: 600px;
-  height: 600px;
-  margin: 5rem auto 0;
+  width: 680px;   
+  height: 680px;
+  margin: 3rem auto 0
 }
 
 .sdlc-hub {
   position: absolute;
-  top: 55%; left: 50%;
+  top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background: #dc2626;
@@ -259,11 +270,13 @@
   line-height: 1.3;
   text-align: center;
 }
+.connectors polygon {
+  stroke: none;
+  shape-rendering: geometricPrecision;
+}
 
-.connectors {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  pointer-events: none; z-index: 0; overflow: visible;
+.connectors path {
+  shape-rendering: geometricPrecision;
 }
 
 .process-step {
@@ -352,6 +365,7 @@
   .process-step p { font-size: 0.5rem !important; line-height: 1.3 !important; }
   .connectors { width: 100% !important; height: 100% !important; }
 }
+
 @media (max-width: 480px) {
   .how-we-work { padding: 1.5rem 0 2rem; }
   .sdlc-hub { width: 60px !important; height: 60px !important; }
@@ -372,6 +386,22 @@
   .step-image { width: 14px !important; height: 14px !important; }
   .process-step h4 { font-size: 0.45rem !important; }
   .process-step p { font-size: 0.38rem !important; }
+}
+.orbit-path {
+  fill: none;
+  stroke: #dc2626;
+  stroke-width: 2.5;
+  stroke-dasharray: 8 6;
+  opacity: .85;
+}
+
+.orbit-arrow {
+  fill: #dc2626;
+  opacity: .95;
+}
+
+.connectors {
+  overflow: visible;
 }
 
 /* BESPOKE SOFTWARE */
@@ -575,7 +605,21 @@
 .fc-tag { display: inline-block; padding: 0.2rem 0.65rem; border-radius: 999px; background: #f3f4f6; color: #374151; font-size: 0.68rem; font-weight: 600; }
 .card-glare { position: absolute; inset: 0; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: 1; }
 .tilt-card-wrapper:hover .card-glare { opacity: 1; }
+.fc-logo {
+  width: 120px;
+  height: 80px;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.fc-logo img {
+  max-width: 180px;
+  max-height: 120px;
+  object-fit: contain;
+  display: block;
+}
 @media (max-width: 900px) {
   .product-portfolio-section {
     padding: 3rem 0 3rem;
